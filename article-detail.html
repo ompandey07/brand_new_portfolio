@@ -105,7 +105,6 @@
         margin-bottom: 2rem;
         padding: 0.75rem 1.5rem;
         background: var(--background);
-        border: 2px solid var(--accent);
         transition: all 0.3s ease;
         font-weight: 600;
         text-transform: uppercase;
@@ -116,7 +115,6 @@
       .back-button:hover {
         background: var(--accent);
         color: var(--background);
-        transform: translateX(-5px);
       }
 
       /* Article Content */
@@ -288,31 +286,16 @@
         color: var(--primary);
         text-decoration: none;
         padding: 1rem 2rem;
-        background: var(--background);
-        border: 2px solid var(--accent);
-        transition: all 0.3s ease;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        border-radius: 5px;
       }
 
-      .action-button:hover {
-        background: var(--accent);
-        color: var(--background);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
-      }
 
       .action-button.secondary {
         border-color: var(--secondary);
       }
 
-      .action-button.secondary:hover {
-        background: var(--secondary);
-        color: var(--background);
-        box-shadow: 0 10px 30px rgba(160, 160, 160, 0.3);
-      }
 
       /* Loading Spinner */
       .loading-spinner {
@@ -504,13 +487,13 @@
             <!-- Attachment Button (conditional) -->
             <a id="attachmentButton" href="#" target="_blank" class="action-button hidden">
               <i class="ri-attachment-line"></i>
-              <span>VIEW ATTACHMENT</span>
+              <span>Read Full</span>
             </a>
 
             <!-- Source Button (conditional) -->
             <a id="sourceButton" href="#" target="_blank" class="action-button secondary hidden">
               <i class="ri-external-link-line"></i>
-              <span>VIEW SOURCE</span>
+              <span>Source</span>
             </a>
           </div>
         </div>
