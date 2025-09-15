@@ -21,6 +21,10 @@
       rel="stylesheet"
     />
     <meta
+      name="description"
+      content="Explore the portfolio of Om Pandey, a dedicated full stack developer based in Nepal. Discover a range of projects showcasing expertise in web development."
+    />
+    <meta
       name="keywords"
       content="full stack developer, web development, portfolio, Om Pandey, Nepal"
     />
@@ -55,7 +59,7 @@
         --surface-light: #2a2a2a;
         --border: #404040;
       }
-
+      
       body {
         font-family: 'Inter', sans-serif;
         background-color: var(--background);
@@ -156,7 +160,7 @@
         }
       }
 
-      /* Gallery Grid - Dynamic Masonry Layout */
+      /* Gallery Grid - Masonry Layout */
       .gallery-container {
         margin-top: 0;
         padding: 4rem 1.5rem;
@@ -164,9 +168,9 @@
 
       .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-auto-rows: 10px; /* Smaller row height for finer control */
-        gap: 20px; /* Reduced gap for better spacing */
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+        grid-auto-rows: 15px;
+        gap: 30px;
         max-width: 1400px;
         margin: 0 auto;
       }
@@ -174,7 +178,7 @@
       .gallery-item {
         position: relative;
         overflow: hidden;
-        border-radius: 8px;
+        border-radius: 0;
         cursor: pointer;
         transform: translateY(100px);
         opacity: 0;
@@ -187,11 +191,35 @@
         opacity: 1;
       }
 
+      .gallery-item:nth-child(1) {
+        grid-row-end: span 15;
+        animation-delay: 0.1s;
+      }
+
+      .gallery-item:nth-child(2) {
+        grid-row-end: span 20;
+        animation-delay: 0.2s;
+      }
+
+      .gallery-item:nth-child(3) {
+        grid-row-end: span 12;
+        animation-delay: 0.3s;
+      }
+
+      .gallery-item:nth-child(4) {
+        grid-row-end: span 18;
+        animation-delay: 0.4s;
+      }
+
+      .gallery-item:nth-child(5) {
+        grid-row-end: span 14;
+        animation-delay: 0.5s;
+      }
+
       .gallery-item img {
         width: 100%;
-        height: auto; /* Ensure images maintain aspect ratio */
-        object-fit: contain; /* Prevent cropping, show full image */
-        display: block;
+        height: 100%;
+        object-fit: cover;
         transition: transform 0.5s ease;
       }
 
@@ -222,15 +250,15 @@
         opacity: 1;
       }
 
-      .gallery-item.animate-slide-left {
+      .gallery-item:nth-child(odd) {
         animation: slideInLeft 0.8s ease-out forwards;
       }
 
-      .gallery-item.animate-slide-right {
+      .gallery-item:nth-child(even) {
         animation: slideInRight 0.8s ease-out forwards;
       }
 
-      .gallery-item.animate-slide-up {
+      .gallery-item:nth-child(3n) {
         animation: slideInUp 0.8s ease-out forwards;
       }
 
@@ -327,6 +355,18 @@
         opacity: 0;
       }
 
+      .gallery-item.animate-slide-left {
+        animation: slideInLeft 0.8s ease-out forwards;
+      }
+
+      .gallery-item.animate-slide-right {
+        animation: slideInRight 0.8s ease-out forwards;
+      }
+
+      .gallery-item.animate-slide-up {
+        animation: slideInUp 0.8s ease-out forwards;
+      }
+
       @media (max-width: 768px) {
         .hero-bg {
           height: 60vh;
@@ -334,8 +374,7 @@
         }
 
         .gallery-grid {
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 15px;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
       }
     </style>
@@ -349,7 +388,7 @@
         <div class="cursive-font text-2xl font-bold text-red-600">
           <i class="ri-arrow-left-line"></i> Om Pandey <i class="ri-arrow-right-line"></i>
         </div>
-
+      
         <!-- Desktop Menu -->
         <ul class="hidden md:flex gap-8">
           <li>
@@ -378,7 +417,7 @@
             </a>
           </li>
         </ul>
-
+      
         <!-- Mobile Menu Icon -->
         <div class="md:hidden">
           <i class="ri-menu-line text-2xl text-white"></i>
@@ -418,7 +457,7 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('DOMContentLoaded', function() {
         const navbar = document.querySelector('.navbar');
         const galleryGrid = document.getElementById('galleryGrid');
         const lightbox = document.getElementById('lightbox');
@@ -433,21 +472,14 @@
               const galleryItem = document.createElement('div');
               galleryItem.classList.add('gallery-item');
               galleryItem.setAttribute('data-src', item.gallery_images);
-
+              
               const img = document.createElement('img');
               img.src = item.gallery_images;
               img.alt = `Gallery Image ${item.id}`;
               img.onerror = () => {
-                img.src = 'https://via.placeholder.com/300x200?text=Image+Not+Found';
+                img.src = 'https://via.placeholder.com/450x300?text=Image+Not+Found';
               };
-
-              // Dynamically calculate grid row span based on image height
-              img.onload = () => {
-                const rowHeight = 10; // Matches grid-auto-rows in CSS
-                const span = Math.ceil((img.naturalHeight + 20) / rowHeight); // Add gap to height
-                galleryItem.style.gridRowEnd = `span ${span}`;
-              };
-
+              
               galleryItem.appendChild(img);
               galleryGrid.appendChild(galleryItem);
             });
@@ -466,8 +498,8 @@
                 if (entry.isIntersecting) {
                   setTimeout(() => {
                     entry.target.classList.add('visible');
-
-                    // Apply alternating animations based on index
+                    
+                    // Add different animation classes
                     const itemIndex = Array.from(galleryItems).indexOf(entry.target);
                     if (itemIndex % 3 === 0) {
                       entry.target.classList.add('animate-slide-left');
@@ -502,7 +534,7 @@
           });
 
         // Navigation scroll effect
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', function() {
           if (window.scrollY > 100) {
             navbar.classList.add('scrolled');
           } else {
