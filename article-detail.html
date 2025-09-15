@@ -23,7 +23,7 @@
 
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Cascadia+Code:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -63,14 +63,6 @@
         font-family: 'Dancing Script', cursive;
       }
 
-      .title-font {
-        font-family: 'Playfair Display', serif;
-      }
-
-      .code-font {
-        font-family: 'Cascadia Code', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-      }
-
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
@@ -91,7 +83,7 @@
 
       /* Main Container */
       .main-container {
-        padding-top: 2rem;
+        padding: 2rem 1rem;
         min-height: 100vh;
         background: var(--background);
         width: 100%;
@@ -101,7 +93,6 @@
       .article-container {
         max-width: 900px;
         margin: 0 auto;
-        padding: 1rem;
         width: 100%;
       }
 
@@ -111,7 +102,7 @@
         gap: 0.5rem;
         color: var(--secondary);
         text-decoration: none;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         padding: 0.75rem 1.5rem;
         background: var(--background);
         border: 2px solid var(--accent);
@@ -119,6 +110,7 @@
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
+        border-radius: 5px;
       }
 
       .back-button:hover {
@@ -143,11 +135,11 @@
         }
       }
 
-      /* Article Header */
+      /* Article Header - Left Aligned */
       .article-header {
-        text-align: center;
+        text-align: left;
         margin-bottom: 3rem;
-        padding: 2rem 0;
+        padding: 0;
       }
 
       .article-title {
@@ -163,19 +155,12 @@
         word-wrap: break-word;
       }
 
-      .article-subtitle {
-        color: var(--secondary);
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-        font-style: italic;
-      }
-
-      .article-meta-header {
+      .article-meta {
         display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 0.5rem;
         color: var(--secondary);
+        margin-bottom: 2rem;
       }
 
       .meta-item {
@@ -189,51 +174,12 @@
       .meta-item i {
         color: var(--accent);
         font-size: 1.1rem;
+        width: 20px;
       }
 
-      /* Article Body */
-      .article-body {
-        padding: 0;
-        background: var(--background);
-        width: 100%;
-      }
-
-      .article-section {
-        margin: 2rem 0;
-        padding: 0;
-        background: var(--background);
-        width: 100%;
-      }
-
-      .section-title {
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--primary);
-        margin-bottom: 1.5rem;
-        text-align: center;
-        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .article-image {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        margin: 2rem 0;
-        border-radius: 10px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        transition: transform 0.3s ease;
-        display: block;
-      }
-
-      .article-image:hover {
-        transform: scale(1.02);
-      }
-
+      /* Article Content */
       .article-description {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         color: var(--primary);
         margin: 2rem 0;
         line-height: 1.8;
@@ -314,7 +260,6 @@
         background: var(--surface);
         padding: 1.5rem;
         margin: 2rem 0;
-        font-family: 'Cascadia Code', monospace;
         color: var(--primary);
         overflow-x: auto;
         border-radius: 5px;
@@ -324,55 +269,49 @@
       .article-description code {
         background: var(--surface);
         padding: 0.3rem 0.5rem;
-        font-family: 'Cascadia Code', monospace;
         color: var(--accent-light);
         border-radius: 3px;
       }
 
-      .article-description table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 2rem 0;
-        background: var(--surface);
-        border-radius: 5px;
-        overflow: hidden;
+      /* Action Buttons */
+      .action-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 3rem;
+        flex-wrap: wrap;
       }
 
-      .article-description th,
-      .article-description td {
-        padding: 1rem;
-        text-align: left;
-        border: 1px solid var(--border);
-      }
-
-      .article-description th {
-        background: var(--surface-light);
-        font-weight: 600;
-        color: var(--accent);
-      }
-
-      .article-source {
+      .action-button {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        color: var(--accent);
+        color: var(--primary);
         text-decoration: none;
         padding: 1rem 2rem;
         background: var(--background);
         border: 2px solid var(--accent);
         transition: all 0.3s ease;
-        margin-top: 2rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         border-radius: 5px;
       }
 
-      .article-source:hover {
+      .action-button:hover {
         background: var(--accent);
         color: var(--background);
         transform: translateY(-3px);
         box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+      }
+
+      .action-button.secondary {
+        border-color: var(--secondary);
+      }
+
+      .action-button.secondary:hover {
+        background: var(--secondary);
+        color: var(--background);
+        box-shadow: 0 10px 30px rgba(160, 160, 160, 0.3);
       }
 
       /* Loading Spinner */
@@ -453,28 +392,6 @@
         box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
       }
 
-      /* Content Placeholder */
-      .content-placeholder {
-        background: var(--background);
-        padding: 3rem 2rem;
-        margin: 2rem 0;
-        text-align: center;
-        color: var(--secondary);
-        border: 2px dashed var(--border);
-        border-radius: 10px;
-      }
-
-      .content-placeholder i {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        color: var(--accent);
-      }
-
-      .content-placeholder .section-title {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-      }
-
       /* Hide elements by default */
       .hidden {
         display: none !important;
@@ -482,33 +399,28 @@
 
       /* Responsive Design */
       @media (max-width: 768px) {
-        .article-container {
-          padding: 0.5rem;
+        .main-container {
+          padding: 1rem 0.5rem;
         }
 
         .article-title {
           font-size: 2rem;
         }
 
-        .article-subtitle {
-          font-size: 1rem;
-        }
-
-        .section-title {
-          font-size: 1.5rem;
-        }
-
-        .article-meta-header {
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .article-header {
-          padding: 1rem 0;
-        }
-
         .article-description {
           font-size: 1rem;
+        }
+
+        .action-buttons {
+          flex-direction: column;
+          gap: 0.8rem;
+        }
+
+        .action-button {
+          padding: 0.8rem 1.5rem;
+          font-size: 0.9rem;
+          text-align: center;
+          justify-content: center;
         }
 
         .back-button {
@@ -520,10 +432,6 @@
       @media (max-width: 480px) {
         .article-title {
           font-size: 1.8rem;
-        }
-
-        .section-title {
-          font-size: 1.3rem;
         }
       }
 
@@ -546,7 +454,7 @@
     <div class="main-container">
       <div class="article-container">
         <!-- Back Button -->
-        <a href="articles.html" class="back-button code-font">
+        <a href="articles.html" class="back-button">
           <i class="ri-arrow-left-line"></i>
           <span>BACK TO ARTICLES</span>
         </a>
@@ -561,7 +469,7 @@
           <i class="ri-error-warning-line"></i>
           <div class="error-title cursive-font">Article Not Found</div>
           <p class="error-message">There is something wrong with the server or the article doesn't exist.</p>
-          <button onclick="location.reload()" class="retry-button code-font">
+          <button onclick="location.reload()" class="retry-button">
             <i class="ri-refresh-line"></i>
             TRY AGAIN
           </button>
@@ -569,60 +477,41 @@
 
         <!-- Article Content -->
         <div id="articleContent" class="article-content hidden">
-          <!-- Article Header -->
+          <!-- Article Header - Left Aligned -->
           <div class="article-header fade-in">
             <h1 id="articleTitle" class="article-title cursive-font">Article Title</h1>
-            <p id="articleSubtitle" class="article-subtitle">Loading article details...</p>
-            <div class="article-meta-header">
+            <div class="article-meta">
               <div class="meta-item">
                 <i class="ri-user-line"></i>
-                <span id="articleAuthor" class="code-font">Author</span>
+                <span id="articleAuthor">Author</span>
               </div>
               <div class="meta-item">
                 <i class="ri-calendar-line"></i>
-                <span id="articleDate" class="code-font">Date</span>
+                <span id="articleDate">Date</span>
               </div>
             </div>
           </div>
 
-          <!-- Article Body -->
-          <div class="article-body">
-            <!-- Article Image -->
-            <div id="articleImageContainer" class="article-section hidden fade-in">
-              <h2 class="section-title cursive-font">Featured Image</h2>
-              <img id="articleImage" src="" alt="Article Image" class="article-image">
+          <!-- Article Description -->
+          <div id="articleDescriptionContainer" class="fade-in">
+            <div id="articleDescription" class="article-description">
+              Article description will appear here...
             </div>
+          </div>
 
-            <!-- Article Description -->
-            <div id="articleDescriptionContainer" class="article-section hidden fade-in">
-              <h2 class="section-title cursive-font">Article Content</h2>
-              <div id="articleDescription" class="article-description">
-                Article description will appear here...
-              </div>
-            </div>
+          <!-- Action Buttons -->
+          <div class="action-buttons fade-in">
+            <!-- Attachment Button (conditional) -->
+            <a id="attachmentButton" href="#" target="_blank" class="action-button hidden">
+              <i class="ri-attachment-line"></i>
+              <span>VIEW ATTACHMENT</span>
+            </a>
 
-            <!-- No Description Placeholder -->
-            <div id="noDescriptionPlaceholder" class="content-placeholder hidden fade-in">
-              <i class="ri-file-text-line"></i>
-              <div class="section-title cursive-font">No Content Available</div>
-              <p>No detailed description available for this article.</p>
-            </div>
-
-            <!-- Article Source -->
-            <div id="articleSourceContainer" class="article-section hidden fade-in">
-              <h2 class="section-title cursive-font">External Source</h2>
-              <a id="articleSource" href="#" target="_blank" class="article-source code-font">
-                <i class="ri-external-link-line"></i>
-                <span>VIEW ORIGINAL SOURCE</span>
-              </a>
-            </div>
-
-            <!-- No Source Placeholder -->
-            <div id="noSourcePlaceholder" class="content-placeholder hidden fade-in">
-              <i class="ri-link-line"></i>
-              <div class="section-title cursive-font">No External Source</div>
-              <p>No external source available for this article.</p>
-            </div>
+            <!-- Source Button (conditional) -->
+            <a id="sourceButton" href="#" target="_blank" class="action-button secondary hidden">
+              <i class="ri-external-link-line"></i>
+              <span>VIEW SOURCE</span>
+            </a>
           </div>
         </div>
       </div>
@@ -692,30 +581,7 @@
             document.getElementById('articleDate').textContent = 'Date not available';
           }
 
-          // Handle article image - Fixed the typo in API field name
-          if (article.article_attchamens && article.article_attchamens.trim()) {
-            const imageElement = document.getElementById('articleImage');
-            imageElement.src = article.article_attchamens;
-            imageElement.alt = article.article_title || 'Article Image';
-            
-            // Add error handling for image
-            imageElement.onerror = function() {
-              console.log('Image failed to load:', article.article_attchamens);
-              document.getElementById('articleImageContainer').classList.add('hidden');
-            };
-            
-            imageElement.onload = function() {
-              console.log('Image loaded successfully:', article.article_attchamens);
-              document.getElementById('articleImageContainer').classList.remove('hidden');
-            };
-            
-            // Show container initially to test image loading
-            document.getElementById('articleImageContainer').classList.remove('hidden');
-          } else {
-            console.log('No image URL provided');
-          }
-
-          // Handle article description (CKEditor content) - Fixed typo in API field name
+          // Handle article description
           if (article.article_discrptions && article.article_discrptions.trim()) {
             // Check if content contains HTML tags (CKEditor output)
             const hasHTMLTags = /<[^>]*>/.test(article.article_discrptions);
@@ -727,25 +593,26 @@
               // Render as plain text and preserve line breaks
               document.getElementById('articleDescription').innerHTML = article.article_discrptions.replace(/\n/g, '<br>');
             }
-            
-            document.getElementById('articleDescriptionContainer').classList.remove('hidden');
           } else {
-            document.getElementById('noDescriptionPlaceholder').classList.remove('hidden');
+            document.getElementById('articleDescription').innerHTML = '<p style="color: var(--secondary); font-style: italic;">No content available for this article.</p>';
           }
 
-          // Handle article source
+          // Handle attachment button (conditional)
+          if (article.article_attchamens && article.article_attchamens.trim()) {
+            const attachmentBtn = document.getElementById('attachmentButton');
+            attachmentBtn.href = article.article_attchamens;
+            attachmentBtn.classList.remove('hidden');
+          }
+
+          // Handle source button (conditional)
           if (article.article_source && 
               article.article_source.trim() && 
               article.article_source !== '#' && 
               article.article_source.startsWith('http')) {
-            document.getElementById('articleSource').href = article.article_source;
-            document.getElementById('articleSourceContainer').classList.remove('hidden');
-          } else {
-            document.getElementById('noSourcePlaceholder').classList.remove('hidden');
+            const sourceBtn = document.getElementById('sourceButton');
+            sourceBtn.href = article.article_source;
+            sourceBtn.classList.remove('hidden');
           }
-
-          // Update subtitle
-          document.getElementById('articleSubtitle').textContent = 'Read the complete article below';
         }
 
         function showError() {
@@ -753,8 +620,16 @@
           document.getElementById('errorState').classList.remove('hidden');
         }
 
-        // Source link validation
-        document.getElementById('articleSource').addEventListener('click', function(e) {
+        // Button click validation
+        document.getElementById('attachmentButton').addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (!href || href === '#' || href === 'null' || href === 'undefined') {
+            e.preventDefault();
+            alert('No attachment available for this article.');
+          }
+        });
+
+        document.getElementById('sourceButton').addEventListener('click', function(e) {
           const href = this.getAttribute('href');
           if (!href || href === '#' || href === 'null' || href === 'undefined' || !href.startsWith('http')) {
             e.preventDefault();
