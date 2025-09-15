@@ -105,7 +105,6 @@
         margin-bottom: 2rem;
         padding: 0.75rem 1.5rem;
         background: var(--background);
-        transition: all 0.3s ease;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -113,8 +112,7 @@
       }
 
       .back-button:hover {
-        background: var(--accent);
-        color: var(--background);
+        color: var(--accent);
       }
 
       /* Article Content */
@@ -133,9 +131,9 @@
         }
       }
 
-      /* Article Header - Left Aligned */
+      /* Article Header - Centered */
       .article-header {
-        text-align: left;
+        text-align: center;
         margin-bottom: 3rem;
         padding: 0;
       }
@@ -155,8 +153,10 @@
 
       .article-meta {
         display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
         color: var(--secondary);
         margin-bottom: 2rem;
       }
@@ -175,7 +175,7 @@
         width: 20px;
       }
 
-      /* Article Content */
+      /* Article Content - Centered */
       .article-description {
         font-size: 1.2rem;
         color: var(--primary);
@@ -184,6 +184,7 @@
         background: var(--background);
         word-wrap: break-word;
         overflow-wrap: break-word;
+        text-align: center;
       }
 
       /* CKEditor Content Styling */
@@ -201,6 +202,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        text-align: center;
       }
 
       .article-description h1 { font-size: 2.2rem; }
@@ -214,6 +216,7 @@
         margin: 1.5rem 0;
         color: var(--primary);
         font-size: 1.1rem;
+        text-align: center;
       }
 
       .article-description ul,
@@ -221,6 +224,8 @@
         margin: 1.5rem 0;
         padding-left: 2rem;
         color: var(--primary);
+        text-align: left;
+        display: inline-block;
       }
 
       .article-description li {
@@ -235,6 +240,7 @@
         font-style: italic;
         color: var(--secondary);
         border-radius: 5px;
+        text-align: center;
       }
 
       .article-description a {
@@ -250,18 +256,21 @@
       .article-description img {
         max-width: 100%;
         height: auto;
-        margin: 2rem 0;
+        margin: 2rem auto;
         border-radius: 5px;
+        display: block;
       }
 
       .article-description pre {
         background: var(--surface);
         padding: 1.5rem;
-        margin: 2rem 0;
+        margin: 2rem auto;
         color: var(--primary);
         overflow-x: auto;
         border-radius: 5px;
         border: 1px solid var(--border);
+        text-align: left;
+        display: inline-block;
       }
 
       .article-description code {
@@ -271,12 +280,13 @@
         border-radius: 3px;
       }
 
-      /* Action Buttons */
+      /* Action Buttons - Centered */
       .action-buttons {
         display: flex;
         gap: 1rem;
         margin-top: 3rem;
         flex-wrap: wrap;
+        justify-content: center;
       }
 
       .action-button {
@@ -416,6 +426,11 @@
           padding: 0.6rem 1rem;
           font-size: 0.9rem;
         }
+
+        .article-meta {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
       }
 
       @media (max-width: 480px) {
@@ -466,7 +481,7 @@
 
         <!-- Article Content -->
         <div id="articleContent" class="article-content hidden">
-          <!-- Article Header - Left Aligned -->
+          <!-- Article Header - Centered -->
           <div class="article-header fade-in">
             <h1 id="articleTitle" class="article-title cursive-font">Article Title</h1>
             <div class="article-meta">
@@ -481,14 +496,14 @@
             </div>
           </div>
 
-          <!-- Article Description -->
+          <!-- Article Description - Centered -->
           <div id="articleDescriptionContainer" class="fade-in">
             <div id="articleDescription" class="article-description">
               Article description will appear here...
             </div>
           </div>
 
-          <!-- Action Buttons -->
+          <!-- Action Buttons - Centered -->
           <div class="action-buttons fade-in">
             <!-- Attachment Button (conditional) -->
             <a id="attachmentButton" href="#" target="_blank" class="action-button hidden">
