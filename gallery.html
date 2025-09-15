@@ -7,10 +7,10 @@
       name="description"
       content="Explore the portfolio of Om Pandey, a dedicated full stack developer based in Nepal. Discover a range of projects showcasing expertise in web development."
     />
-    <title>Showcase </title>
+    <title>Showcase</title>
 
     <!-- Favicon -->
-     <link rel="shortcut icon" href="HeroImages/Profile.png" type="image/x-icon">
+    <link rel="shortcut icon" href="HeroImages/Profile.png" type="image/x-icon">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -109,11 +109,9 @@
         height: 70vh;
         min-height: 600px;
         overflow: hidden;
-        /* Simple U-shaped clip-path for the background image */
         clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
       }
 
-      /* U-shaped black overlay */
       .hero-bg::before {
         content: '';
         position: absolute;
@@ -122,12 +120,10 @@
         right: 0;
         bottom: 0;
         background: rgba(0, 0, 0, 0.7);
-        /* Same U-shaped clip-path for the overlay */
         clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
         z-index: 1;
       }
 
-      /* Additional vintage film overlay */
       .hero-bg::after {
         content: '';
         position: absolute;
@@ -144,11 +140,9 @@
         );
         opacity: 0.6;
         z-index: 2;
-        /* Apply same U-shaped clip-path */
         clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
       }
 
-      /* Background image animation on page load */
       .hero-bg {
         opacity: 0;
         transform: scale(1.1);
@@ -256,7 +250,6 @@
         opacity: 1;
       }
 
-      /* Different Animation Types */
       .gallery-item:nth-child(odd) {
         animation: slideInLeft 0.8s ease-out forwards;
       }
@@ -302,7 +295,6 @@
         }
       }
 
-      /* Lightbox */
       .lightbox {
         position: fixed;
         top: 0;
@@ -347,7 +339,6 @@
         color: #dc2626;
       }
 
-      /* Hero Animations */
       @keyframes heroZoom {
         0% {
           transform: scale(0.8) translateY(100px);
@@ -364,7 +355,6 @@
         opacity: 0;
       }
 
-      /* Scroll trigger animations */
       .gallery-item.animate-slide-left {
         animation: slideInLeft 0.8s ease-out forwards;
       }
@@ -377,7 +367,6 @@
         animation: slideInUp 0.8s ease-out forwards;
       }
 
-      /* Mobile responsiveness */
       @media (max-width: 768px) {
         .hero-bg {
           height: 60vh;
@@ -455,32 +444,7 @@
     <!-- Gallery Grid -->
     <section class="gallery-container">
       <div class="gallery-grid" id="galleryGrid">
-        <!-- Gallery Item 1 -->
-        <div class="gallery-item" data-src="GalleryImages/Images1.jpg">
-          <img src="GalleryImages/Images1.jpg" alt="Web Development Project" />
-        </div>
-
-        <!-- Gallery Item 2 -->
-        <div class="gallery-item" data-src="GalleryImages/Image2.jpg">
-          <img src="GalleryImages/Image2.jpg" alt="Coding Setup" />
-        </div>
-
-        <!-- Gallery Item 3 -->
-        <div class="gallery-item" data-src="GalleryImages/Images3.jpeg">
-          <img src="GalleryImages/Images3.jpeg" alt="Mobile App Design" />
-        </div>
-
-        <!-- Gallery Item 4 -->
-        <div class="gallery-item" data-src="GalleryImages/Image4.jpg">
-          <img src="GalleryImages/Image4.jpg" alt="Development Environment" />
-        </div>
-
-        <!-- Gallery Item 5 -->
-        <div class="gallery-item" data-src="GalleryImages/Images5.jpeg">
-          <img src="GalleryImages/Images5.jpeg" alt="Data Analytics" />
-        </div>
-
-        
+        <!-- Gallery items will be dynamically added here -->
       </div>
     </section>
 
@@ -495,10 +459,79 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const navbar = document.querySelector('.navbar');
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        const galleryGrid = document.getElementById('galleryGrid');
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightboxImage');
         const lightboxClose = document.getElementById('lightboxClose');
+
+        // Fetch images from API
+        fetch('https://myapi.finixdev.com/api/gallery/')
+          .then(response => response.json())
+          .then(data => {
+            data.forEach((item, index) => {
+              const galleryItem = document.createElement('div');
+              galleryItem.classList.add('gallery-item');
+              galleryItem.setAttribute('data-src', item.gallery_images);
+              
+              const img = document.createElement('img');
+              img.src = item.gallery_images;
+              img.alt = `Gallery Image ${item.id}`;
+              img.onerror = () => {
+                img.src = 'https://via.placeholder.com/450x300?text=Image+Not+Found';
+              };
+              
+              galleryItem.appendChild(img);
+              galleryGrid.appendChild(galleryItem);
+            });
+
+            // Re-initialize gallery items after adding them dynamically
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            // Intersection Observer for gallery animations
+            const observerOptions = {
+              threshold: 0.2,
+              rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                  setTimeout(() => {
+                    entry.target.classList.add('visible');
+                    
+                    // Add different animation classes
+                    const itemIndex = Array.from(galleryItems).indexOf(entry.target);
+                    if (itemIndex % 3 === 0) {
+                      entry.target.classList.add('animate-slide-left');
+                    } else if (itemIndex % 3 === 1) {
+                      entry.target.classList.add('animate-slide-right');
+                    } else {
+                      entry.target.classList.add('animate-slide-up');
+                    }
+                  }, index * 200);
+                }
+              });
+            }, observerOptions);
+
+            // Observe gallery items
+            galleryItems.forEach(item => {
+              observer.observe(item);
+            });
+
+            // Lightbox functionality
+            galleryItems.forEach(item => {
+              item.addEventListener('click', () => {
+                const imageSrc = item.getAttribute('data-src');
+                lightboxImage.src = imageSrc;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+              });
+            });
+          })
+          .catch(error => {
+            console.error('Error fetching gallery images:', error);
+            galleryGrid.innerHTML = '<p class="text-center text-red-600">Failed to load gallery images.</p>';
+          });
 
         // Navigation scroll effect
         window.addEventListener('scroll', function() {
@@ -507,47 +540,6 @@
           } else {
             navbar.classList.remove('scrolled');
           }
-        });
-
-        // Intersection Observer for gallery animations
-        const observerOptions = {
-          threshold: 0.2,
-          rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-              setTimeout(() => {
-                entry.target.classList.add('visible');
-                
-                // Add different animation classes
-                const itemIndex = Array.from(galleryItems).indexOf(entry.target);
-                if (itemIndex % 3 === 0) {
-                  entry.target.classList.add('animate-slide-left');
-                } else if (itemIndex % 3 === 1) {
-                  entry.target.classList.add('animate-slide-right');
-                } else {
-                  entry.target.classList.add('animate-slide-up');
-                }
-              }, index * 200);
-            }
-          });
-        }, observerOptions);
-
-        // Observe gallery items
-        galleryItems.forEach(item => {
-          observer.observe(item);
-        });
-
-        // Lightbox functionality
-        galleryItems.forEach(item => {
-          item.addEventListener('click', () => {
-            const imageSrc = item.getAttribute('data-src');
-            lightboxImage.src = imageSrc;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-          });
         });
 
         // Close lightbox
@@ -586,5 +578,4 @@
       });
     </script>
   </body>
-  <script src="app.js"></script>
 </html>
