@@ -23,7 +23,7 @@
 
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Cascadia+Code:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -33,10 +33,10 @@
         --secondary: #a0a0a0;
         --accent: #dc2626;
         --accent-light: #ef4444;
-        --background: #0a0a0a;
-        --surface: #1a1a1a;
-        --surface-light: #2a2a2a;
-        --border: #404040;
+        --background: #000000;
+        --surface: #111111;
+        --surface-light: #1a1a1a;
+        --border: #333333;
       }
       
       body {
@@ -44,10 +44,20 @@
         background-color: var(--background);
         color: var(--primary);
         line-height: 1.7;
+        margin: 0;
+        padding: 0;
       }
 
       .cursive-font {
         font-family: 'Dancing Script', cursive;
+      }
+
+      .title-font {
+        font-family: 'Playfair Display', serif;
+      }
+
+      .code-font {
+        font-family: 'Cascadia Code', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
       }
 
       /* Custom Scrollbar */
@@ -56,12 +66,11 @@
       }
 
       ::-webkit-scrollbar-track {
-        background: var(--surface);
+        background: var(--background);
       }
 
       ::-webkit-scrollbar-thumb {
         background: var(--accent);
-        border-radius: 4px;
       }
 
       ::-webkit-scrollbar-thumb:hover {
@@ -70,14 +79,14 @@
 
       /* Main Container */
       .main-container {
-        padding-top: 100px;
+        padding-top: 50px;
         min-height: 100vh;
-        background: linear-gradient(135deg, var(--background) 0%, var(--surface) 100%);
+        background: var(--background);
       }
 
       /* Article Container */
       .article-container {
-        max-width: 900px;
+        max-width: 1000px;
         margin: 0 auto;
         padding: 2rem;
       }
@@ -90,7 +99,6 @@
         text-decoration: none;
         margin-bottom: 2rem;
         padding: 0.75rem 1.5rem;
-        border-radius: 10px;
         background: var(--surface);
         border: 1px solid var(--border);
         transition: all 0.3s ease;
@@ -104,10 +112,7 @@
 
       /* Article Content Card */
       .article-card {
-        background: var(--surface);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        background: var(--background);
         border: 1px solid var(--border);
         opacity: 0;
         transform: translateY(30px);
@@ -123,68 +128,184 @@
 
       /* Article Header */
       .article-header {
-        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-        padding: 3rem 2rem;
+        background: var(--surface);
+        padding: 4rem 3rem;
         text-align: center;
-        position: relative;
+        border-bottom: 2px solid var(--accent);
       }
 
       .article-title {
-        color: white;
-        font-size: 3rem;
+        color: var(--primary);
+        font-size: 3.5rem;
         font-weight: 800;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         line-height: 1.2;
+        font-family: 'Playfair Display', serif;
+        letter-spacing: -0.02em;
       }
 
       .article-subtitle {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
+        color: var(--secondary);
+        font-size: 1.3rem;
+        margin-bottom: 2.5rem;
+        font-style: italic;
       }
 
       .article-meta-header {
         display: flex;
         justify-content: center;
-        gap: 2rem;
+        gap: 3rem;
         flex-wrap: wrap;
-        color: rgba(255, 255, 255, 0.9);
+        color: var(--secondary);
       }
 
       .meta-item {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        font-size: 1rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      .meta-item i {
+        color: var(--accent);
+        font-size: 1.2rem;
       }
 
       /* Article Body */
       .article-body {
-        padding: 3rem 2rem;
+        padding: 4rem 3rem;
+        background: var(--background);
       }
 
       .article-image {
         width: 100%;
         max-width: 100%;
         height: auto;
-        border-radius: 15px;
-        margin: 2rem 0;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        margin: 3rem 0;
+        border: 1px solid var(--border);
         transition: transform 0.3s ease;
       }
 
       .article-image:hover {
-        transform: scale(1.02);
+        transform: scale(1.01);
       }
 
+      /* CKEditor Content Styling */
       .article-description {
         font-size: 1.2rem;
         color: var(--primary);
-        margin-bottom: 2rem;
+        margin: 3rem 0;
+        padding: 2rem;
+        background: var(--surface);
+        border-left: 4px solid var(--accent);
+        font-family: 'Cascadia Code', monospace;
+        line-height: 1.8;
+      }
+
+      /* Style CKEditor HTML content */
+      .article-description h1,
+      .article-description h2,
+      .article-description h3,
+      .article-description h4,
+      .article-description h5,
+      .article-description h6 {
+        color: var(--primary);
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        margin: 2rem 0 1rem 0;
+        line-height: 1.3;
+      }
+
+      .article-description h1 { font-size: 2.5rem; }
+      .article-description h2 { font-size: 2.2rem; }
+      .article-description h3 { font-size: 1.9rem; }
+      .article-description h4 { font-size: 1.6rem; }
+      .article-description h5 { font-size: 1.4rem; }
+      .article-description h6 { font-size: 1.2rem; }
+
+      .article-description p {
+        margin: 1.5rem 0;
+        color: var(--primary);
+        font-family: 'Cascadia Code', monospace;
+        font-size: 1.1rem;
+      }
+
+      .article-description ul,
+      .article-description ol {
+        margin: 1.5rem 0;
+        padding-left: 2rem;
+        color: var(--primary);
+      }
+
+      .article-description li {
+        margin: 0.8rem 0;
+        font-family: 'Cascadia Code', monospace;
+      }
+
+      .article-description blockquote {
+        margin: 2rem 0;
         padding: 1.5rem;
         background: var(--surface-light);
-        border-radius: 15px;
         border-left: 4px solid var(--accent);
+        font-style: italic;
+        color: var(--secondary);
+      }
+
+      .article-description a {
+        color: var(--accent);
+        text-decoration: underline;
+        transition: color 0.3s ease;
+      }
+
+      .article-description a:hover {
+        color: var(--accent-light);
+      }
+
+      .article-description img {
+        max-width: 100%;
+        height: auto;
+        margin: 2rem 0;
+        border: 1px solid var(--border);
+      }
+
+      .article-description pre {
+        background: var(--surface-light);
+        padding: 1.5rem;
+        margin: 2rem 0;
+        font-family: 'Cascadia Code', monospace;
+        color: var(--primary);
+        overflow-x: auto;
+        border: 1px solid var(--border);
+      }
+
+      .article-description code {
+        background: var(--surface-light);
+        padding: 0.3rem 0.5rem;
+        font-family: 'Cascadia Code', monospace;
+        color: var(--accent-light);
+        border: 1px solid var(--border);
+      }
+
+      .article-description table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+        background: var(--surface);
+      }
+
+      .article-description th,
+      .article-description td {
+        padding: 1rem;
+        text-align: left;
+        border: 1px solid var(--border);
+        font-family: 'Cascadia Code', monospace;
+      }
+
+      .article-description th {
+        background: var(--surface-light);
+        font-weight: 600;
+        color: var(--accent);
       }
 
       .article-source {
@@ -193,19 +314,20 @@
         gap: 0.5rem;
         color: var(--accent);
         text-decoration: none;
-        padding: 1rem 1.5rem;
-        background: var(--surface-light);
-        border-radius: 10px;
-        border: 1px solid var(--border);
+        padding: 1.2rem 2rem;
+        background: var(--surface);
+        border: 2px solid var(--accent);
         transition: all 0.3s ease;
-        margin-top: 1rem;
+        margin-top: 2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
 
       .article-source:hover {
         background: var(--accent);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        color: var(--background);
+        transform: translateY(-3px);
       }
 
       /* Loading Spinner */
@@ -219,9 +341,8 @@
       .spinner {
         width: 50px;
         height: 50px;
-        border: 4px solid var(--surface-light);
+        border: 4px solid var(--surface);
         border-top: 4px solid var(--accent);
-        border-radius: 50%;
         animation: spin 1s linear infinite;
       }
 
@@ -235,6 +356,7 @@
         text-align: center;
         padding: 4rem 2rem;
         color: var(--secondary);
+        background: var(--background);
       }
 
       .error-container i {
@@ -244,15 +366,17 @@
       }
 
       .error-title {
-        font-size: 2rem;
-        font-weight: 600;
+        font-size: 2.5rem;
+        font-weight: 700;
         margin-bottom: 1rem;
         color: var(--primary);
+        font-family: 'Playfair Display', serif;
       }
 
       .error-message {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         margin-bottom: 2rem;
+        font-family: 'Cascadia Code', monospace;
       }
 
       .retry-button {
@@ -260,20 +384,21 @@
         align-items: center;
         gap: 0.5rem;
         background: var(--accent);
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 10px;
+        color: var(--background);
+        padding: 1.2rem 2rem;
         text-decoration: none;
         transition: all 0.3s ease;
         border: none;
         cursor: pointer;
         font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
 
       .retry-button:hover {
         background: var(--accent-light);
         transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
       }
 
       /* Responsive Design */
@@ -283,11 +408,11 @@
         }
 
         .article-title {
-          font-size: 2rem;
+          font-size: 2.5rem;
         }
 
         .article-subtitle {
-          font-size: 1rem;
+          font-size: 1.1rem;
         }
 
         .article-meta-header {
@@ -300,35 +425,59 @@
         }
 
         .article-header {
-          padding: 2rem 1.5rem;
+          padding: 3rem 2rem;
+        }
+
+        .article-description {
+          padding: 1.5rem;
+          font-size: 1rem;
         }
       }
 
       /* Content Placeholder */
       .content-placeholder {
-        background: var(--surface-light);
-        border-radius: 10px;
-        padding: 1.5rem;
-        margin: 1rem 0;
+        background: var(--surface);
+        padding: 3rem;
+        margin: 2rem 0;
         text-align: center;
         color: var(--secondary);
+        border: 1px solid var(--border);
+        font-family: 'Cascadia Code', monospace;
       }
 
       /* Hide elements by default */
       .hidden {
         display: none !important;
       }
+
+      /* Article sections */
+      .article-section {
+        margin: 3rem 0;
+        padding: 2rem;
+        background: var(--surface);
+        border-left: 4px solid var(--accent);
+      }
+
+      .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
     </style>
   </head>
 
-  <body class="bg-black text-white">
+  <body>
     <!-- Main Container -->
     <div class="main-container">
       <div class="article-container">
         <!-- Back Button -->
-        <a href="articles.html" class="back-button">
+        <a href="Article.html" class="back-button">
           <i class="ri-arrow-left-line"></i>
-          Back to Articles
+          <span class="code-font">BACK TO ARTICLES</span>
         </a>
 
         <!-- Loading State -->
@@ -339,11 +488,11 @@
         <!-- Error State -->
         <div id="errorState" class="error-container hidden">
           <i class="ri-error-warning-line"></i>
-          <div class="error-title">Article Not Found</div>
+          <div class="error-title">ARTICLE NOT FOUND</div>
           <p class="error-message">There is something wrong with the server or the article doesn't exist.</p>
           <button onclick="location.reload()" class="retry-button">
             <i class="ri-refresh-line"></i>
-            Try Again
+            TRY AGAIN
           </button>
         </div>
 
@@ -351,16 +500,16 @@
         <div id="articleContent" class="article-card hidden">
           <!-- Article Header -->
           <div class="article-header">
-            <h1 id="articleTitle" class="article-title cursive-font">Article Title</h1>
+            <h1 id="articleTitle" class="article-title">ARTICLE TITLE</h1>
             <p id="articleSubtitle" class="article-subtitle">Loading article details...</p>
             <div class="article-meta-header">
               <div class="meta-item">
                 <i class="ri-user-line"></i>
-                <span id="articleAuthor">Author</span>
+                <span id="articleAuthor" class="code-font">AUTHOR</span>
               </div>
               <div class="meta-item">
                 <i class="ri-calendar-line"></i>
-                <span id="articleDate">Date</span>
+                <span id="articleDate" class="code-font">DATE</span>
               </div>
             </div>
           </div>
@@ -369,33 +518,44 @@
           <div class="article-body">
             <!-- Article Image -->
             <div id="articleImageContainer" class="hidden">
-              <img id="articleImage" src="" alt="Article Image" class="article-image">
+              <div class="article-section">
+                <div class="section-title">FEATURED IMAGE</div>
+                <img id="articleImage" src="" alt="Article Image" class="article-image">
+              </div>
             </div>
 
             <!-- Article Description -->
             <div id="articleDescriptionContainer" class="hidden">
-              <div class="article-description">
-                <p id="articleDescription">Article description will appear here...</p>
+              <div class="article-section">
+                <div class="section-title">ARTICLE CONTENT</div>
+                <div id="articleDescription" class="article-description">
+                  Article description will appear here...
+                </div>
               </div>
             </div>
 
             <!-- No Description Placeholder -->
             <div id="noDescriptionPlaceholder" class="content-placeholder hidden">
-              <i class="ri-file-text-line text-3xl mb-2"></i>
+              <i class="ri-file-text-line text-5xl mb-4"></i>
+              <div class="section-title">NO CONTENT AVAILABLE</div>
               <p>No detailed description available for this article.</p>
             </div>
 
             <!-- Article Source -->
             <div id="articleSourceContainer" class="hidden">
-              <a id="articleSource" href="#" target="_blank" class="article-source">
-                <i class="ri-external-link-line"></i>
-                <span>View Original Source</span>
-              </a>
+              <div class="article-section">
+                <div class="section-title">EXTERNAL SOURCE</div>
+                <a id="articleSource" href="#" target="_blank" class="article-source">
+                  <i class="ri-external-link-line"></i>
+                  <span>VIEW ORIGINAL SOURCE</span>
+                </a>
+              </div>
             </div>
 
             <!-- No Source Placeholder -->
             <div id="noSourcePlaceholder" class="content-placeholder hidden">
-              <i class="ri-link-line text-3xl mb-2"></i>
+              <i class="ri-link-line text-5xl mb-4"></i>
+              <div class="section-title">NO EXTERNAL SOURCE</div>
               <p>No external source available for this article.</p>
             </div>
           </div>
@@ -447,11 +607,12 @@
 
         function displayArticle(article) {
           // Set title
-          document.getElementById('articleTitle').textContent = article.article_title || 'Untitled Article';
+          const titleText = (article.article_title || 'Untitled Article').toUpperCase();
+          document.getElementById('articleTitle').textContent = titleText;
           document.title = `${article.article_title || 'Article'} - Om Pandey`;
 
           // Set author
-          document.getElementById('articleAuthor').textContent = article.article_author || 'Unknown Author';
+          document.getElementById('articleAuthor').textContent = (article.article_author || 'Unknown Author').toUpperCase();
 
           // Format and set date
           if (article.publcshed_at) {
@@ -462,10 +623,10 @@
               day: 'numeric',
               hour: '2-digit',
               minute: '2-digit'
-            });
+            }).toUpperCase();
             document.getElementById('articleDate').textContent = formattedDate;
           } else {
-            document.getElementById('articleDate').textContent = 'Date not available';
+            document.getElementById('articleDate').textContent = 'DATE NOT AVAILABLE';
           }
 
           // Handle article image
@@ -475,16 +636,28 @@
             document.getElementById('articleImageContainer').classList.remove('hidden');
           }
 
-          // Handle article description
+          // Handle article description (CKEditor content)
           if (article.article_discrptions && article.article_discrptions.trim()) {
-            document.getElementById('articleDescription').textContent = article.article_discrptions;
+            // Check if content contains HTML tags (CKEditor output)
+            const hasHTMLTags = /<[^>]*>/.test(article.article_discrptions);
+            
+            if (hasHTMLTags) {
+              // Render as HTML for CKEditor content
+              document.getElementById('articleDescription').innerHTML = article.article_discrptions;
+            } else {
+              // Render as plain text and preserve line breaks
+              document.getElementById('articleDescription').innerHTML = article.article_discrptions.replace(/\n/g, '<br>');
+            }
+            
             document.getElementById('articleDescriptionContainer').classList.remove('hidden');
           } else {
             document.getElementById('noDescriptionPlaceholder').classList.remove('hidden');
           }
 
           // Handle article source
-          if (article.article_source && article.article_source.trim() && article.article_source !== '#') {
+          if (article.article_source && article.article_source.trim() && 
+              article.article_source !== '#' && 
+              article.article_source.startsWith('http')) {
             document.getElementById('articleSource').href = article.article_source;
             document.getElementById('articleSourceContainer').classList.remove('hidden');
           } else {
@@ -492,7 +665,7 @@
           }
 
           // Update subtitle
-          document.getElementById('articleSubtitle').textContent = 'Read the full article below';
+          document.getElementById('articleSubtitle').textContent = 'Read the complete article below';
         }
 
         function showError() {
@@ -502,13 +675,13 @@
 
         // Image error handling
         document.getElementById('articleImage').addEventListener('error', function() {
-          this.parentElement.classList.add('hidden');
+          this.parentElement.parentElement.classList.add('hidden');
         });
 
         // Source link validation
         document.getElementById('articleSource').addEventListener('click', function(e) {
           const href = this.getAttribute('href');
-          if (!href || href === '#' || href === 'null' || href === 'undefined') {
+          if (!href || href === '#' || href === 'null' || href === 'undefined' || !href.startsWith('http')) {
             e.preventDefault();
             alert('No valid source URL available for this article.');
           }
