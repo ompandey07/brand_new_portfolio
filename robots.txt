@@ -1,0 +1,23 @@
+# robots.txt for omkumarpandey.com.np
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.omkumarpandey.com.np/sitemap.xml
+
+# Block access to admin or private directories (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow crawling of CSS and JavaScript for better rendering
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.webp
+
+# Crawl-delay (optional - use if you want to slow down aggressive bots)
+# Crawl-delay: 1
