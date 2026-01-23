@@ -692,12 +692,6 @@ body.loading {
     margin-bottom: 12px;
 }
 
-.section-subtitle {
-    font-size: 17px;
-    color: var(--text-secondary);
-    max-width: 600px;
-}
-
 /* ============================================
    About Section
    ============================================ */
@@ -752,6 +746,116 @@ body.loading {
     width: 20px;
     height: 20px;
     color: var(--success);
+}
+
+/* ============================================
+   Worked With Section - Marquee Style
+   ============================================ */
+.companies-marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Fade edges */
+.companies-marquee-wrapper::before,
+.companies-marquee-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.companies-marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-primary), transparent);
+}
+
+.companies-marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+}
+
+.companies-marquee {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.companies-marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    animation: marqueeScroll 25s linear infinite;
+    will-change: transform;
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pause animation when marquee has .paused class */
+.companies-marquee.paused .companies-marquee-track {
+    animation-play-state: paused;
+}
+
+.company-logo-item {
+    flex-shrink: 0;
+    width: 120px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    padding: 10px;
+}
+
+.company-logo-item img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.6);
+    transition: all var(--transition-slow);
+}
+
+/* Hover - show color */
+.company-logo-item:hover img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1);
+}
+
+/* Active/clicked state - show color and scale */
+.company-logo-item.active img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.15);
+}
+
+.company-logo-item.active {
+    position: relative;
+}
+
+.company-logo-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: var(--accent-gradient);
+    border-radius: 2px;
 }
 
 /* ============================================
@@ -1150,7 +1254,7 @@ body.loading {
 .contact-card {
     text-align: center;
     padding: 32px 24px;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-xl);
     transition: all var(--transition-base);
@@ -1206,7 +1310,7 @@ body.loading {
 .social-link {
     width: 50px;
     height: 50px;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     border: 1px solid var(--border-light);
     border-radius: 50%;
     display: flex;
@@ -1506,6 +1610,16 @@ body.loading {
     .other-projects-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+    
+    /* Marquee - Tablet */
+    .company-logo-item {
+        width: 100px;
+        height: 70px;
+    }
+    
+    .companies-marquee-track {
+        gap: 50px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1555,6 +1669,22 @@ body.loading {
         width: 100px;
         height: 100px;
     }
+    
+    /* Marquee - Mobile */
+    .company-logo-item {
+        width: 90px;
+        height: 60px;
+    }
+    
+    .companies-marquee-track {
+        gap: 40px;
+        animation-duration: 20s;
+    }
+    
+    .companies-marquee-wrapper::before,
+    .companies-marquee-wrapper::after {
+        width: 50px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1600,5 +1730,21 @@ body.loading {
     
     .award-circle-label {
         font-size: 12px;
+    }
+    
+    /* Marquee - Small Mobile */
+    .company-logo-item {
+        width: 80px;
+        height: 55px;
+    }
+    
+    .companies-marquee-track {
+        gap: 30px;
+        animation-duration: 15s;
+    }
+    
+    .companies-marquee-wrapper::before,
+    .companies-marquee-wrapper::after {
+        width: 30px;
     }
 }

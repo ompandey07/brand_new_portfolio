@@ -236,7 +236,7 @@
                 </g>
             </svg>
         </div>
-        <p class="loader-text">Loading...</p>
+        <!-- <p class="loader-text">Loading...</p> -->
     </div>
 
     <!-- Scroll Progress Bar -->
@@ -426,7 +426,7 @@
                     </div>
 
                     <p class="about-text">
-                        I’m a developer from Kathmandu who discovered programming through a simple 
+                        I'm a developer from Kathmandu who discovered programming through a simple 
                         <code>print("Hello World")</code> and instantly realized the power of code. 
                         What began as curiosity quickly turned into a habit of building, breaking, 
                         and improving things every single day.
@@ -462,9 +462,76 @@
         </div>
     </section>
 
+    <!-- Worked With Section - MODIFIED MARQUEE STYLE -->
+    <section class="section" id="worked-with">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-header-inner">
+                    <div class="section-header-content">
+                        <div class="section-label">
+                            <i data-lucide="building-2"></i>
+                            Collaborations
+                        </div>
+                        <h2 class="section-title">Worked With</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="companies-marquee-wrapper">
+                <div class="companies-marquee" id="companiesMarquee">
+                    <div class="companies-marquee-track">
+                        <!-- First set of logos -->
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/axislogo.png" alt="Axis">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/PioneerLogo.png" alt="Pioneer Logo">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/Logo.png" alt="Logo">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/MegaMinds.png" alt="MegaMinds">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/RisingYouths.png" alt="Rising Youths">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/RoyalPains.png" alt="Royal Pains">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/TVS.jpg" alt="TVS">
+                        </div>
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/axislogo.png" alt="Axis">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/PioneerLogo.png" alt="Pioneer Logo">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/Logo.png" alt="Logo">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/MegaMinds.png" alt="MegaMinds">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/RisingYouths.png" alt="Rising Youths">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/RoyalPains.png" alt="Royal Pains">
+                        </div>
+                        <div class="company-logo-item" onclick="toggleMarquee(this)">
+                            <img src="/Compinies/TVS.jpg" alt="TVS">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Skills Section -->
-    <section class="section" id="skills">
+    <section class="section section-alt" id="skills">
         <div class="container">
             <div class="section-header">
                 <div class="section-header-inner">
@@ -627,7 +694,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
     </section>
 
     <!-- Featured Projects Section - My Big Deals -->
-    <section class="section section-alt" id="featured">
+    <section class="section" id="featured">
         <div class="container">
             <div class="section-header">
                 <div class="section-header-inner">
@@ -710,7 +777,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
     </section>
 
     <!-- Other Projects - Grid Style -->
-    <section class="section" id="projects">
+    <section class="section section-alt" id="projects">
         <div class="container">
             <div class="section-header">
                 <div class="section-header-inner">
@@ -764,6 +831,46 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                         <span class="other-project-tags">Python • Django</span>
                     </div>
                 </div>
+
+                <div class="other-project-item" onclick="window.open('https://tapstik.net/', '_blank')">
+                    <img src="ProjectImages/Tapstik.jpg" alt="Tapstik">
+                    <div class="other-project-overlay">
+                        <span class="other-project-title">Tapstik</span>
+                        <span class="other-project-tags">Python • Django</span>
+                    </div>
+                </div>
+
+                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/FinixLog', '_blank')">
+                    <img src="ProjectImages/FinixLog.png" alt="Tapstik">
+                    <div class="other-project-overlay">
+                        <span class="other-project-title">Finix Log</span>
+                        <span class="other-project-tags">Python • Django</span>
+                    </div>
+                </div>
+
+                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/ManawPayroll', '_blank')">
+                    <img src="ProjectImages/Manaw.jpg" alt="Tapstik">
+                    <div class="other-project-overlay">
+                        <span class="other-project-title">Manaw</span>
+                        <span class="other-project-tags">Python • Django</span>
+                    </div>
+                </div>
+
+                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/NUNU', '_blank')">
+                    <img src="ProjectImages/Nunu.png" alt="NUNU">
+                    <div class="other-project-overlay">
+                        <span class="other-project-title">NUNU</span>
+                        <span class="other-project-tags">Python</span>
+                    </div>
+                </div>
+
+                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/finport', '_blank')">
+                    <img src="ProjectImages/Finport.png" alt="NUNU">
+                    <div class="other-project-overlay">
+                        <span class="other-project-title">Finport</span>
+                        <span class="other-project-tags">TypeScript</span>
+                    </div>
+                </div>
             </div>
 
             <div class="show-all-github">
@@ -776,7 +883,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
     </section>
 
     <!-- Awards Section - Circle Style -->
-    <section class="section section-alt" id="awards">
+    <section class="section" id="awards">
         <div class="container">
             <div class="section-header">
                 <div class="section-header-inner">
@@ -855,7 +962,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
     </section>
 
     <!-- Contact Section -->
-    <section class="section" id="contact">
+    <section class="section section-alt" id="contact">
         <div class="container">
             <div class="section-header">
                 <div class="section-header-inner">
@@ -1065,6 +1172,31 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 closeModal();
             }
         });
+
+        // Marquee Toggle Function - Click to pause/resume
+        let marqueesPaused = false;
+        let activeItem = null;
+
+        function toggleMarquee(element) {
+            const marquee = document.getElementById('companiesMarquee');
+            
+            if (activeItem === element) {
+                // Same item clicked again - resume scrolling
+                marquee.classList.remove('paused');
+                element.classList.remove('active');
+                activeItem = null;
+                marqueesPaused = false;
+            } else {
+                // New item clicked - pause scrolling
+                if (activeItem) {
+                    activeItem.classList.remove('active');
+                }
+                marquee.classList.add('paused');
+                element.classList.add('active');
+                activeItem = element;
+                marqueesPaused = true;
+            }
+        }
     </script>
     <script src="app.js"></script>
 </body>
