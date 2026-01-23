@@ -12,6 +12,7 @@
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     --font-script: 'Kaushan Script', cursive;
+    --font-agustina: 'Agustina', cursive;
     
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
@@ -85,6 +86,13 @@ body.loading {
 }
 
 /* ============================================
+   Agustina Font Class
+   ============================================ */
+.agustina-font {
+    font-family: 'Agustina', cursive !important;
+}
+
+/* ============================================
    Preloader - Dark Theme
    ============================================ */
 #preloader {
@@ -108,6 +116,15 @@ body.loading {
     pointer-events: none;
 }
 
+/* Preloader Content Wrapper */
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
 .loader {
     scale: 0.75;
     position: relative;
@@ -120,6 +137,27 @@ body.loading {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+/* Preloader Name Styling */
+.preloader-name {
+    font-family: 'Agustina', cursive;
+    font-size: 28px;
+    color: var(--accent-light);
+    letter-spacing: 2px;
+    margin-top: 20px;
+    animation: nameGlow 2s ease-in-out infinite;
+}
+
+@keyframes nameGlow {
+    0%, 100% { 
+        opacity: 0.7;
+        text-shadow: 0 0 10px rgba(167, 139, 250, 0.3);
+    }
+    50% { 
+        opacity: 1;
+        text-shadow: 0 0 20px rgba(167, 139, 250, 0.6), 0 0 40px rgba(167, 139, 250, 0.3);
+    }
 }
 
 .loader-text {
@@ -243,6 +281,17 @@ body.loading {
     font-family: var(--font-script);
     font-size: 24px;
     color: var(--accent-primary);
+    font-weight: bold;
+}
+
+/* Agustina font override for nav logo */
+.nav-logo-text.agustina-font {
+    font-family: 'Agustina', cursive !important;
+    font-size: 22px;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .nav-links {
@@ -677,6 +726,7 @@ body.loading {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 12px;
+    
 }
 
 .section-label i {
@@ -685,7 +735,7 @@ body.loading {
 }
 
 .section-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-script);
     font-size: clamp(28px, 4vw, 40px);
     font-weight: 800;
     color: var(--text-primary);
@@ -1620,6 +1670,11 @@ body.loading {
     .companies-marquee-track {
         gap: 50px;
     }
+    
+    /* Preloader name - Tablet */
+    .preloader-name {
+        font-size: 24px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1685,6 +1740,17 @@ body.loading {
     .companies-marquee-wrapper::after {
         width: 50px;
     }
+    
+    /* Preloader name - Mobile */
+    .preloader-name {
+        font-size: 22px;
+        margin-top: 10px;
+    }
+    
+    /* Nav logo - Mobile */
+    .nav-logo-text.agustina-font {
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1746,5 +1812,11 @@ body.loading {
     .companies-marquee-wrapper::before,
     .companies-marquee-wrapper::after {
         width: 30px;
+    }
+   
+    
+    /* Nav logo - Small Mobile */
+    .nav-logo-text.agustina-font {
+        font-size: 16px;
     }
 }
