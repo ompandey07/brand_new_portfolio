@@ -323,24 +323,7 @@ body.loading {
     height: 18px;
 }
 
-.nav-cta {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 18px;
-    background: var(--accent-gradient);
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: var(--radius-md);
-    transition: all var(--transition-base);
-}
 
-.nav-cta:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-}
 
 .nav-mobile-toggle {
     display: none;
