@@ -94,9 +94,6 @@
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Cloudflare Turnstile -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RQHLP1SY98"></script>
@@ -204,36 +201,6 @@
 
 </head>
 <body class="loading">
-    <!-- Cloudflare Turnstile Security Check -->
-    <div id="turnstile-overlay">
-        <div class="turnstile-bg-grid"></div>
-        <div class="turnstile-bg-glow"></div>
-
-        <div class="turnstile-container">
-            <div class="turnstile-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                </svg>
-            </div>
-
-            <div class="turnstile-logo">&lt;Om Pandey /&gt;</div>
-            <p class="turnstile-subtitle">Security Verification</p>
-            <p class="turnstile-text">Please wait while we verify your connection<span class="loading-dots"></span></p>
-
-            <div class="turnstile-widget">
-                <div class="cf-turnstile" 
-                     data-sitekey="0x4AAAAAACVS5N6ltbogUfgz" 
-                     data-callback="onTurnstileSuccess"
-                     data-error-callback="onTurnstileError"
-                     data-expired-callback="onTurnstileExpired"
-                     data-theme="dark"
-                     data-size="normal">
-                </div>
-            </div>
-
-            <p class="verification-status" id="verificationStatus"></p>
-        </div>
-    </div>
     <!-- Preloader - Dark Theme -->
     <div id="preloader">
         <div class="preloader-content">
@@ -1155,49 +1122,10 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
     </div>
 
     <script>
-        // ============================================
-        // Cloudflare Turnstile Verification
-        // ============================================
-        (function() {
-            if (sessionStorage.getItem('cf_turnstile_verified') === 'true') {
-                var overlay = document.getElementById('turnstile-overlay');
-                if (overlay) {
-                    overlay.style.display = 'none';
-                }
-            }
-        })();
-    
-        function onTurnstileSuccess(token) {
-            var overlay = document.getElementById('turnstile-overlay');
-            var status = document.getElementById('verificationStatus');
-            
-            status.innerHTML = '<span style="color: #10b981;">✓ Verified successfully!</span>';
-            sessionStorage.setItem('cf_turnstile_verified', 'true');
-            
-            setTimeout(function() {
-                overlay.classList.add('verified');
-            }, 600);
-        }
-    
-        function onTurnstileError() {
-            var status = document.getElementById('verificationStatus');
-            status.innerHTML = '<span style="color: #ef4444;">Verification failed. Retrying...</span>';
-        }
-    
-        function onTurnstileExpired() {
-            var status = document.getElementById('verificationStatus');
-            status.innerHTML = '<span style="color: #f59e0b;">Session expired. Please verify again.</span>';
-            sessionStorage.removeItem('cf_turnstile_verified');
-        }
-    
-        // ============================================
         // Initialize Lucide Icons
-        // ============================================
         lucide.createIcons();
-    
-        // ============================================
+
         // Preloader
-        // ============================================
         window.addEventListener('load', function() {
             const preloader = document.getElementById('preloader');
             const body = document.body;
@@ -1207,10 +1135,8 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 body.classList.remove('loading');
             }, 2000);
         });
-    
-        // ============================================
+
         // Scroll Progress Bar
-        // ============================================
         window.addEventListener('scroll', function() {
             const scrollProgress = document.getElementById('scrollProgress');
             const scrollTop = document.documentElement.scrollTop;
@@ -1218,18 +1144,14 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
             const progress = (scrollTop / scrollHeight) * 100;
             scrollProgress.style.width = progress + '%';
         });
-    
-        // ============================================
+
         // Contact Widget Toggle
-        // ============================================
         function toggleContact() {
             const popup = document.getElementById('contactPopup');
             popup.classList.toggle('active');
         }
-    
-        // ============================================
+
         // Modal Functions
-        // ============================================
         function openModal(imageSrc) {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
@@ -1237,13 +1159,13 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-    
+
         function closeModal() {
             const modal = document.getElementById('imageModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
-    
+
         // Close popup when clicking outside
         document.addEventListener('click', function(event) {
             const widget = document.querySelector('.contact-widget');
@@ -1253,7 +1175,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 popup.classList.remove('active');
             }
         });
-    
+
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1264,27 +1186,29 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 }
             });
         });
-    
+
         // Escape key to close modal
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
             }
         });
-    
-        // Marquee Toggle Function
+
+        // Marquee Toggle Function - Click to pause/resume
         let marqueesPaused = false;
         let activeItem = null;
-    
+
         function toggleMarquee(element) {
             const marquee = document.getElementById('companiesMarquee');
             
             if (activeItem === element) {
+                // Same item clicked again - resume scrolling
                 marquee.classList.remove('paused');
                 element.classList.remove('active');
                 activeItem = null;
                 marqueesPaused = false;
             } else {
+                // New item clicked - pause scrolling
                 if (activeItem) {
                     activeItem.classList.remove('active');
                 }
@@ -1295,7 +1219,6 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
             }
         }
     </script>
-
     <script src="app.js"></script>
 </body>
 </html>
