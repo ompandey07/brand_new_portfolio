@@ -22,9 +22,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* ============================================
-           Reset & Base
-           ============================================ */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -110,9 +107,6 @@
             font-family: 'Agustina', cursive !important;
         }
 
-        /* ============================================
-           Scroll Progress Bar
-           ============================================ */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -124,9 +118,6 @@
             transition: width 0.1s linear;
         }
 
-        /* ============================================
-           Header Bar
-           ============================================ */
         .header-bar {
             background: var(--bg-primary);
             border-bottom: 1px solid var(--border-light);
@@ -156,9 +147,6 @@
             background-clip: text;
         }
 
-        /* ============================================
-           Hero Section
-           ============================================ */
         .hero {
             position: relative;
             padding: 80px 24px;
@@ -255,157 +243,217 @@
             max-width: 450px;
             height: auto;
             border-radius: var(--radius-2xl);
-            
         }
 
-        /* ============================================
-           Blog Section
-           ============================================ */
         .section {
             padding: 80px 24px;
         }
 
         .section-alt {
-            background: var(--bg-secondary);
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-header {
-            margin-bottom: 50px;
-        }
-
-        .section-header-inner {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            padding-left: 24px;
-            border-left: 4px solid var(--accent-primary);
-        }
-
-        .section-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 14px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: var(--radius-full);
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--accent-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .section-label i {
-            width: 14px;
-            height: 14px;
-        }
-
-        .section-title {
-            font-family: var(--font-script);
-            font-size: clamp(28px, 4vw, 40px);
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-        }
-
-        .section-subtitle {
-            font-size: 16px;
-            color: var(--text-secondary);
-            max-width: 500px;
-        }
-
-        /* ============================================
-           Blog Grid
-           ============================================ */
-        .blogs-grid {
+        /* Professional Blog Grid */
+        .blogs-grid-pro {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
         }
 
-        .blog-card {
+        .blog-card-featured-pro {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .blog-card-pro {
             background: var(--bg-primary);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-2xl);
             overflow: hidden;
-            transition: all var(--transition-slow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             text-decoration: none;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-2xl);
-            border-color: var(--accent-primary);
-        }
-
-        .blog-card-image {
             position: relative;
-            height: 200px;
+        }
+
+        .blog-card-pro::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-2xl);
+            padding: 2px;
+            background: var(--accent-gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .blog-card-pro:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -15px rgba(99, 102, 241, 0.25);
+        }
+
+        .blog-card-pro:hover::before {
+            opacity: 1;
+        }
+
+        .blog-card-image-pro {
+            position: relative;
             overflow: hidden;
         }
 
-        .blog-card-image img {
+        .blog-card-pro:not(.blog-card-featured-pro) .blog-card-image-pro {
+            height: 200px;
+        }
+
+        .blog-card-featured-pro .blog-card-image-pro {
+            height: 100%;
+            min-height: 450px;
+        }
+
+        .blog-card-image-pro img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform var(--transition-slow);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .blog-card:hover .blog-card-image img {
-            transform: scale(1.08);
+        .blog-card-pro:hover .blog-card-image-pro img {
+            transform: scale(1.1);
         }
 
-        .blog-card-category {
+        .blog-card-image-overlay {
             position: absolute;
-            top: 16px;
-            left: 16px;
-            padding: 6px 14px;
-            background: rgba(99, 102, 241, 0.9);
-            backdrop-filter: blur(10px);
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, transparent 50%, rgba(15, 23, 42, 0.9) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .blog-card-featured-pro .blog-card-image-overlay {
+            opacity: 1;
+            background: linear-gradient(180deg, transparent 0%, transparent 30%, rgba(15, 23, 42, 0.95) 100%);
+        }
+
+        .blog-card-pro:hover .blog-card-image-overlay {
+            opacity: 1;
+        }
+
+        .blog-card-category-pro {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: var(--accent-gradient);
             border-radius: var(--radius-full);
             font-size: 11px;
             font-weight: 700;
             color: white;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            z-index: 2;
         }
 
-        .blog-card-content {
-            padding: 24px;
+        .blog-card-featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .blog-card-featured-badge i {
+            width: 14px;
+            height: 14px;
+        }
+
+        .blog-card-featured-pro .blog-card-content-pro {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            color: white;
+            z-index: 2;
+        }
+
+        .blog-card-featured-pro .blog-card-meta-pro {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .blog-card-featured-pro .blog-card-title-pro {
+            color: white;
+            font-size: 28px;
+        }
+
+        .blog-card-featured-pro .blog-card-excerpt-pro {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 16px;
+        }
+
+        .blog-card-featured-pro .blog-card-read-pro {
+            color: white;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .blog-card-featured-pro .blog-card-read-pro:hover {
+            background: white;
+            color: var(--accent-primary);
+        }
+
+        .blog-card-content-pro {
+            padding: 28px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
-        .blog-card-meta {
+        .blog-card-meta-pro {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             font-size: 13px;
             color: var(--text-muted);
         }
 
-        .blog-card-meta span {
+        .blog-card-meta-pro span {
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .blog-card-meta i {
+        .blog-card-meta-pro i {
             width: 14px;
             height: 14px;
         }
 
-        .blog-card-title {
+        .blog-card-title-pro {
             font-family: var(--font-heading);
             font-size: 20px;
             font-weight: 700;
@@ -415,78 +463,99 @@
             transition: color var(--transition-base);
         }
 
-        .blog-card:hover .blog-card-title {
+        .blog-card-pro:hover .blog-card-title-pro {
             color: var(--accent-primary);
         }
 
-        .blog-card-excerpt {
+        .blog-card-featured-pro:hover .blog-card-title-pro {
+            color: white;
+        }
+
+        .blog-card-excerpt-pro {
             font-size: 14px;
             color: var(--text-secondary);
             line-height: 1.7;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             flex: 1;
         }
 
-        .blog-card-footer {
+        .blog-card-footer-pro {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            padding-top: 16px;
+            justify-content: space-between;
+            padding-top: 20px;
             border-top: 1px solid var(--border-light);
         }
 
-        .blog-card-read {
+        .blog-card-featured-pro .blog-card-footer-pro {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            justify-content: flex-start;
+        }
+
+        .blog-card-author {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 10px;
+        }
+
+        .blog-card-author-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .blog-card-author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-author-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .blog-card-featured-pro .blog-card-author-name {
+            color: white;
+        }
+
+        .blog-card-author-role {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .blog-card-featured-pro .blog-card-author-role {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .blog-card-read-pro {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             font-size: 14px;
             font-weight: 600;
             color: var(--accent-primary);
             text-decoration: none;
-            transition: gap var(--transition-base);
+            transition: all var(--transition-base);
         }
 
-        .blog-card-read i {
+        .blog-card-read-pro i {
             width: 18px;
             height: 18px;
             transition: transform var(--transition-base);
         }
 
-        .blog-card:hover .blog-card-read {
-            gap: 10px;
+        .blog-card-pro:hover .blog-card-read-pro i {
+            transform: translateX(5px);
         }
 
-        .blog-card:hover .blog-card-read i {
-            transform: translateX(4px);
-        }
-
-        /* Featured Blog Card */
-        .blog-card-featured {
-            grid-column: span 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .blog-card-featured .blog-card-image {
-            height: 100%;
-            min-height: 300px;
-        }
-
-        .blog-card-featured .blog-card-content {
-            padding: 32px;
-        }
-
-        .blog-card-featured .blog-card-title {
-            font-size: 26px;
-        }
-
-        .blog-card-featured .blog-card-excerpt {
-            font-size: 15px;
-        }
-
-        /* ============================================
-           Footer
-           ============================================ */
         .footer {
             background: var(--bg-primary);
             border-top: 1px solid var(--border-light);
@@ -545,9 +614,6 @@
             font-size: 18px;
         }
 
-        /* ============================================
-           Responsive
-           ============================================ */
         @media (max-width: 1024px) {
             .hero-container {
                 grid-template-columns: 1fr;
@@ -567,19 +633,39 @@
                 max-width: 350px;
             }
 
-            .blog-card-featured {
-                grid-column: span 1;
-                grid-template-columns: 1fr;
+            .blogs-grid-pro {
+                grid-template-columns: 1fr 1fr;
             }
 
-            .blog-card-featured .blog-card-image {
-                min-height: 200px;
+            .blog-card-featured-pro {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .blog-card-featured-pro .blog-card-image-pro {
+                min-height: 350px;
             }
         }
 
         @media (max-width: 768px) {
-            .blogs-grid {
+            .blogs-grid-pro {
                 grid-template-columns: 1fr;
+            }
+
+            .blog-card-featured-pro {
+                grid-column: span 1;
+            }
+
+            .blog-card-featured-pro .blog-card-image-pro {
+                min-height: 300px;
+            }
+
+            .blog-card-featured-pro .blog-card-content-pro {
+                padding: 24px;
+            }
+
+            .blog-card-featured-pro .blog-card-title-pro {
+                font-size: 22px;
             }
 
             .footer-container {
@@ -597,12 +683,16 @@
                 padding: 60px 20px;
             }
 
-            .blog-card-content {
+            .blog-card-content-pro {
                 padding: 20px;
             }
 
             .hero-image {
                 max-width: 280px;
+            }
+
+            .blog-card-featured-pro .blog-card-image-pro {
+                min-height: 280px;
             }
         }
     </style>
@@ -651,71 +741,116 @@
     <!-- Blogs Section -->
     <section class="section section-alt" id="blogs">
         <div class="container">
-            <div class="section-header">
-                <div class="section-header-inner">
-                    <div class="section-header-content">
-                        <div class="section-label">
-                            <i data-lucide="book-open"></i>
-                            Latest Posts
-                        </div>
-                        <h2 class="section-title">Recent Blogs</h2>
-                        <p class="section-subtitle">
-                            Explore my latest writings and thoughts.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="blogs-grid">
+            <!-- Professional Blog Grid -->
+            <div class="blogs-grid-pro">
                 <!-- Featured Blog - Story of Om Pandey -->
-                <a href="./Detailed/StoryOfOm.html" class="blog-card blog-card-featured">
-                    <div class="blog-card-image">
+                <a href="./Detailed/StoryOfOm.html" class="blog-card-pro blog-card-featured-pro">
+                    <div class="blog-card-image-pro">
                         <img src="BlogImage.png" alt="Story of Om Pandey">
-                        <span class="blog-card-category">Personal</span>
+                        <div class="blog-card-image-overlay"></div>
+                        <span class="blog-card-category-pro">Personal</span>
+                        <span class="blog-card-featured-badge">
+                            <i data-lucide="star"></i>
+                            Featured
+                        </span>
                     </div>
-                    <div class="blog-card-content">
-                        <div class="blog-card-meta">
+                    <div class="blog-card-content-pro">
+                        <div class="blog-card-meta-pro">
                             <span>
                                 <i data-lucide="calendar"></i>
                                 Jan 21, 2022
                             </span>
+                            <span>
+                                <i data-lucide="clock"></i>
+                                5 min read
+                            </span>
                         </div>
-                        <h3 class="blog-card-title">Story Of Om Pandey</h3>
-                        <p class="blog-card-excerpt">
+                        <h3 class="blog-card-title-pro">Story Of Om Pandey</h3>
+                        <p class="blog-card-excerpt-pro">
                             From a curious kid in Kathmandu to a full-stack developer building digital solutions. 
                             This is my journey through code, challenges, and continuous growth. A story of 
                             passion, persistence, and the power of never giving up.
                         </p>
-                        <div class="blog-card-footer">
-                            <span class="blog-card-read">
-                                Read More
+                        <div class="blog-card-footer-pro">
+                            <span class="blog-card-read-pro">
+                                Read Full Story
                                 <i data-lucide="arrow-right"></i>
                             </span>
                         </div>
                     </div>
                 </a>
 
-
                 <!-- Python 0 to Hero Blog Card -->
-                <a href="./Detailed/Python0toHero.html" class="blog-card">
-                     <div class="blog-card-image">
+                <a href="./Detailed/Python0toHero.html" class="blog-card-pro">
+                    <div class="blog-card-image-pro">
                         <img src="./PythonHero.png" alt="Python 0 to Hero">
-                        <span class="blog-card-category">Tutorial</span>
+                        <div class="blog-card-image-overlay"></div>
+                        <span class="blog-card-category-pro">Tutorial</span>
                     </div>
-                    <div class="blog-card-content">
-                        <div class="blog-card-meta">
+                    <div class="blog-card-content-pro">
+                        <div class="blog-card-meta-pro">
                             <span>
                                 <i data-lucide="calendar"></i>
                                 Jan 25, 2025
                             </span>
+                            <span>
+                                <i data-lucide="clock"></i>
+                                10 min read
+                            </span>
                         </div>
-                        <h3 class="blog-card-title">Python 0 to Hero</h3>
-                        <p class="blog-card-excerpt">
+                        <h3 class="blog-card-title-pro">Python 0 to Hero</h3>
+                        <p class="blog-card-excerpt-pro">
                             Complete Python programming guide from absolute beginner to confident coder. 
                             Learn basics, data structures, functions and more!
                         </p>
-                        <div class="blog-card-footer">
-                            <span class="blog-card-read">
+                        <div class="blog-card-footer-pro">
+                            <div class="blog-card-author">
+                                <div class="blog-card-author-avatar">OP</div>
+                                <div class="blog-card-author-info">
+                                    <span class="blog-card-author-name">Om Pandey</span>
+                                    <span class="blog-card-author-role">Developer</span>
+                                </div>
+                            </div>
+                            <span class="blog-card-read-pro">
+                                Start Learning
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Django Hero Blog Card -->
+                <a href="/Blog/Detailed/Django.html" target="_blank" class="blog-card-pro">
+                    <div class="blog-card-image-pro">
+                        <img src="/Blog/Django.jpg" alt="Django Hero">
+                        <div class="blog-card-image-overlay"></div>
+                        <span class="blog-card-category-pro">Django</span>
+                    </div>
+                    <div class="blog-card-content-pro">
+                        <div class="blog-card-meta-pro">
+                            <span>
+                                <i data-lucide="calendar"></i>
+                                Jan 28, 2025
+                            </span>
+                            <span>
+                                <i data-lucide="clock"></i>
+                                12 min read
+                            </span>
+                        </div>
+                        <h3 class="blog-card-title-pro">Django Hero</h3>
+                        <p class="blog-card-excerpt-pro">
+                            Master Django web framework from scratch. Build powerful web applications 
+                            with Python's most popular framework step by step.
+                        </p>
+                        <div class="blog-card-footer-pro">
+                            <div class="blog-card-author">
+                                <div class="blog-card-author-avatar">OP</div>
+                                <div class="blog-card-author-info">
+                                    <span class="blog-card-author-name">Om Pandey</span>
+                                    <span class="blog-card-author-role">Developer</span>
+                                </div>
+                            </div>
+                            <span class="blog-card-read-pro">
                                 Start Learning
                                 <i data-lucide="arrow-right"></i>
                             </span>
@@ -751,10 +886,8 @@
     </footer>
 
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Scroll Progress Bar
         window.addEventListener('scroll', function() {
             const scrollProgress = document.getElementById('scrollProgress');
             const scrollTop = document.documentElement.scrollTop;
@@ -763,7 +896,6 @@
             scrollProgress.style.width = progress + '%';
         });
 
-        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
