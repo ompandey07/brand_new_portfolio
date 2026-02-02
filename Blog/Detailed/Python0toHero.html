@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Python 0 to Hero - Complete Guide | Om Pandey</title>
+    <meta name="description" content="Learn Python from scratch to hero level. Complete Python programming tutorial by Om Pandey.">
+    <meta name="keywords" content="Python tutorial, learn Python, Python basics, Python programming, Om Pandey">
+    <meta name="author" content="Om Pandey">
+    
+    <link rel="shortcut icon" href="../MainLogo.png" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/agustina" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-script: 'Kaushan Script', cursive;
+            --font-caveat: 'Caveat', cursive;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-code: #1e293b;
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --border-light: #e2e8f0;
+            
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            
+            --python-blue: #3776ab;
+            --python-yellow: #ffd43b;
+            
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+            --radius-2xl: 28px;
+            --radius-full: 9999px;
+            
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            
+            --transition-base: 200ms ease;
+            --transition-slow: 300ms ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+      
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--python-blue), var(--python-yellow));
+            z-index: 10000;
+        }
+
+        /* Header */
+        .header-bar {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .header-brand {
+            text-decoration: none;
+        }
+
+        .header-logo-text {
+            font-family: 'Agustina', cursive !important;
+            font-size: 24px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-nav a {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            transition: all var(--transition-base);
+        }
+
+        .header-nav a:hover {
+            background: var(--bg-secondary);
+            color: var(--accent-primary);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, rgba(55, 118, 171, 0.1), rgba(255, 212, 59, 0.1));
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .hero-icon {
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            overflow: hidden;
+        }
+
+        .hero-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--python-blue), var(--python-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* Content */
+        .content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .section-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--python-blue), var(--python-yellow));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        /* Topic */
+        .topic {
+            margin-bottom: 48px;
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .topic-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(55, 118, 171, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--python-blue);
+        }
+
+        .topic-title {
+            font-family: var(--font-caveat);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--python-blue);
+        }
+
+        .topic-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--bg-code);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: 24px 0;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .code-header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-dot-red { background: #ef4444; }
+        .code-dot-yellow { background: #fbbf24; }
+        .code-dot-green { background: #22c55e; }
+
+        .code-filename {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .code-copy {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .code-copy:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .code-content {
+            padding: 24px;
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+
+        .code-content .comment { color: #64748b; }
+        .code-content .keyword { color: #f472b6; }
+        .code-content .string { color: #67e8f9; }
+        .code-content .function { color: #fbbf24; }
+        .code-content .builtin { color: #a78bfa; }
+        .code-content .number { color: #34d399; }
+        .code-content .operator { color: #fb7185; }
+        .code-content .class { color: #38bdf8; }
+
+        /* Output Block */
+        .output-block {
+            background: #0f172a;
+            border: 2px solid var(--python-yellow);
+            border-radius: var(--radius-lg);
+            margin: 16px 0 24px;
+            overflow: hidden;
+        }
+
+        .output-header {
+            padding: 10px 20px;
+            background: rgba(255, 212, 59, 0.1);
+            border-bottom: 1px solid rgba(255, 212, 59, 0.2);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--python-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .output-content {
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: #22c55e;
+            line-height: 1.8;
+        }
+
+        /* Info Box */
+        .info-box {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(55, 118, 171, 0.08), rgba(255, 212, 59, 0.08));
+            border-left: 4px solid var(--python-blue);
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 24px 0;
+        }
+
+        .info-box h4 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--python-blue);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* Table of Topics */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .topic-card {
+            padding: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .topic-card:hover {
+            border-color: var(--python-blue);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .topic-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topic-card h4 i {
+            color: var(--python-blue);
+        }
+
+        /* CTA Button */
+        .cta-section {
+            text-align: center;
+            padding: 60px 24px;
+            background: linear-gradient(135deg, rgba(55, 118, 171, 0.1), rgba(255, 212, 59, 0.1));
+            border-radius: var(--radius-2xl);
+            margin: 40px 0;
+        }
+
+        .cta-title {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cta-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            background: linear-gradient(135deg, var(--python-blue), #2563eb);
+            border: none;
+            border-radius: var(--radius-full);
+            font-family: var(--font-body);
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-slow);
+            box-shadow: 0 4px 20px rgba(55, 118, 171, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(55, 118, 171, 0.5);
+        }
+
+        .cta-button i {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-light);
+            padding: 24px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand { text-decoration: none; }
+
+        .footer-logo-text {
+            font-family: 'Agustina', cursive !important;
+            font-size: 22px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 42px;
+            height: 42px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-nav { display: none; }
+            .topics-grid { grid-template-columns: 1fr; }
+            .footer-container { flex-direction: column; gap: 20px; }
+            .hero-icon {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header -->
+    <header class="header-bar">
+        <div class="header-container">
+            <a href="../index.html" class="header-brand">
+                <span class="header-logo-text">Om Pandey</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-icon">
+            <img src="../PythonHero.png" alt="Python Programming">
+        </div>
+        <h1 class="hero-title">Python <span>0 to Hero</span></h1>
+        <p class="hero-description">
+            Master Python programming from absolute scratch. A complete guide covering everything 
+            from basics to advanced concepts with hands-on examples.
+        </p>
+        <div class="hero-badges">
+            <span class="hero-badge"><i data-lucide="book-open" style="width:16px;height:16px;"></i> Beginner Friendly</span>
+            <span class="hero-badge"><i data-lucide="code" style="width:16px;height:16px;"></i> Hands-on Examples</span>
+            <span class="hero-badge"><i data-lucide="zap" style="width:16px;height:16px;"></i> Learn by Doing</span>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div class="content">
+
+        <!-- Table of Contents -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">📚</div>
+                <h2 class="section-title">What You'll Learn</h2>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card"><h4><i data-lucide="play-circle" style="width:18px;height:18px;"></i> Hello, World!</h4></div>
+                <div class="topic-card"><h4><i data-lucide="box" style="width:18px;height:18px;"></i> Variables and Types</h4></div>
+                <div class="topic-card"><h4><i data-lucide="list" style="width:18px;height:18px;"></i> Lists</h4></div>
+                <div class="topic-card"><h4><i data-lucide="calculator" style="width:18px;height:18px;"></i> Basic Operators</h4></div>
+                <div class="topic-card"><h4><i data-lucide="type" style="width:18px;height:18px;"></i> String Formatting</h4></div>
+                <div class="topic-card"><h4><i data-lucide="text" style="width:18px;height:18px;"></i> String Operations</h4></div>
+                <div class="topic-card"><h4><i data-lucide="git-branch" style="width:18px;height:18px;"></i> Conditions</h4></div>
+                <div class="topic-card"><h4><i data-lucide="repeat" style="width:18px;height:18px;"></i> Loops</h4></div>
+                <div class="topic-card"><h4><i data-lucide="function-square" style="width:18px;height:18px;"></i> Functions</h4></div>
+                <div class="topic-card"><h4><i data-lucide="book" style="width:18px;height:18px;"></i> Dictionaries</h4></div>
+                <div class="topic-card"><h4><i data-lucide="file-input" style="width:18px;height:18px;"></i> Input and Output</h4></div>
+                <div class="topic-card"><h4><i data-lucide="monitor" style="width:18px;height:18px;"></i> Printing on Screen</h4></div>
+            </div>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Introduction to Python</h2>
+            </div>
+
+            <div class="topic-description">
+                Python is a high-level, interpreted programming language known for its simplicity and readability. 
+                Created by Guido van Rossum in 1991, Python has become one of the most popular languages in the world 
+                for web development, data science, AI, automation, and more!
+            </div>
+
+            <div class="info-box">
+                <h4>💡 Why Python?</h4>
+                <p>Python's simple syntax makes it perfect for beginners, yet powerful enough for experts. 
+                It's used by Google, Netflix, Instagram, and NASA!</p>
+            </div>
+        </div>
+
+        <!-- Section 2: Hello World -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Learn the Basics</h2>
+            </div>
+
+            <!-- Hello World -->
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="play" style="width:18px;height:18px;"></i></div>
+                    <h3 class="topic-title">Hello, World!</h3>
+                </div>
+                <p class="topic-description">
+                    Every programming journey starts with "Hello, World!" - Let's print our first message!
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">hello.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment"># Your first Python program!</span>
+<span class="builtin">print</span>(<span class="string">"Hello, World!"</span>)
+
+<span class="comment"># Print multiple lines</span>
+<span class="builtin">print</span>(<span class="string">"Welcome to Python!"</span>)
+<span class="builtin">print</span>(<span class="string">"Let's start coding! 🚀"</span>)</pre>
+                    </div>
+                </div>
+                <div class="output-block">
+                    <div class="output-header">Output</div>
+                    <div class="output-content">Hello, World!
+Welcome to Python!
+Let's start coding! 🚀</div>
+                </div>
+            </div>
+
+            <!-- Variables and Types -->
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="box" style="width:18px;height:18px;"></i></div>
+                    <h3 class="topic-title">Variables and Types</h3>
+                </div>
+                <p class="topic-description">
+                    Variables store data. Python automatically detects the type - no need to declare it!
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">variables.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment"># String - text data</span>
+name <span class="operator">=</span> <span class="string">"Om Pandey"</span>
+
+<span class="comment"># Integer - whole numbers</span>
+age <span class="operator">=</span> <span class="number">21</span>
+
+<span class="comment"># Float - decimal numbers</span>
+height <span class="operator">=</span> <span class="number">5.9</span>
+
+<span class="comment"># Boolean - True or False</span>
+is_developer <span class="operator">=</span> <span class="keyword">True</span>
+
+<span class="comment"># Check types</span>
+<span class="builtin">print</span>(<span class="builtin">type</span>(name))      <span class="comment"># &lt;class 'str'&gt;</span>
+<span class="builtin">print</span>(<span class="builtin">type</span>(age))       <span class="comment"># &lt;class 'int'&gt;</span>
+<span class="builtin">print</span>(<span class="builtin">type</span>(height))    <span class="comment"># &lt;class 'float'&gt;</span>
+<span class="builtin">print</span>(<span class="builtin">type</span>(is_developer)) <span class="comment"># &lt;class 'bool'&gt;</span>
+
+<span class="comment"># Print variables</span>
+<span class="builtin">print</span>(<span class="string">f"Hi, I'm </span>{name}<span class="string"> and I'm </span>{age}<span class="string"> years old!"</span>)</pre>
+                    </div>
+                </div>
+                <div class="output-block">
+                    <div class="output-header">Output</div>
+                    <div class="output-content">&lt;class 'str'&gt;
+&lt;class 'int'&gt;
+&lt;class 'float'&gt;
+&lt;class 'bool'&gt;
+Hi, I'm Om Pandey and I'm 21 years old!</div>
+                </div>
+            </div>
+
+            <!-- Lists -->
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="list" style="width:18px;height:18px;"></i></div>
+                    <h3 class="topic-title">Lists</h3>
+                </div>
+                <p class="topic-description">
+                    Lists store multiple items in a single variable. They are ordered, changeable, and allow duplicates.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">lists.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment"># Creating a list</span>
+fruits <span class="operator">=</span> [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>]
+numbers <span class="operator">=</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+
+<span class="comment"># Access items (index starts at 0)</span>
+<span class="builtin">print</span>(fruits[<span class="number">0</span>])      <span class="comment"># apple</span>
+<span class="builtin">print</span>(fruits[<span class="number">-1</span>])     <span class="comment"># cherry (last item)</span>
+
+<span class="comment"># Add items</span>
+fruits.append(<span class="string">"orange"</span>)
+<span class="builtin">print</span>(fruits)         <span class="comment"># ['apple', 'banana', 'cherry', 'orange']</span>
+
+<span class="comment"># Remove items</span>
+fruits.remove(<span class="string">"banana"</span>)
+<span class="builtin">print</span>(fruits)         <span class="comment"># ['apple', 'cherry', 'orange']</span>
+
+<span class="comment"># List length</span>
+<span class="builtin">print</span>(<span class="builtin">len</span>(fruits))    <span class="comment"># 3</span>
+
+<span class="comment"># List slicing</span>
+<span class="builtin">print</span>(numbers[<span class="number">1</span>:<span class="number">4</span>])   <span class="comment"># [2, 3, 4]</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basic Operators -->
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="calculator" style="width:18px;height:18px;"></i></div>
+                    <h3 class="topic-title">Basic Operators</h3>
+                </div>
+                <p class="topic-description">
+                    Python supports arithmetic, comparison, and logical operators for calculations and comparisons.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">operators.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment"># Arithmetic Operators</span>
+a <span class="operator">=</span> <span class="number">10</span>
+b <span class="operator">=</span> <span class="number">3</span>
+
+<span class="builtin">print</span>(a <span class="operator">+</span> b)   <span class="comment"># Addition: 13</span>
+<span class="builtin">print</span>(a <span class="operator">-</span> b)   <span class="comment"># Subtraction: 7</span>
+<span class="builtin">print</span>(a <span class="operator">*</span> b)   <span class="comment"># Multiplication: 30</span>
+<span class="builtin">print</span>(a <span class="operator">/</span> b)   <span class="comment"># Division: 3.333...</span>
+<span class="builtin">print</span>(a <span class="operator">//</span> b)  <span class="comment"># Floor Division: 3</span>
+<span class="builtin">print</span>(a <span class="operator">%</span> b)   <span class="comment"># Modulus: 1</span>
+<span class="builtin">print</span>(a <span class="operator">**</span> b)  <span class="comment"># Exponent: 1000</span>
+
+<span class="comment"># Comparison Operators</span>
+<span class="builtin">print</span>(a <span class="operator">></span> b)   <span class="comment"># True</span>
+<span class="builtin">print</span>(a <span class="operator">==</span> b)  <span class="comment"># False</span>
+<span class="builtin">print</span>(a <span class="operator">!=</span> b)  <span class="comment"># True</span>
+
+<span class="comment"># Logical Operators</span>
+<span class="builtin">print</span>(<span class="keyword">True</span> <span class="keyword">and</span> <span class="keyword">False</span>)  <span class="comment"># False</span>
+<span class="builtin">print</span>(<span class="keyword">True</span> <span class="keyword">or</span> <span class="keyword">False</span>)   <span class="comment"># True</span>
+<span class="builtin">print</span>(<span class="keyword">not</span> <span class="keyword">True</span>)        <span class="comment"># False</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- String Formatting -->
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="type" style="width:18px;height:18px;"></i></div>
+                    <h3 class="topic-title">String Formatting</h3>
+                </div>
+                <p class="topic-description">
+                    Format strings to include variables and expressions dynamically.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">string_format.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre>name <span class="operator">=</span> <span class="string">"Om"</span>
+age <span class="operator">=</span> <span class="number">21</span>
+
+<span class="comment"># f-strings (Recommended - Python 3.6+)</span>
+<span class="builtin">print</span>(<span class="string">f"Hello, my name is </span>{name}<span class="string"> and I'm </span>{age}<span class="string">"</span>)
+
+<span class="comment"># .format() method</span>
+<span class="builtin">print</span>(<span class="string">"Hello, my name is {} and I'm {}"</span>.format(name, age))
+
+<span class="comment"># % operator (old style)</span>
+<span class="builtin">print</span>(<span class="string">"Hello, my name is %s and I'm %d"</span> <span class="operator">%</span> (name, age))
+
+<span class="comment"># Format numbers</span>
+price <span class="operator">=</span> <span class="number">49.99</span>
+<span class="builtin">print</span>(<span class="string">f"Price: $</span>{price<span class="operator">:</span>.2f}<span class="string">"</span>)  <span class="comment"># Price: $49.99</span>
+
+<span class="comment"># Padding</span>
+<span class="builtin">print</span>(<span class="string">f"</span>{name<span class="operator">:</span>>10}<span class="string">"</span>)  <span class="comment"># Right align, pad to 10</span>
+<span class="builtin">print</span>(<span class="string">f"</span>{name<span class="operator">:</span><10}<span class="string">"</span>)  <span class="comment"># Left align, pad to 10</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basic String Operations -->
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="text" style="width:18px;height:18px;"></i></div>
+                    <h3 class="topic-title">Basic String Operations</h3>
+                </div>
+                <p class="topic-description">
+                    Strings have many built-in methods for manipulation.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">strings.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre>text <span class="operator">=</span> <span class="string">"Hello, Python World!"</span>
+
+<span class="comment"># Length</span>
+<span class="builtin">print</span>(<span class="builtin">len</span>(text))         <span class="comment"># 20</span>
+
+<span class="comment"># Case conversion</span>
+<span class="builtin">print</span>(text.upper())       <span class="comment"># HELLO, PYTHON WORLD!</span>
+<span class="builtin">print</span>(text.lower())       <span class="comment"># hello, python world!</span>
+<span class="builtin">print</span>(text.title())       <span class="comment"># Hello, Python World!</span>
+
+<span class="comment"># Find and replace</span>
+<span class="builtin">print</span>(text.find(<span class="string">"Python"</span>))     <span class="comment"># 7 (index)</span>
+<span class="builtin">print</span>(text.replace(<span class="string">"World"</span>, <span class="string">"Universe"</span>))
+
+<span class="comment"># Split and join</span>
+words <span class="operator">=</span> text.split(<span class="string">" "</span>)
+<span class="builtin">print</span>(words)              <span class="comment"># ['Hello,', 'Python', 'World!']</span>
+<span class="builtin">print</span>(<span class="string">"-"</span>.join(words))    <span class="comment"># Hello,-Python-World!</span>
+
+<span class="comment"># Strip whitespace</span>
+messy <span class="operator">=</span> <span class="string">"  hello  "</span>
+<span class="builtin">print</span>(messy.strip())      <span class="comment"># "hello"</span>
+
+<span class="comment"># Check content</span>
+<span class="builtin">print</span>(text.startswith(<span class="string">"Hello"</span>))  <span class="comment"># True</span>
+<span class="builtin">print</span>(<span class="string">"Python"</span> <span class="keyword">in</span> text)         <span class="comment"># True</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conditions -->
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="git-branch" style="width:18px;height:18px;"></i></div>
+                    <h3 class="topic-title">Conditions</h3>
+                </div>
+                <p class="topic-description">
+                    Control the flow of your program with if, elif, and else statements.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">conditions.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre>age <span class="operator">=</span> <span class="number">18</span>
+
+<span class="comment"># Simple if-else</span>
+<span class="keyword">if</span> age <span class="operator">>=</span> <span class="number">18</span>:
+    <span class="builtin">print</span>(<span class="string">"You are an adult!"</span>)
+<span class="keyword">else</span>:
+    <span class="builtin">print</span>(<span class="string">"You are a minor!"</span>)
+
+<span class="comment"># Multiple conditions with elif</span>
+score <span class="operator">=</span> <span class="number">85</span>
+
+<span class="keyword">if</span> score <span class="operator">>=</span> <span class="number">90</span>:
+    grade <span class="operator">=</span> <span class="string">"A"</span>
+<span class="keyword">elif</span> score <span class="operator">>=</span> <span class="number">80</span>:
+    grade <span class="operator">=</span> <span class="string">"B"</span>
+<span class="keyword">elif</span> score <span class="operator">>=</span> <span class="number">70</span>:
+    grade <span class="operator">=</span> <span class="string">"C"</span>
+<span class="keyword">else</span>:
+    grade <span class="operator">=</span> <span class="string">"F"</span>
+
+<span class="builtin">print</span>(<span class="string">f"Your grade: </span>{grade}<span class="string">"</span>)
+
+<span class="comment"># Ternary operator (one-liner)</span>
+status <span class="operator">=</span> <span class="string">"adult"</span> <span class="keyword">if</span> age <span class="operator">>=</span> <span class="number">18</span> <span class="keyword">else</span> <span class="string">"minor"</span>
+<span class="builtin">print</span>(status)</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loops -->
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="repeat" style="width:18px;height:18px;"></i></div>
+                    <h3 class="topic-title">Loops</h3>
+                </div>
+                <p class="topic-description">
+                    Loops let you repeat code. Python has for loops and while loops.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">loops.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment"># For loop with range</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">5</span>):
+    <span class="builtin">print</span>(<span class="string">f"Count: </span>{i}<span class="string">"</span>)
+
+<span class="comment"># For loop with list</span>
+fruits <span class="operator">=</span> [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>]
+<span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:
+    <span class="builtin">print</span>(<span class="string">f"I love </span>{fruit}<span class="string">!"</span>)
+
+<span class="comment"># While loop</span>
+count <span class="operator">=</span> <span class="number">0</span>
+<span class="keyword">while</span> count <span class="operator"><</span> <span class="number">3</span>:
+    <span class="builtin">print</span>(<span class="string">f"Count is </span>{count}<span class="string">"</span>)
+    count <span class="operator">+=</span> <span class="number">1</span>
+
+<span class="comment"># Break and Continue</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">10</span>):
+    <span class="keyword">if</span> i <span class="operator">==</span> <span class="number">3</span>:
+        <span class="keyword">continue</span>  <span class="comment"># Skip 3</span>
+    <span class="keyword">if</span> i <span class="operator">==</span> <span class="number">7</span>:
+        <span class="keyword">break</span>     <span class="comment"># Stop at 7</span>
+    <span class="builtin">print</span>(i)
+
+<span class="comment"># List comprehension</span>
+squares <span class="operator">=</span> [x<span class="operator">**</span><span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">5</span>)]
+<span class="builtin">print</span>(squares)  <span class="comment"># [0, 1, 4, 9, 16]</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Functions -->
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="function-square" style="width:18px;height:18px;"></i></div>
+                    <h3 class="topic-title">Functions</h3>
+                </div>
+                <p class="topic-description">
+                    Functions are reusable blocks of code that perform specific tasks.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">functions.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment"># Basic function</span>
+<span class="keyword">def</span> <span class="function">greet</span>():
+    <span class="builtin">print</span>(<span class="string">"Hello, World!"</span>)
+
+greet()  <span class="comment"># Call the function</span>
+
+<span class="comment"># Function with parameters</span>
+<span class="keyword">def</span> <span class="function">greet_person</span>(name):
+    <span class="builtin">print</span>(<span class="string">f"Hello, </span>{name}<span class="string">!"</span>)
+
+greet_person(<span class="string">"Om"</span>)
+
+<span class="comment"># Function with return value</span>
+<span class="keyword">def</span> <span class="function">add</span>(a, b):
+    <span class="keyword">return</span> a <span class="operator">+</span> b
+
+result <span class="operator">=</span> add(<span class="number">5</span>, <span class="number">3</span>)
+<span class="builtin">print</span>(<span class="string">f"Sum: </span>{result}<span class="string">"</span>)  <span class="comment"># Sum: 8</span>
+
+<span class="comment"># Default parameters</span>
+<span class="keyword">def</span> <span class="function">power</span>(base, exp<span class="operator">=</span><span class="number">2</span>):
+    <span class="keyword">return</span> base <span class="operator">**</span> exp
+
+<span class="builtin">print</span>(power(<span class="number">3</span>))      <span class="comment"># 9 (3^2)</span>
+<span class="builtin">print</span>(power(<span class="number">3</span>, <span class="number">3</span>))   <span class="comment"># 27 (3^3)</span>
+
+<span class="comment"># Lambda functions (one-liners)</span>
+square <span class="operator">=</span> <span class="keyword">lambda</span> x: x <span class="operator">**</span> <span class="number">2</span>
+<span class="builtin">print</span>(square(<span class="number">5</span>))  <span class="comment"># 25</span></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Dictionaries -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Dictionaries</h2>
+            </div>
+
+            <div class="topic">
+                <p class="topic-description">
+                    Dictionaries store data in key-value pairs. They are unordered, changeable, and don't allow duplicate keys.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">dictionaries.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment"># Creating a dictionary</span>
+person <span class="operator">=</span> {
+    <span class="string">"name"</span>: <span class="string">"Om Pandey"</span>,
+    <span class="string">"age"</span>: <span class="number">21</span>,
+    <span class="string">"city"</span>: <span class="string">"Kathmandu"</span>,
+    <span class="string">"is_developer"</span>: <span class="keyword">True</span>
+}
+
+<span class="comment"># Access values</span>
+<span class="builtin">print</span>(person[<span class="string">"name"</span>])      <span class="comment"># Om Pandey</span>
+<span class="builtin">print</span>(person.get(<span class="string">"age"</span>))   <span class="comment"># 21</span>
+
+<span class="comment"># Add or update</span>
+person[<span class="string">"email"</span>] <span class="operator">=</span> <span class="string">"om@example.com"</span>
+person[<span class="string">"age"</span>] <span class="operator">=</span> <span class="number">22</span>
+
+<span class="comment"># Remove items</span>
+<span class="keyword">del</span> person[<span class="string">"city"</span>]
+
+<span class="comment"># Loop through dictionary</span>
+<span class="keyword">for</span> key, value <span class="keyword">in</span> person.items():
+    <span class="builtin">print</span>(<span class="string">f"</span>{key}<span class="string">: </span>{value}<span class="string">"</span>)
+
+<span class="comment"># Dictionary methods</span>
+<span class="builtin">print</span>(person.keys())    <span class="comment"># All keys</span>
+<span class="builtin">print</span>(person.values())  <span class="comment"># All values</span>
+<span class="builtin">print</span>(<span class="builtin">len</span>(person))       <span class="comment"># Number of items</span></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Input and Output -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Input and Output</h2>
+            </div>
+
+            <div class="topic">
+                <p class="topic-description">
+                    Interact with users by getting input and displaying output.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">input_output.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment"># Getting user input</span>
+name <span class="operator">=</span> <span class="builtin">input</span>(<span class="string">"Enter your name: "</span>)
+<span class="builtin">print</span>(<span class="string">f"Hello, </span>{name}<span class="string">!"</span>)
+
+<span class="comment"># Input is always a string - convert for numbers</span>
+age <span class="operator">=</span> <span class="builtin">int</span>(<span class="builtin">input</span>(<span class="string">"Enter your age: "</span>))
+<span class="builtin">print</span>(<span class="string">f"Next year you'll be </span>{age <span class="operator">+</span> <span class="number">1</span>}<span class="string">"</span>)
+
+<span class="comment"># Multiple outputs</span>
+<span class="builtin">print</span>(<span class="string">"Hello"</span>, <span class="string">"World"</span>, sep<span class="operator">=</span><span class="string">"-"</span>)  <span class="comment"># Hello-World</span>
+<span class="builtin">print</span>(<span class="string">"Line 1"</span>, end<span class="operator">=</span><span class="string">" | "</span>)
+<span class="builtin">print</span>(<span class="string">"Line 2"</span>)  <span class="comment"># Line 1 | Line 2</span>
+
+<span class="comment"># File I/O</span>
+<span class="comment"># Writing to file</span>
+<span class="keyword">with</span> <span class="builtin">open</span>(<span class="string">"test.txt"</span>, <span class="string">"w"</span>) <span class="keyword">as</span> file:
+    file.write(<span class="string">"Hello, File!"</span>)
+
+<span class="comment"># Reading from file</span>
+<span class="keyword">with</span> <span class="builtin">open</span>(<span class="string">"test.txt"</span>, <span class="string">"r"</span>) <span class="keyword">as</span> file:
+    content <span class="operator">=</span> file.read()
+    <span class="builtin">print</span>(content)</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Printing on Screen -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Printing on Screen</h2>
+            </div>
+
+            <div class="topic">
+                <p class="topic-description">
+                    Master different ways to display output beautifully.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">printing.py</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment"># Basic print</span>
+<span class="builtin">print</span>(<span class="string">"Hello, World!"</span>)
+
+<span class="comment"># Print with variables</span>
+name <span class="operator">=</span> <span class="string">"Om"</span>
+<span class="builtin">print</span>(<span class="string">"Name:"</span>, name)
+
+<span class="comment"># Formatted output</span>
+score <span class="operator">=</span> <span class="number">95.5678</span>
+<span class="builtin">print</span>(<span class="string">f"Score: </span>{score<span class="operator">:</span>.2f}<span class="string">"</span>)  <span class="comment"># Score: 95.57</span>
+
+<span class="comment"># Table-like output</span>
+<span class="builtin">print</span>(<span class="string">f"{'Name':<15}{'Age':>5}"</span>)
+<span class="builtin">print</span>(<span class="string">f"{'Om Pandey':<15}{21:>5}"</span>)
+<span class="builtin">print</span>(<span class="string">f"{'John Doe':<15}{25:>5}"</span>)
+
+<span class="comment"># Special characters</span>
+<span class="builtin">print</span>(<span class="string">"Line 1\nLine 2"</span>)       <span class="comment"># New line</span>
+<span class="builtin">print</span>(<span class="string">"Col1\tCol2\tCol3"</span>)     <span class="comment"># Tab</span>
+<span class="builtin">print</span>(<span class="string">"He said \"Hello!\""</span>)   <span class="comment"># Escape quotes</span>
+
+<span class="comment"># Colorful output (using ANSI codes)</span>
+<span class="builtin">print</span>(<span class="string">"\033[92m✓ Success!\033[0m"</span>)   <span class="comment"># Green</span>
+<span class="builtin">print</span>(<span class="string">"\033[91m✗ Error!\033[0m"</span>)     <span class="comment"># Red</span>
+<span class="builtin">print</span>(<span class="string">"\033[93m⚠ Warning!\033[0m"</span>)   <span class="comment"># Yellow</span>
+
+<span class="comment"># ASCII Art Fun!</span>
+<span class="builtin">print</span>(<span class="string">"""
+   🐍 PYTHON 🐍
+ ╔═══════════╗
+ ║  Hello!   ║
+ ╚═══════════╝
+"""</span>)</pre>
+                    </div>
+                </div>
+                <div class="output-block">
+                    <div class="output-header">Output</div>
+                    <div class="output-content">Name            Age
+Om Pandey        21
+John Doe         25
+
+   🐍 PYTHON 🐍
+ ╔═══════════╗
+ ║  Hello!   ║
+ ╚═══════════╝</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">🎉 Congratulations!</h2>
+            <p class="cta-description">
+                You've learned the Python basics! Ready to build real projects with frameworks?
+            </p>
+            <a href="./Django.html" class="cta-button">
+                Continue with Framework
+                <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="/index.html" class="footer-brand">
+                <span class="footer-logo-text">Om Pandey</span>
+            </a>
+            <div class="footer-social">
+                <a href="https://github.com/ompandey07" target="_blank"><i class="ri-github-fill"></i></a>
+                <a href="https://www.linkedin.com/in/iamompandey/" target="_blank"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://x.com/iam_ompandey" target="_blank"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.instagram.com/ome.exee/" target="_blank"><i class="ri-instagram-line"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Scroll Progress
+        window.addEventListener('scroll', function() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+
+        // Copy Code Function
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('pre').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+    </script>
+    <script src="../Console.js"></script>
+</body>
+</html>

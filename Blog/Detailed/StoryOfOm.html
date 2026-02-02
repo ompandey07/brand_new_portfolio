@@ -1,0 +1,868 @@
+<!-- story-of-om-pandey.html - Blog Detail Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Story Of Om Pandey - Blog | Om Pandey</title>
+    <meta name="description" content="From a curious kid in Kathmandu to a full-stack developer. Read the inspiring journey of Om Pandey through code, challenges, and growth.">
+    <meta name="keywords" content="Om Pandey story, developer journey, Nepal developer, programming journey">
+    <meta name="author" content="Om Pandey">
+    
+    <link rel="shortcut icon" href="../MainLogo.png" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Caveat:wght@400;500;600;700&family=Permanent+Marker&family=Satisfy&family=Pacifico&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/agustina" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* ============================================
+           Reset & Base
+           ============================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-script: 'Kaushan Script', cursive;
+            --font-agustina: 'Agustina', cursive;
+            --font-caveat: 'Caveat', cursive;
+            --font-marker: 'Permanent Marker', cursive;
+            --font-satisfy: 'Satisfy', cursive;
+            --font-pacifico: 'Pacifico', cursive;
+            --font-dancing: 'Dancing Script', cursive;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-code: #1e293b;
+            --bg-dark: #0f172a;
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --text-white: #ffffff;
+            
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-light: #a78bfa;
+            --accent-lighter: #c4b5fd;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.25);
+            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
+            
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+            --radius-2xl: 28px;
+            --radius-full: 9999px;
+            
+            --transition-fast: 150ms ease;
+            --transition-base: 200ms ease;
+            --transition-slow: 300ms ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        * {
+            scrollbar-width: none;
+        }
+
+        .agustina-font {
+            font-family: 'Agustina', cursive !important;
+        }
+
+        /* ============================================
+           Scroll Progress Bar
+           ============================================ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--accent-gradient);
+            z-index: 10000;
+            transition: width 0.1s linear;
+        }
+
+        /* ============================================
+           Header Bar
+           ============================================ */
+        .header-bar {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding: 0 24px;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 64px;
+        }
+
+        .header-brand {
+            text-decoration: none;
+        }
+
+        .header-logo-text {
+            font-family: 'Agustina', cursive !important;
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ============================================
+           Blog Header
+           ============================================ */
+        .blog-header {
+            position: relative;
+            padding: 60px 24px 40px;
+            overflow: hidden;
+        }
+
+        .blog-header-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 100% 50%, rgba(139, 92, 246, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .blog-header-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 32px;
+            transition: all var(--transition-base);
+        }
+
+        .blog-back:hover {
+            background: var(--bg-tertiary);
+            color: var(--accent-primary);
+        }
+
+        .blog-back i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .blog-title {
+            font-family: var(--font-heading);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        /* ============================================
+           Blog Cover Image
+           ============================================ */
+        .blog-cover {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .blog-cover img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* ============================================
+           Blog Content
+           ============================================ */
+        .blog-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .blog-content h2 {
+            font-family: var(--font-marker);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin: 56px 0 24px;
+            letter-spacing: 1px;
+        }
+
+        .blog-content h3 {
+            font-family: var(--font-caveat);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 40px 0 18px;
+        }
+
+        .blog-content p {
+            font-size: 18px;
+            line-height: 2;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+        }
+
+        .blog-content p:first-child {
+            font-family: var(--font-satisfy);
+            font-size: 26px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .blog-content strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .blog-content em {
+            font-style: italic;
+            color: var(--accent-secondary);
+        }
+
+        .blog-content blockquote {
+            margin: 40px 0;
+            padding: 28px 36px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+            border-left: 5px solid var(--accent-primary);
+            border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+            position: relative;
+        }
+
+        .blog-content blockquote::before {
+            content: '"';
+            font-family: var(--font-pacifico);
+            font-size: 80px;
+            color: var(--accent-lighter);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.5;
+        }
+
+        .blog-content blockquote p {
+            font-family: var(--font-dancing);
+            font-size: 24px;
+            font-style: italic;
+            color: var(--text-primary);
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-content ul, 
+        .blog-content ol {
+            margin: 28px 0;
+            padding-left: 32px;
+        }
+
+        .blog-content li {
+            font-size: 17px;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+        }
+
+        .blog-content li strong {
+            font-family: var(--font-caveat);
+            font-size: 20px;
+            color: var(--accent-primary);
+        }
+
+        .blog-content a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            border-bottom: 2px solid var(--accent-lighter);
+            transition: all var(--transition-base);
+        }
+
+        .blog-content a:hover {
+            color: var(--accent-secondary);
+            border-bottom-color: var(--accent-secondary);
+        }
+
+        .blog-content code {
+            font-family: var(--font-mono);
+            background: var(--bg-tertiary);
+            padding: 3px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            color: var(--accent-primary);
+        }
+
+        /* Code Block in Blog */
+        .blog-content .code-block {
+            margin: 36px 0;
+            background: var(--bg-code);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .blog-content .code-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .blog-content .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .blog-content .code-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .blog-content .code-dot-red { background: #ef4444; }
+        .blog-content .code-dot-yellow { background: #fbbf24; }
+        .blog-content .code-dot-green { background: #22c55e; }
+
+        .blog-content .code-title {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .blog-content .code-content {
+            padding: 20px;
+        }
+
+        .blog-content .code-content pre {
+            margin: 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            color: #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .blog-content .code-content .comment { color: #64748b; }
+        .blog-content .code-content .keyword { color: #f472b6; }
+        .blog-content .code-content .string { color: #67e8f9; }
+        .blog-content .code-content .function { color: #fbbf24; }
+        .blog-content .code-content .property { color: #a78bfa; }
+        .blog-content .code-content .number { color: #34d399; }
+
+        /* Highlight Box */
+        .highlight-box {
+            margin: 40px 0;
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(99, 102, 241, 0.1));
+            border: 2px dashed var(--accent-light);
+            border-radius: var(--radius-xl);
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '💡';
+            font-size: 32px;
+            position: absolute;
+            top: -18px;
+            left: 24px;
+            background: var(--bg-primary);
+            padding: 0 10px;
+        }
+
+        .highlight-box h4 {
+            font-family: var(--font-marker);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* Fun Emoji Section */
+        .emoji-break {
+            text-align: center;
+            font-size: 36px;
+            margin: 48px 0;
+            letter-spacing: 16px;
+        }
+
+        /* Fun Fact Box */
+        .fun-fact {
+            margin: 40px 0;
+            padding: 28px;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fun-fact::before {
+            content: '🎉';
+            font-size: 60px;
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            opacity: 0.3;
+        }
+
+        .fun-fact h4 {
+            font-family: var(--font-caveat);
+            font-size: 24px;
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .fun-fact p {
+            font-size: 16px;
+            color: #78350f;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* Blog Tags */
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-light);
+            margin-top: 40px;
+        }
+
+        .blog-tag {
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .blog-tag:hover {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        /* ============================================
+           Footer
+           ============================================ */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-light);
+            padding: 24px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            text-decoration: none;
+        }
+
+        .footer-logo-text {
+            font-family: 'Agustina', cursive !important;
+            font-size: 22px;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 42px;
+            height: 42px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-social i {
+            font-size: 18px;
+        }
+
+        /* ============================================
+           Responsive
+           ============================================ */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .blog-content h2 {
+                font-size: 26px;
+            }
+
+            .blog-content blockquote p {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-header {
+                padding: 40px 20px 30px;
+            }
+
+            .blog-content {
+                padding: 40px 20px;
+            }
+
+            .blog-content p:first-child {
+                font-size: 22px;
+            }
+
+            .emoji-break {
+                font-size: 28px;
+                letter-spacing: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header Bar -->
+    <header class="header-bar">
+        <div class="header-container">
+            <a href="../index.html" class="header-brand">
+                <span class="header-logo-text agustina-font">Om Pandey</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Blog Header -->
+    <header class="blog-header">
+        <div class="blog-header-bg"></div>
+        <div class="blog-header-container">
+            
+            <span class="blog-category">Personal</span>
+            
+            <h1 class="blog-title">Story Of Om Pandey</h1>
+        </div>
+    </header>
+
+    <!-- Blog Cover Image -->
+    <div class="blog-cover">
+        <img src="../BlogImage.png" alt="Story of Om Pandey">
+    </div>
+
+    <!-- Blog Content -->
+    <article class="blog-content">
+        <p>
+            Every legend starts somewhere, right? Well, mine started with a keyboard, a curious mind, 
+            and way too many cups of tea ☕. Buckle up, because this is gonna be one heck of a ride!
+        </p>
+
+        <h2>🚀 The Spark That Started It All</h2>
+        <p>
+            Picture this: A kid in Kathmandu, surrounded by mountains and madness, staring at a computer 
+            screen like it held the secrets of the universe. <em>Spoiler alert: it kinda did!</em> While 
+            other kids were playing football outside, I was busy taking apart old gadgets, trying to figure 
+            out what made them tick. My parents probably thought I was breaking everything, but hey — 
+            that's how scientists are born, right? 🔬
+        </p>
+        <p>
+            The first time I typed <code>print("Hello World")</code> and saw those magical words appear 
+            on my screen, something inside me just... <strong>clicked</strong>. It was like discovering 
+            a superpower I never knew I had. From that moment, there was no going back!
+        </p>
+
+        <div class="emoji-break">🌟 ✨ 💫 ⭐ 🌟</div>
+
+        <h2>🎮 Level Up: The Learning Years</h2>
+        <p>
+            Learning to code is like playing a video game with infinite levels. Just when you think 
+            you've mastered something, <em>BAM!</em> — a new challenge appears. Python led me to HTML, 
+            HTML introduced me to CSS, and CSS was like "Hey, have you met my friend JavaScript?" 
+            It was a beautiful mess of languages, frameworks, and countless Stack Overflow tabs! 😅
+        </p>
+
+        <div class="fun-fact">
+            <h4>Fun Fact! 🎯</h4>
+            <p>
+                I once spent 6 hours debugging code only to realize I missed a single semicolon. 
+                That day, I learned two things: patience is a virtue, and semicolons are sneaky little troublemakers!
+            </p>
+        </div>
+
+        <p>
+            There were nights when I stayed up until 3 AM, fueled by nothing but determination and 
+            instant noodles 🍜. My screen became my best friend, my keyboard — my instrument, and 
+            every bug I squashed felt like defeating a boss in a video game. <em>Achievement unlocked!</em>
+        </p>
+
+        <blockquote>
+            <p>The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.</p>
+        </blockquote>
+
+        <h2>💡 The "Aha!" Moments</h2>
+        <p>
+            You know those moments when everything just makes sense? When the puzzle pieces finally 
+            fit together? I've had plenty of those, and let me tell you — they're <strong>ADDICTIVE</strong>. 
+            Each breakthrough made me hungry for more. More knowledge, more challenges, more late nights 
+            of coding while my neighbors probably wondered why my lights were always on! 💡
+        </p>
+
+        <div class="highlight-box">
+            <h4>The Secret Sauce</h4>
+            <p>
+                Here's what I've learned: Talent is overrated. What really matters is showing up every single 
+                day, even when you don't feel like it. Especially when you don't feel like it! The magic happens 
+                when you push through the resistance and keep going.
+            </p>
+        </div>
+
+        <h3>🛠️ Tools of the Trade</h3>
+        <p>
+            Along the way, I collected quite the arsenal of skills. Think of it like collecting 
+            Infinity Stones, but nerdier (and way more useful):
+        </p>
+        <ul>
+            <li><strong>React & JavaScript:</strong> My bread and butter for building beautiful frontends 🎨</li>
+            <li><strong>Python & Django:</strong> The dynamic duo for backend sorcery 🐍✨</li>
+            <li><strong>Node.js:</strong> Because why stop at one language? 😎</li>
+            <li><strong>Docker & Git:</strong> Keeping everything organized (most of the time) 📦</li>
+            <li><strong>Coffee & Determination:</strong> The unofficial programming languages ☕💪</li>
+        </ul>
+
+        <div class="emoji-break">🔥 💻 🚀 ⚡ 🔥</div>
+
+        <h2>🌈 Where I Am Today</h2>
+        <p>
+            Fast forward to today, and here I am — a full-stack developer with over 5 years of experience, 
+            countless projects under my belt, and still as curious as that kid who first typed "Hello World." 
+            I've built ERPs that help businesses run smoother, created open-source tools used by developers 
+            worldwide, and every day brings new challenges to conquer! 🎯
+        </p>
+        <p>
+            But you know what's the best part? <em>I'm just getting started!</em> The tech world is 
+            constantly evolving, and so am I. There's always something new to learn, something exciting 
+            to build, and someone to help along the way. That's what makes this journey so incredibly 
+            awesome! 🌟
+        </p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dots">
+                    <span class="code-dot code-dot-red"></span>
+                    <span class="code-dot code-dot-yellow"></span>
+                    <span class="code-dot code-dot-green"></span>
+                </div>
+                <span class="code-title">life_philosophy.py</span>
+            </div>
+            <div class="code-content">
+<pre><span class="comment"># Om's Life Philosophy - Simple as code!</span>
+
+<span class="keyword">while</span> <span class="property">alive</span>:
+    <span class="function">eat</span>()
+    <span class="function">sleep</span>()
+    <span class="function">code</span>()
+    <span class="function">learn_something_new</span>()
+    <span class="function">repeat</span>()
+    
+<span class="comment"># Never stop being curious! 🚀</span></pre>
+            </div>
+        </div>
+
+        <h2>🎬 The Next Chapter</h2>
+        <p>
+            So, what's next? Honestly, I don't have all the answers (does anyone?). But I do know this: 
+            I'll keep coding, keep learning, keep building, and keep sharing what I know with amazing 
+            people like YOU who are reading this! 📖✨
+        </p>
+        <p>
+            If my story taught me anything, it's that <strong>anyone can do this</strong>. You don't need 
+            to be a genius, you don't need fancy degrees, and you definitely don't need to have it all 
+            figured out. You just need to start. Take that first step. Write that first line of code. 
+            And then... just keep going! 🏃‍♂️💨
+        </p>
+
+        <blockquote>
+            <p>The best time to plant a tree was 20 years ago. The second best time is NOW. So what are you waiting for? Let's gooo! 🌳</p>
+        </blockquote>
+
+        <p>
+            Thanks for reading my story. Now go out there and write yours! The world is waiting for 
+            what only YOU can create. And remember — every expert was once a beginner, every master 
+            was once a disaster. <em>Your journey starts today!</em> 🚀🌈✨
+        </p>
+
+        <div class="emoji-break">💜 🙏 💜</div>
+
+        <!-- Tags -->
+        <div class="blog-tags">
+            <a href="#" class="blog-tag">#MyStory</a>
+            <a href="#" class="blog-tag">#Developer</a>
+            <a href="#" class="blog-tag">#Journey</a>
+            <a href="#" class="blog-tag">#Nepal</a>
+            <a href="#" class="blog-tag">#Coding</a>
+            <a href="#" class="blog-tag">#Motivation</a>
+            <a href="#" class="blog-tag">#FullStack</a>
+            <a href="#" class="blog-tag">#NeverGiveUp</a>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="index.html" class="footer-brand">
+                <span class="footer-logo-text agustina-font">Om Pandey</span>
+            </a>
+
+            <div class="footer-social">
+                <a href="https://github.com/ompandey07" target="_blank" rel="noopener noreferrer">
+                    <i class="ri-github-fill"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/iamompandey/" target="_blank" rel="noopener noreferrer">
+                    <i class="ri-linkedin-fill"></i>
+                </a>
+                <a href="https://x.com/iam_ompandey" target="_blank" rel="noopener noreferrer">
+                    <i class="ri-twitter-x-line"></i>
+                </a>
+                <a href="https://www.instagram.com/ome.exee/" target="_blank" rel="noopener noreferrer">
+                    <i class="ri-instagram-line"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', function() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+    <script src="../Console.js"></script>
+</body>
+</html>
