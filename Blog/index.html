@@ -258,16 +258,280 @@
             margin: 0 auto;
         }
 
-        /* Professional Blog Grid */
-        .blogs-grid-pro {
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 20px;
+        }
+
+        .section-badge i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(32px, 4vw, 44px);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-title-accent {
+            font-family: var(--font-script);
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Featured Story Card */
+        .featured-story-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .featured-story-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-2xl);
+            padding: 2px;
+            background: var(--accent-gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .featured-story-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -15px rgba(99, 102, 241, 0.25);
+        }
+
+        .featured-story-card:hover::before {
+            opacity: 1;
+        }
+
+        .featured-story-image {
+            position: relative;
+            overflow: hidden;
+            min-height: 450px;
+        }
+
+        .featured-story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .featured-story-card:hover .featured-story-image img {
+            transform: scale(1.08);
+        }
+
+        .featured-story-badges {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            right: 24px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+        }
+
+        .featured-story-category {
+            padding: 10px 20px;
+            background: var(--accent-gradient);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .featured-story-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-story-badge i {
+            width: 14px;
+            height: 14px;
+        }
+
+        .featured-story-content {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-story-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .featured-story-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .featured-story-meta i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .featured-story-title {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            transition: color var(--transition-base);
+        }
+
+        .featured-story-card:hover .featured-story-title {
+            color: var(--accent-primary);
+        }
+
+        .featured-story-excerpt {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .featured-story-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .featured-story-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .featured-story-author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .featured-story-author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-story-author-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .featured-story-author-role {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .featured-story-read {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--accent-gradient);
+            border-radius: var(--radius-full);
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            transition: all var(--transition-base);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .featured-story-read i {
+            width: 18px;
+            height: 18px;
+            transition: transform var(--transition-base);
+        }
+
+        .featured-story-card:hover .featured-story-read {
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            transform: translateX(3px);
+        }
+
+        .featured-story-card:hover .featured-story-read i {
+            transform: translateX(5px);
+        }
+
+        /* Guides Grid */
+        .guides-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-        }
-
-        .blog-card-featured-pro {
-            grid-column: span 2;
-            grid-row: span 2;
         }
 
         .blog-card-pro {
@@ -309,15 +573,7 @@
         .blog-card-image-pro {
             position: relative;
             overflow: hidden;
-        }
-
-        .blog-card-pro:not(.blog-card-featured-pro) .blog-card-image-pro {
-            height: 200px;
-        }
-
-        .blog-card-featured-pro .blog-card-image-pro {
-            height: 100%;
-            min-height: 450px;
+            height: 220px;
         }
 
         .blog-card-image-pro img {
@@ -337,11 +593,6 @@
             background: linear-gradient(180deg, transparent 0%, transparent 50%, rgba(15, 23, 42, 0.9) 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
-        }
-
-        .blog-card-featured-pro .blog-card-image-overlay {
-            opacity: 1;
-            background: linear-gradient(180deg, transparent 0%, transparent 30%, rgba(15, 23, 42, 0.95) 100%);
         }
 
         .blog-card-pro:hover .blog-card-image-overlay {
@@ -364,66 +615,17 @@
             z-index: 2;
         }
 
-        .blog-card-featured-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 14px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-full);
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--accent-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            z-index: 2;
+        /* Category specific colors */
+        .category-python {
+            background: linear-gradient(135deg, #3776ab 0%, #ffd43b 100%);
         }
 
-        .blog-card-featured-badge i {
-            width: 14px;
-            height: 14px;
+        .category-django {
+            background: linear-gradient(135deg, #092e20 0%, #44b78b 100%);
         }
 
-        .blog-card-featured-pro .blog-card-content-pro {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 40px;
-            color: white;
-            z-index: 2;
-        }
-
-        .blog-card-featured-pro .blog-card-meta-pro {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .blog-card-featured-pro .blog-card-title-pro {
-            color: white;
-            font-size: 28px;
-        }
-
-        .blog-card-featured-pro .blog-card-excerpt-pro {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 16px;
-        }
-
-        .blog-card-featured-pro .blog-card-read-pro {
-            color: white;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            border-radius: var(--radius-full);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .blog-card-featured-pro .blog-card-read-pro:hover {
-            background: white;
-            color: var(--accent-primary);
+        .category-javascript {
+            background: linear-gradient(135deg, #f7df1e 0%, #323330 100%);
         }
 
         .blog-card-content-pro {
@@ -455,7 +657,7 @@
 
         .blog-card-title-pro {
             font-family: var(--font-heading);
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 12px;
@@ -467,12 +669,8 @@
             color: var(--accent-primary);
         }
 
-        .blog-card-featured-pro:hover .blog-card-title-pro {
-            color: white;
-        }
-
         .blog-card-excerpt-pro {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 24px;
@@ -485,11 +683,6 @@
             justify-content: space-between;
             padding-top: 20px;
             border-top: 1px solid var(--border-light);
-        }
-
-        .blog-card-featured-pro .blog-card-footer-pro {
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            justify-content: flex-start;
         }
 
         .blog-card-author {
@@ -522,17 +715,9 @@
             color: var(--text-primary);
         }
 
-        .blog-card-featured-pro .blog-card-author-name {
-            color: white;
-        }
-
         .blog-card-author-role {
             font-size: 11px;
             color: var(--text-muted);
-        }
-
-        .blog-card-featured-pro .blog-card-author-role {
-            color: rgba(255, 255, 255, 0.7);
         }
 
         .blog-card-read-pro {
@@ -614,6 +799,7 @@
             font-size: 18px;
         }
 
+        /* Responsive */
         @media (max-width: 1024px) {
             .hero-container {
                 grid-template-columns: 1fr;
@@ -633,39 +819,48 @@
                 max-width: 350px;
             }
 
-            .blogs-grid-pro {
-                grid-template-columns: 1fr 1fr;
+            .featured-story-card {
+                grid-template-columns: 1fr;
             }
 
-            .blog-card-featured-pro {
-                grid-column: span 2;
-                grid-row: span 1;
-            }
-
-            .blog-card-featured-pro .blog-card-image-pro {
+            .featured-story-image {
                 min-height: 350px;
+            }
+
+            .featured-story-content {
+                padding: 40px;
+            }
+
+            .featured-story-title {
+                font-size: 28px;
+            }
+
+            .guides-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            .blogs-grid-pro {
+            .guides-grid {
                 grid-template-columns: 1fr;
             }
 
-            .blog-card-featured-pro {
-                grid-column: span 1;
+            .featured-story-image {
+                min-height: 280px;
             }
 
-            .blog-card-featured-pro .blog-card-image-pro {
-                min-height: 300px;
+            .featured-story-content {
+                padding: 30px;
             }
 
-            .blog-card-featured-pro .blog-card-content-pro {
-                padding: 24px;
+            .featured-story-title {
+                font-size: 24px;
             }
 
-            .blog-card-featured-pro .blog-card-title-pro {
-                font-size: 22px;
+            .featured-story-footer {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
             }
 
             .footer-container {
@@ -683,6 +878,10 @@
                 padding: 60px 20px;
             }
 
+            .featured-story-content {
+                padding: 24px;
+            }
+
             .blog-card-content-pro {
                 padding: 20px;
             }
@@ -691,8 +890,10 @@
                 max-width: 280px;
             }
 
-            .blog-card-featured-pro .blog-card-image-pro {
-                min-height: 280px;
+            .featured-story-badges {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
             }
         }
     </style>
@@ -738,54 +939,93 @@
         </div>
     </section>
 
-    <!-- Blogs Section -->
-    <section class="section section-alt" id="blogs">
+    <!-- Featured Story Section -->
+    <section class="section section-alt" id="featured">
         <div class="container">
-            <!-- Professional Blog Grid -->
-            <div class="blogs-grid-pro">
-                <!-- Featured Blog - Story of Om Pandey -->
-                <a href="./Detailed/StoryOfOm.html" class="blog-card-pro blog-card-featured-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="BlogImage.png" alt="Story of Om Pandey">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro">Personal</span>
-                        <span class="blog-card-featured-badge">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="sparkles"></i>
+                    Featured Story
+                </div>
+                <h2 class="section-title">My <span class="section-title-accent">Journey</span></h2>
+                <p class="section-description">
+                    A personal story of growth, challenges, and the passion that drives me forward.
+                </p>
+            </div>
+
+            <!-- Featured Story Card -->
+            <a href="./Detailed/StoryOfOm.html" class="featured-story-card">
+                <div class="featured-story-image">
+                    <img src="BlogImage.png" alt="Story of Om Pandey">
+                    <div class="featured-story-badges">
+                        <span class="featured-story-category">Personal</span>
+                        <span class="featured-story-badge">
                             <i data-lucide="star"></i>
                             Featured
                         </span>
                     </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Jan 21, 2022
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                5 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">Story Of Om Pandey</h3>
-                        <p class="blog-card-excerpt-pro">
-                            From a curious kid in Kathmandu to a full-stack developer building digital solutions. 
-                            This is my journey through code, challenges, and continuous growth. A story of 
-                            passion, persistence, and the power of never giving up.
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <span class="blog-card-read-pro">
-                                Read Full Story
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
+                </div>
+                <div class="featured-story-content">
+                    <div class="featured-story-meta">
+                        <span>
+                            <i data-lucide="calendar"></i>
+                            Jan 21, 2022
+                        </span>
+                        <span>
+                            <i data-lucide="clock"></i>
+                            5 min read
+                        </span>
+                        <span>
+                            <i data-lucide="heart"></i>
+                            Personal Story
+                        </span>
                     </div>
-                </a>
+                    <h3 class="featured-story-title">Story Of Om Pandey</h3>
+                    <p class="featured-story-excerpt">
+                        From a curious kid in Kathmandu to a full-stack developer building digital solutions. 
+                        This is my journey through code, challenges, and continuous growth. A story of 
+                        passion, persistence, and the power of never giving up on your dreams.
+                    </p>
+                    <div class="featured-story-footer">
+                        <div class="featured-story-author">
+                            <div class="featured-story-author-avatar">OP</div>
+                            <div class="featured-story-author-info">
+                                <span class="featured-story-author-name">Om Pandey</span>
+                                <span class="featured-story-author-role">Full Stack Developer</span>
+                            </div>
+                        </div>
+                        <span class="featured-story-read">
+                            Read Full Story
+                            <i data-lucide="arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
 
+    <!-- Cheat Sheets & Guides Section -->
+    <section class="section" id="guides">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="book-open"></i>
+                    Learning Resources
+                </div>
+                <h2 class="section-title">Cheat Sheets & <span class="section-title-accent">Guides</span></h2>
+                <p class="section-description">
+                    Comprehensive tutorials and guides to help you master programming from zero to hero.
+                </p>
+            </div>
+
+            <!-- Guides Grid -->
+            <div class="guides-grid">
                 <!-- Python 0 to Hero Blog Card -->
                 <a href="./Detailed/Python0toHero.html" class="blog-card-pro">
                     <div class="blog-card-image-pro">
                         <img src="./PythonHero.png" alt="Python 0 to Hero">
                         <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro">Tutorial</span>
+                        <span class="blog-card-category-pro category-python">Python</span>
                     </div>
                     <div class="blog-card-content-pro">
                         <div class="blog-card-meta-pro">
@@ -824,7 +1064,7 @@
                     <div class="blog-card-image-pro">
                         <img src="/Blog/Django.jpg" alt="Django Hero">
                         <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro">Django</span>
+                        <span class="blog-card-category-pro category-django">Django</span>
                     </div>
                     <div class="blog-card-content-pro">
                         <div class="blog-card-meta-pro">
@@ -841,6 +1081,45 @@
                         <p class="blog-card-excerpt-pro">
                             Master Django web framework from scratch. Build powerful web applications 
                             with Python's most popular framework step by step.
+                        </p>
+                        <div class="blog-card-footer-pro">
+                            <div class="blog-card-author">
+                                <div class="blog-card-author-avatar">OP</div>
+                                <div class="blog-card-author-info">
+                                    <span class="blog-card-author-name">Om Pandey</span>
+                                    <span class="blog-card-author-role">Developer</span>
+                                </div>
+                            </div>
+                            <span class="blog-card-read-pro">
+                                Start Learning
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- JavaScript Hero Blog Card -->
+                <a href="/Blog/Detailed/Javscript.html" target="_blank" class="blog-card-pro">
+                    <div class="blog-card-image-pro">
+                        <img src="/Blog/Javscript.jpg" alt="JavaScript Hero">
+                        <div class="blog-card-image-overlay"></div>
+                        <span class="blog-card-category-pro category-javascript">JavaScript</span>
+                    </div>
+                    <div class="blog-card-content-pro">
+                        <div class="blog-card-meta-pro">
+                            <span>
+                                <i data-lucide="calendar"></i>
+                                Feb 2, 2025
+                            </span>
+                            <span>
+                                <i data-lucide="clock"></i>
+                                15 min read
+                            </span>
+                        </div>
+                        <h3 class="blog-card-title-pro">JavaScript Hero</h3>
+                        <p class="blog-card-excerpt-pro">
+                            Master JavaScript from fundamentals to advanced concepts. Learn DOM manipulation, 
+                            async programming, ES6+ features and more!
                         </p>
                         <div class="blog-card-footer-pro">
                             <div class="blog-card-author">
