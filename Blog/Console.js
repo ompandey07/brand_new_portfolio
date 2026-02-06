@@ -2,7 +2,7 @@
    DISABLE RIGHT CLICK CONTEXT MENU
    ================================================ */
 document.addEventListener('contextmenu', function (e) {
-  e.preventDefault();
+  e.preventDefault(); // Keeps right-click disabled
 });
 
 
@@ -27,14 +27,6 @@ document.addEventListener('keydown', function (e) {
 
 
 /* ================================================
-   BLOCK VIEW SOURCE VIA MOUSE SELECTION
-   ================================================ */
-document.addEventListener('selectstart', function (e) {
-  e.preventDefault();
-});
-
-
-/* ================================================
    DETECT DEVTOOLS OPEN (SIZE-BASED CHECK)
    ================================================ */
 (function () {
@@ -47,8 +39,7 @@ document.addEventListener('selectstart', function (e) {
       console.clear();
       console.log("%cSTOP!", "color:red;font-size:40px;font-weight:bold;");
       console.log("%cDEVTOOLS ARE DISABLED.", "color:red;font-size:16px;");
-      // OPTIONAL ACTION
-      // window.location.reload();
+      // OPTIONAL: window.location.reload();
     }
   }, 1000);
 })();
