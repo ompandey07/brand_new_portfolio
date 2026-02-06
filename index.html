@@ -1332,5 +1332,99 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
         }
     </script>
     <script src="app.js"></script>
+
+    <!-- Music Widget - Left Side -->
+    <div class="music-widget">
+        <div class="music-widget-label" id="musicWidgetLabel">
+            <span>Feeling Bored?</span>
+            <div class="music-widget-arrow"></div>
+        </div>
+        <div class="music-widget-button" id="musicWidgetBtn" onclick="toggleMusicPlayer()">
+            <i data-lucide="music"></i>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <div class="music-player-header" id="musicPlayerHeader">
+            <span class="music-player-drag-hint">
+                <i data-lucide="grip-horizontal"></i>
+            </span>
+            <div class="music-player-header-actions">
+                <button class="music-player-minimize" id="musicPlayerMinimize">
+                    <i data-lucide="minus"></i>
+                </button>
+                <button class="music-player-close" id="musicPlayerClose">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="music-player-body" id="musicPlayerBody">
+            <div class="music-player-cover">
+                <img src="" alt="Album Cover" id="musicCover">
+                <div class="music-player-disc"></div>
+            </div>
+
+            <div class="music-player-info">
+                <h3 class="music-player-title" id="musicTitle">Song Title</h3>
+                <p class="music-player-artist" id="musicArtist">Artist</p>
+            </div>
+
+            <div class="music-player-progress">
+                <div class="progress-bar-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="progress-time">
+                    <span id="currentTime">0:00</span>
+                    <span id="durationTime">0:00</span>
+                </div>
+            </div>
+
+            <div class="music-player-controls">
+                <button class="music-control-btn" id="prevBtn">
+                    <i data-lucide="skip-back"></i>
+                </button>
+                <!-- Simplified Play/Pause Button -->
+                <button class="music-control-btn music-control-play" id="playPauseBtn">
+                    <i data-lucide="play"></i>
+                </button>
+                <button class="music-control-btn" id="nextBtn">
+                    <i data-lucide="skip-forward"></i>
+                </button>
+            </div>
+
+            <div class="music-player-volume">
+                <!-- Simplified Volume Button -->
+                <button class="volume-btn" id="volumeBtn">
+                    <i data-lucide="volume-2"></i>
+                </button>
+                <div class="volume-slider-container">
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+                </div>
+            </div>
+        </div>
+
+        <!-- Minimized View -->
+        <div class="music-player-mini" id="musicPlayerMini" style="display: none;">
+            <img src="" alt="Cover" id="musicCoverMini">
+            <div class="mini-info">
+                <span id="musicTitleMini">Song</span>
+            </div>
+            <!-- Simplified Mini Play/Pause Button -->
+            <button class="mini-play-btn" id="miniPlayPauseBtn">
+                <i data-lucide="play"></i>
+            </button>
+            <button class="mini-expand-btn" id="miniExpandBtn">
+                <i data-lucide="maximize-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audioPlayer"></audio>
+
+    <!-- Link Music JS -->
+    <script src="music.js"></script>
 </body>
 </html>
