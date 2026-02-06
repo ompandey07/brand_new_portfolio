@@ -1,0 +1,2857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>React.js - Complete Frontend Guide | Om Pandey</title>
+    <meta name="description" content="Master React.js from scratch. Complete guide to becoming a frontend developer with React by Om Pandey.">
+    <meta name="keywords" content="React tutorial, learn React, React JavaScript, frontend development, Om Pandey">
+    <meta name="author" content="Om Pandey">
+    
+    <link rel="shortcut icon" href="../MainLogo.png" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/agustina" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-script: 'Kaushan Script', cursive;
+            --font-caveat: 'Caveat', cursive;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-code: #1e293b;
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --border-light: #e2e8f0;
+            
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            
+            --react-blue: #61dafb;
+            --react-dark: #20232a;
+            --react-gradient: linear-gradient(135deg, #61dafb 0%, #21a1f1 50%, #1a91da 100%);
+            
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+            --radius-2xl: 28px;
+            --radius-full: 9999px;
+            
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            
+            --transition-base: 200ms ease;
+            --transition-slow: 300ms ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--react-gradient);
+            z-index: 10000;
+        }
+
+        /* Header */
+        .header-bar {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .header-brand { text-decoration: none; font-weight: bold; }
+
+        .header-logo-text {
+            font-family: 'Agustina', cursive !important;
+            font-size: 24px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-nav a {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            transition: all var(--transition-base);
+        }
+
+        .header-nav a:hover {
+            background: var(--bg-secondary);
+            color: var(--react-blue);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, rgba(97, 218, 251, 0.1), rgba(32, 35, 42, 0.1));
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(97, 218, 251, 0.15), transparent);
+            border-radius: 50%;
+        }
+
+        .hero-icon {
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            overflow: hidden;
+        }
+
+        .hero-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .hero-title span {
+            background: var(--react-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-caveat);
+            font-size: 24px;
+            color: var(--react-blue);
+            margin-bottom: 16px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .hero-badge i { color: var(--react-blue); }
+
+        /* Content */
+        .content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: 32px;
+            margin-bottom: 60px;
+        }
+
+        .toc-title {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toc-title i { color: var(--react-blue); }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .toc-item:hover {
+            border-color: var(--react-blue);
+            color: var(--react-dark);
+            transform: translateX(4px);
+        }
+
+        .toc-item span {
+            width: 28px;
+            height: 28px;
+            background: var(--react-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--react-dark);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--react-blue);
+        }
+
+        .section-number {
+            width: 56px;
+            height: 56px;
+            background: var(--react-gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--react-dark);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        /* Topic */
+        .topic {
+            margin-bottom: 48px;
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .topic-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(97, 218, 251, 0.15);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--react-blue);
+        }
+
+        .topic-title {
+            font-family: var(--font-caveat);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--react-dark);
+        }
+
+        .topic-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--bg-code);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: 24px 0;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .code-header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-dot-red { background: #ef4444; }
+        .code-dot-yellow { background: #fbbf24; }
+        .code-dot-green { background: #22c55e; }
+
+        .code-filename {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .code-filename .file-icon {
+            color: var(--react-blue);
+        }
+
+        .code-lang {
+            padding: 4px 10px;
+            background: rgba(97, 218, 251, 0.2);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--react-blue);
+            text-transform: uppercase;
+        }
+
+        .code-copy {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .code-copy:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .code-content {
+            padding: 24px;
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+
+        .code-content .comment { color: #64748b; }
+        .code-content .keyword { color: #f472b6; }
+        .code-content .string { color: #67e8f9; }
+        .code-content .function { color: #fbbf24; }
+        .code-content .builtin { color: #a78bfa; }
+        .code-content .number { color: #34d399; }
+        .code-content .operator { color: #fb7185; }
+        .code-content .class { color: #38bdf8; }
+        .code-content .decorator { color: #f472b6; }
+        .code-content .tag { color: #f472b6; }
+        .code-content .attr { color: #fbbf24; }
+        .code-content .value { color: #67e8f9; }
+        .code-content .component { color: #61dafb; }
+        .code-content .hook { color: #c084fc; }
+        .code-content .jsx { color: #7dd3fc; }
+
+        /* Terminal Block */
+        .terminal-block {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: var(--radius-lg);
+            margin: 24px 0;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+        }
+
+        .terminal-title {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #888;
+        }
+
+        .terminal-content {
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            color: #22c55e;
+        }
+
+        .terminal-content .prompt { color: #3b82f6; }
+        .terminal-content .command { color: #fff; }
+        .terminal-content .output { color: #888; }
+
+        /* Output Block */
+        .output-block {
+            background: #0f172a;
+            border: 2px solid var(--react-blue);
+            border-radius: var(--radius-lg);
+            margin: 16px 0 24px;
+            overflow: hidden;
+        }
+
+        .output-header {
+            padding: 10px 20px;
+            background: rgba(97, 218, 251, 0.1);
+            border-bottom: 1px solid rgba(97, 218, 251, 0.2);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--react-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .output-content {
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: #22c55e;
+            line-height: 1.8;
+        }
+
+        /* Info Box */
+        .info-box {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(97, 218, 251, 0.08), rgba(33, 161, 241, 0.08));
+            border-left: 4px solid var(--react-blue);
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 24px 0;
+        }
+
+        .info-box h4 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--react-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1));
+            border-left: 4px solid #f59e0b;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 24px 0;
+        }
+
+        .warning-box h4 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: #b45309;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* Success Box */
+        .success-box {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(34, 197, 94, 0.1));
+            border-left: 4px solid #10b981;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 24px 0;
+        }
+
+        .success-box h4 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: #047857;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .success-box p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* File Structure */
+        .file-structure {
+            background: var(--bg-code);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin: 24px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+
+        .file-structure .folder { color: #fbbf24; }
+        .file-structure .file { color: #67e8f9; }
+        .file-structure .important { color: #61dafb; }
+
+        /* Diagram */
+        .diagram {
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .diagram-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--react-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .diagram-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .diagram-box {
+            padding: 16px 24px;
+            background: var(--bg-primary);
+            border: 2px solid var(--react-blue);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            color: var(--react-dark);
+        }
+
+        .diagram-arrow {
+            font-size: 24px;
+            color: var(--react-blue);
+        }
+
+        /* Step Indicator */
+        .step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-light);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--react-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--react-dark);
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .comparison-table th {
+            background: var(--react-dark);
+            color: var(--react-blue);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .comparison-table td {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table code {
+            background: rgba(97, 218, 251, 0.1);
+            color: var(--react-dark);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 60px 24px;
+            background: linear-gradient(135deg, rgba(97, 218, 251, 0.1), rgba(32, 35, 42, 0.1));
+            border-radius: var(--radius-2xl);
+            margin: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-icon {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            top: -20px;
+            right: 40px;
+            opacity: 0.2;
+            color: var(--react-blue);
+        }
+
+        .cta-title {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            background: linear-gradient(135deg, var(--react-dark), #2d3748);
+            border: none;
+            border-radius: var(--radius-full);
+            font-family: var(--font-body);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--react-blue);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-slow);
+            box-shadow: 0 4px 20px rgba(32, 35, 42, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(32, 35, 42, 0.5);
+        }
+
+        .cta-button-secondary {
+            background: var(--bg-primary);
+            border: 2px solid var(--react-dark);
+            color: var(--react-dark);
+            box-shadow: none;
+        }
+
+        .cta-button-secondary:hover {
+            background: var(--react-dark);
+            color: var(--react-blue);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-light);
+            padding: 24px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand { text-decoration: none; }
+
+        .footer-logo-text {
+            font-family: 'Agustina', cursive !important;
+            font-size: 22px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 42px;
+            height: 42px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .footer-social a:hover {
+            background: var(--react-dark);
+            border-color: transparent;
+            color: var(--react-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-nav { display: none; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .diagram-flow { flex-direction: column; }
+            .diagram-arrow { transform: rotate(90deg); }
+            .footer-container { flex-direction: column; gap: 20px; }
+            .step { flex-direction: column; text-align: center; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .hero-icon {
+                width: 140px;
+                height: 140px;
+            }
+            .comparison-table { font-size: 12px; }
+            .comparison-table th,
+            .comparison-table td { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header -->
+    <header class="header-bar">
+        <div class="header-container">
+            <a href="../index.html" class="header-brand">
+                <span class="header-logo-text">Om Pandey</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-icon">
+            <img src="../ReactJs.png" alt="React.js">
+        </div>
+        <h1 class="hero-title">React<span>.js</span></h1>
+        <p class="hero-subtitle">A JavaScript Library for Building User Interfaces</p>
+        <p class="hero-description">
+            Master React - the most popular frontend library. Build fast, interactive, and 
+            scalable user interfaces with component-based architecture. From beginner to pro!
+        </p>
+        <div class="hero-badges">
+            <span class="hero-badge"><i data-lucide="component" style="width:16px;height:16px;"></i> Component Based</span>
+            <span class="hero-badge"><i data-lucide="zap" style="width:16px;height:16px;"></i> Virtual DOM</span>
+            <span class="hero-badge"><i data-lucide="refresh-cw" style="width:16px;height:16px;"></i> Reactive Updates</span>
+            <span class="hero-badge"><i data-lucide="layers" style="width:16px;height:16px;"></i> Reusable Code</span>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div class="content">
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2 class="toc-title">
+                <i data-lucide="list" style="width:24px;height:24px;"></i>
+                What You'll Learn
+            </h2>
+            <div class="toc-grid">
+                <a href="#intro" class="toc-item"><span>1</span> Introduction to React</a>
+                <a href="#setup" class="toc-item"><span>2</span> Setup & Installation</a>
+                <a href="#jsx" class="toc-item"><span>3</span> JSX Syntax</a>
+                <a href="#components" class="toc-item"><span>4</span> Components</a>
+                <a href="#props" class="toc-item"><span>5</span> Props & Data Flow</a>
+                <a href="#state" class="toc-item"><span>6</span> State Management</a>
+                <a href="#hooks" class="toc-item"><span>7</span> React Hooks</a>
+                <a href="#events" class="toc-item"><span>8</span> Event Handling</a>
+                <a href="#conditional" class="toc-item"><span>9</span> Conditional Rendering</a>
+                <a href="#lists" class="toc-item"><span>10</span> Lists & Keys</a>
+                <a href="#forms" class="toc-item"><span>11</span> Forms & Input</a>
+                <a href="#effects" class="toc-item"><span>12</span> useEffect & Side Effects</a>
+                <a href="#context" class="toc-item"><span>13</span> Context API</a>
+                <a href="#routing" class="toc-item"><span>14</span> React Router</a>
+                <a href="#advanced" class="toc-item"><span>15</span> Advanced Patterns</a>
+            </div>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <div class="section" id="intro">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Introduction to React</h2>
+            </div>
+
+            <p class="topic-description">
+                React is a JavaScript library for building user interfaces, developed by Facebook. 
+                It allows you to create reusable UI components and efficiently update the DOM 
+                through its Virtual DOM mechanism.
+            </p>
+
+            <div class="info-box">
+                <h4><i data-lucide="lightbulb" style="width:18px;height:18px;"></i> Why React?</h4>
+                <p>
+                    <strong>Component-Based:</strong> Build encapsulated components that manage their own state. 
+                    Used by Facebook, Instagram, Netflix, Airbnb, and many more!
+                </p>
+            </div>
+
+            <!-- React Architecture Diagram -->
+            <div class="diagram">
+                <div class="diagram-title">
+                    <i data-lucide="git-branch" style="width:24px;height:24px;"></i>
+                    React Component Architecture
+                </div>
+                <div class="diagram-flow">
+                    <div class="diagram-box">App Component</div>
+                    <span class="diagram-arrow">→</span>
+                    <div class="diagram-box">Child Components</div>
+                    <span class="diagram-arrow">→</span>
+                    <div class="diagram-box">Props & State</div>
+                    <span class="diagram-arrow">→</span>
+                    <div class="diagram-box">Virtual DOM</div>
+                    <span class="diagram-arrow">→</span>
+                    <div class="diagram-box">Real DOM</div>
+                </div>
+            </div>
+
+            <div class="topic-description">
+                <strong>Key Concepts:</strong>
+                <ul style="margin-top: 12px; margin-left: 24px;">
+                    <li><strong>Components:</strong> Reusable building blocks of your UI</li>
+                    <li><strong>JSX:</strong> JavaScript XML - write HTML-like syntax in JavaScript</li>
+                    <li><strong>Virtual DOM:</strong> Efficient DOM updates through diffing algorithm</li>
+                    <li><strong>One-Way Data Flow:</strong> Data flows from parent to child via props</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Setup -->
+        <div class="section" id="setup">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Setup & Installation</h2>
+            </div>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Install Node.js</h4>
+                    <p>Make sure you have Node.js 18+ installed. Check with <code>node --version</code></p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Create React App (Vite - Recommended)</h4>
+                    <p>Vite is the modern, faster alternative to Create React App</p>
+                </div>
+            </div>
+
+            <div class="terminal-block">
+                <div class="terminal-header">
+                    <div class="code-dots">
+                        <span class="code-dot code-dot-red"></span>
+                        <span class="code-dot code-dot-yellow"></span>
+                        <span class="code-dot code-dot-green"></span>
+                    </div>
+                    <span class="terminal-title">Terminal</span>
+                </div>
+                <div class="terminal-content">
+<span class="prompt">$</span> <span class="command"># Create React app with Vite</span>
+<span class="prompt">$</span> <span class="command">npm create vite@latest my-react-app -- --template react</span>
+
+<span class="prompt">$</span> <span class="command"># Navigate to project</span>
+<span class="prompt">$</span> <span class="command">cd my-react-app</span>
+
+<span class="prompt">$</span> <span class="command"># Install dependencies</span>
+<span class="prompt">$</span> <span class="command">npm install</span>
+
+<span class="prompt">$</span> <span class="command"># Start development server</span>
+<span class="prompt">$</span> <span class="command">npm run dev</span>
+
+<span class="output">  VITE v5.0.0  ready in 300 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose</span>
+                </div>
+            </div>
+
+            <p class="topic-description">
+                Open <code>http://localhost:5173/</code> in your browser - You'll see the React welcome page!
+            </p>
+
+            <!-- Project Structure -->
+            <div class="file-structure">
+<span class="folder">📁 my-react-app/</span>
+├── <span class="folder">📁 node_modules/</span>
+├── <span class="folder">📁 public/</span>
+│   └── <span class="file">vite.svg</span>
+├── <span class="folder">📁 src/</span>
+│   ├── <span class="folder">📁 assets/</span>
+│   ├── <span class="important">App.jsx</span>           <span class="comment"># Main App component</span>
+│   ├── <span class="file">App.css</span>           <span class="comment"># App styles</span>
+│   ├── <span class="important">main.jsx</span>          <span class="comment"># Entry point</span>
+│   └── <span class="file">index.css</span>         <span class="comment"># Global styles</span>
+├── <span class="file">index.html</span>
+├── <span class="file">package.json</span>
+└── <span class="file">vite.config.js</span>
+            </div>
+
+            <div class="success-box">
+                <h4><i data-lucide="check-circle" style="width:18px;height:18px;"></i> React App Created!</h4>
+                <p>Your React development environment is ready!</p>
+            </div>
+        </div>
+
+        <!-- Section 3: JSX -->
+        <div class="section" id="jsx">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">JSX Syntax</h2>
+            </div>
+
+            <p class="topic-description">
+                JSX (JavaScript XML) is a syntax extension that lets you write HTML-like code in JavaScript.
+                It's not required for React, but it makes the code more readable and easier to write.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="code" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Basic JSX</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">App.jsx</span>
+                        </div>
+                        <span class="code-lang">JSX</span>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">// JSX looks like HTML but it's JavaScript!</span>
+<span class="keyword">function</span> <span class="function">App</span>() {
+  <span class="keyword">const</span> name <span class="operator">=</span> <span class="string">"Om Pandey"</span>;
+  <span class="keyword">const</span> age <span class="operator">=</span> <span class="number">25</span>;
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"container"</span><span class="tag">&gt;</span>
+      <span class="comment">{/* This is a JSX comment */}</span>
+      <span class="tag">&lt;h1&gt;</span>Hello, {name}!<span class="tag">&lt;/h1&gt;</span>
+      <span class="tag">&lt;p&gt;</span>You are {age} years old.<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;p&gt;</span>2 + 2 = {<span class="number">2</span> + <span class="number">2</span>}<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}
+
+<span class="keyword">export default</span> App;</pre>
+                    </div>
+                </div>
+
+                <div class="output-block">
+                    <div class="output-header">Browser Output</div>
+                    <div class="output-content">Hello, Om Pandey!
+You are 25 years old.
+2 + 2 = 4</div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="alert-triangle" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">JSX Rules</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">JSX Rules</span>
+                        </div>
+                        <span class="code-lang">JSX</span>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">// Rule 1: Return single root element</span>
+<span class="comment">// ❌ Wrong</span>
+<span class="keyword">return</span> (
+  <span class="tag">&lt;h1&gt;</span>Title<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Paragraph<span class="tag">&lt;/p&gt;</span>
+);
+
+<span class="comment">// ✅ Correct - wrap in a parent or use Fragment</span>
+<span class="keyword">return</span> (
+  <span class="tag">&lt;&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Title<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Paragraph<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/&gt;</span>
+);
+
+<span class="comment">// Rule 2: Use className instead of class</span>
+<span class="tag">&lt;div</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"my-class"</span><span class="tag">&gt;</span>Content<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">// Rule 3: Use camelCase for attributes</span>
+<span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{handleClick}<span class="tag">&gt;</span>Click<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;label</span> <span class="attr">htmlFor</span><span class="operator">=</span><span class="value">"name"</span><span class="tag">&gt;</span>Name<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">tabIndex</span><span class="operator">=</span>{<span class="number">1</span>} <span class="tag">/&gt;</span>
+
+<span class="comment">// Rule 4: Close all tags</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span><span class="operator">=</span><span class="value">"photo.jpg"</span> <span class="attr">alt</span><span class="operator">=</span><span class="value">"Photo"</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span><span class="operator">=</span><span class="value">"text"</span> <span class="tag">/&gt;</span>
+
+<span class="comment">// Rule 5: Use curly braces for JavaScript</span>
+<span class="tag">&lt;p</span> <span class="attr">style</span><span class="operator">=</span>{{ <span class="attr">color</span>: <span class="value">'red'</span>, <span class="attr">fontSize</span>: <span class="value">'20px'</span> }}<span class="tag">&gt;</span>Styled<span class="tag">&lt;/p&gt;</span></pre>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i data-lucide="alert-circle" style="width:18px;height:18px;"></i> Important!</h4>
+                    <p>JSX is transpiled to JavaScript by Babel. <code>&lt;div&gt;</code> becomes <code>React.createElement('div')</code></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Components -->
+        <div class="section" id="components">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Components</h2>
+            </div>
+
+            <p class="topic-description">
+                Components are the building blocks of React applications. They are reusable, 
+                independent pieces of UI that can have their own logic and styling.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="box" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Function Components</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">components/Header.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">// Function Component (Recommended)</span>
+<span class="keyword">function</span> <span class="component">Header</span>() {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;header&gt;</span>
+      <span class="tag">&lt;h1&gt;</span>My Website<span class="tag">&lt;/h1&gt;</span>
+      <span class="tag">&lt;nav&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attr">href</span><span class="operator">=</span><span class="value">"/"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attr">href</span><span class="operator">=</span><span class="value">"/about"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span>
+      <span class="tag">&lt;/nav&gt;</span>
+    <span class="tag">&lt;/header&gt;</span>
+  );
+}
+
+<span class="keyword">export default</span> Header;</pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">components/Card.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">// Arrow Function Component</span>
+<span class="keyword">const</span> <span class="component">Card</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"card"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h2&gt;</span>Card Title<span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Card content goes here...<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+};
+
+<span class="keyword">export default</span> Card;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="layers" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Using Components</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">App.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'./components/Header'</span>;
+<span class="keyword">import</span> Card <span class="keyword">from</span> <span class="string">'./components/Card'</span>;
+<span class="keyword">import</span> Footer <span class="keyword">from</span> <span class="string">'./components/Footer'</span>;
+
+<span class="keyword">function</span> <span class="function">App</span>() {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"app"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;<span class="component">Header</span> /&gt;</span>
+      
+      <span class="tag">&lt;main&gt;</span>
+        <span class="tag">&lt;<span class="component">Card</span> /&gt;</span>
+        <span class="tag">&lt;<span class="component">Card</span> /&gt;</span>
+        <span class="tag">&lt;<span class="component">Card</span> /&gt;</span>
+      <span class="tag">&lt;/main&gt;</span>
+      
+      <span class="tag">&lt;<span class="component">Footer</span> /&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}
+
+<span class="keyword">export default</span> App;</pre>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4><i data-lucide="info" style="width:18px;height:18px;"></i> Component Naming</h4>
+                    <p>Components must start with an uppercase letter. <code>&lt;Header /&gt;</code> is a component, <code>&lt;header&gt;</code> is HTML.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Props -->
+        <div class="section" id="props">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Props & Data Flow</h2>
+            </div>
+
+            <p class="topic-description">
+                Props (properties) are how you pass data from a parent component to a child component.
+                They are read-only and help make components reusable.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Passing Props</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">App.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> UserCard <span class="keyword">from</span> <span class="string">'./components/UserCard'</span>;
+
+<span class="keyword">function</span> <span class="function">App</span>() {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="comment">{/* Passing props to child component */}</span>
+      <span class="tag">&lt;<span class="component">UserCard</span></span> 
+        <span class="attr">name</span><span class="operator">=</span><span class="value">"Om Pandey"</span>
+        <span class="attr">age</span><span class="operator">=</span>{<span class="number">25</span>}
+        <span class="attr">isAdmin</span><span class="operator">=</span>{<span class="keyword">true</span>}
+        <span class="attr">skills</span><span class="operator">=</span>{[<span class="string">'React'</span>, <span class="string">'JavaScript'</span>, <span class="string">'Python'</span>]}
+      <span class="tag">/&gt;</span>
+      
+      <span class="tag">&lt;<span class="component">UserCard</span></span> 
+        <span class="attr">name</span><span class="operator">=</span><span class="value">"John Doe"</span>
+        <span class="attr">age</span><span class="operator">=</span>{<span class="number">30</span>}
+        <span class="attr">isAdmin</span><span class="operator">=</span>{<span class="keyword">false</span>}
+        <span class="attr">skills</span><span class="operator">=</span>{[<span class="string">'HTML'</span>, <span class="string">'CSS'</span>]}
+      <span class="tag">/&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="download" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Receiving Props</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">components/UserCard.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">// Method 1: Props object</span>
+<span class="keyword">function</span> <span class="component">UserCard</span>(props) {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"user-card"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h2&gt;</span>{props.name}<span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Age: {props.age}<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Role: {props.isAdmin ? <span class="string">'Admin'</span> : <span class="string">'User'</span>}<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}
+
+<span class="comment">// Method 2: Destructuring (Recommended)</span>
+<span class="keyword">function</span> <span class="component">UserCard</span>({ name, age, isAdmin, skills }) {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"user-card"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h2&gt;</span>{name}<span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Age: {age}<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Role: {isAdmin ? <span class="string">'Admin'</span> : <span class="string">'User'</span>}<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;ul&gt;</span>
+        {skills.map((skill, index) <span class="operator">=&gt;</span> (
+          <span class="tag">&lt;li</span> <span class="attr">key</span><span class="operator">=</span>{index}<span class="tag">&gt;</span>{skill}<span class="tag">&lt;/li&gt;</span>
+        ))}
+      <span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}
+
+<span class="keyword">export default</span> UserCard;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="settings" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Default Props</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">components/Button.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">// Default values using destructuring</span>
+<span class="keyword">function</span> <span class="component">Button</span>({ 
+  text <span class="operator">=</span> <span class="string">"Click Me"</span>, 
+  color <span class="operator">=</span> <span class="string">"blue"</span>, 
+  size <span class="operator">=</span> <span class="string">"medium"</span>,
+  onClick 
+}) {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;button</span> 
+      <span class="attr">className</span><span class="operator">=</span>{<span class="string">`btn btn-</span>${color}<span class="string"> btn-</span>${size}<span class="string">`</span>}
+      <span class="attr">onClick</span><span class="operator">=</span>{onClick}
+    <span class="tag">&gt;</span>
+      {text}
+    <span class="tag">&lt;/button&gt;</span>
+  );
+}
+
+<span class="keyword">export default</span> Button;
+
+<span class="comment">// Usage:</span>
+<span class="comment">// &lt;Button /&gt;  - Uses all defaults</span>
+<span class="comment">// &lt;Button text="Submit" color="green" /&gt;</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="box" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Children Props</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">components/Card.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">// Card component that accepts children</span>
+<span class="keyword">function</span> <span class="component">Card</span>({ title, children }) {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"card"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h2&gt;</span>{title}<span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"card-body"</span><span class="tag">&gt;</span>
+        {children}
+      <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}
+
+<span class="comment">// Usage in App.jsx</span>
+<span class="keyword">function</span> <span class="function">App</span>() {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;<span class="component">Card</span></span> <span class="attr">title</span><span class="operator">=</span><span class="value">"Welcome"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;p&gt;</span>This is the card content.<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;button&gt;</span>Learn More<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/<span class="component">Card</span>&gt;</span>
+  );
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: State -->
+        <div class="section" id="state">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">State Management</h2>
+            </div>
+
+            <p class="topic-description">
+                State is data that changes over time in your component. When state changes, 
+                React re-renders the component to reflect the new data.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="database" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">useState Hook</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">Counter.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useState</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="component">Counter</span>() {
+  <span class="comment">// Declare state: [value, setterFunction] = useState(initialValue)</span>
+  <span class="keyword">const</span> [count, setCount] <span class="operator">=</span> <span class="hook">useState</span>(<span class="number">0</span>);
+  
+  <span class="keyword">const</span> <span class="function">increment</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+    setCount(count + <span class="number">1</span>);
+  };
+  
+  <span class="keyword">const</span> <span class="function">decrement</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+    setCount(count - <span class="number">1</span>);
+  };
+  
+  <span class="keyword">const</span> <span class="function">reset</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+    setCount(<span class="number">0</span>);
+  };
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;h1&gt;</span>Count: {count}<span class="tag">&lt;/h1&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{decrement}<span class="tag">&gt;</span>-<span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{increment}<span class="tag">&gt;</span>+<span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{reset}<span class="tag">&gt;</span>Reset<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}
+
+<span class="keyword">export default</span> Counter;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="list" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">State with Different Types</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">StateExamples.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useState</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="component">StateExamples</span>() {
+  <span class="comment">// String state</span>
+  <span class="keyword">const</span> [name, setName] <span class="operator">=</span> <span class="hook">useState</span>(<span class="string">''</span>);
+  
+  <span class="comment">// Boolean state</span>
+  <span class="keyword">const</span> [isLoggedIn, setIsLoggedIn] <span class="operator">=</span> <span class="hook">useState</span>(<span class="keyword">false</span>);
+  
+  <span class="comment">// Array state</span>
+  <span class="keyword">const</span> [items, setItems] <span class="operator">=</span> <span class="hook">useState</span>([<span class="string">'Apple'</span>, <span class="string">'Banana'</span>]);
+  
+  <span class="comment">// Object state</span>
+  <span class="keyword">const</span> [user, setUser] <span class="operator">=</span> <span class="hook">useState</span>({
+    name: <span class="string">'Om'</span>,
+    email: <span class="string">'om@example.com'</span>
+  });
+  
+  <span class="comment">// Update array - add item</span>
+  <span class="keyword">const</span> <span class="function">addItem</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+    setItems([...items, <span class="string">'Orange'</span>]);
+  };
+  
+  <span class="comment">// Update array - remove item</span>
+  <span class="keyword">const</span> <span class="function">removeItem</span> <span class="operator">=</span> (index) <span class="operator">=&gt;</span> {
+    setItems(items.filter((_, i) <span class="operator">=&gt;</span> i !== index));
+  };
+  
+  <span class="comment">// Update object - partial update</span>
+  <span class="keyword">const</span> <span class="function">updateEmail</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+    setUser({ ...user, email: <span class="string">'new@example.com'</span> });
+  };
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;input</span> 
+        <span class="attr">value</span><span class="operator">=</span>{name} 
+        <span class="attr">onChange</span><span class="operator">=</span>{(e) <span class="operator">=&gt;</span> setName(e.target.value)}
+        <span class="attr">placeholder</span><span class="operator">=</span><span class="value">"Enter name"</span>
+      <span class="tag">/&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Hello, {name || <span class="string">'Guest'</span>}!<span class="tag">&lt;/p&gt;</span>
+      
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> setIsLoggedIn(!isLoggedIn)}<span class="tag">&gt;</span>
+        {isLoggedIn ? <span class="string">'Logout'</span> : <span class="string">'Login'</span>}
+      <span class="tag">&lt;/button&gt;</span>
+      
+      <span class="tag">&lt;ul&gt;</span>
+        {items.map((item, i) <span class="operator">=&gt;</span> <span class="tag">&lt;li</span> <span class="attr">key</span><span class="operator">=</span>{i}<span class="tag">&gt;</span>{item}<span class="tag">&lt;/li&gt;</span>)}
+      <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{addItem}<span class="tag">&gt;</span>Add Item<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</pre>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i data-lucide="alert-triangle" style="width:18px;height:18px;"></i> Never Mutate State Directly!</h4>
+                    <p>Always create a new copy of arrays/objects when updating. Use spread operator: <code>[...array]</code> or <code>{...object}</code></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Hooks -->
+        <div class="section" id="hooks">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">React Hooks</h2>
+            </div>
+
+            <p class="topic-description">
+                Hooks are functions that let you use state and other React features in function components.
+            </p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Hook</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>useState</code></td>
+                        <td>Manage component state</td>
+                        <td><code>const [count, setCount] = useState(0)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>useEffect</code></td>
+                        <td>Side effects (API calls, subscriptions)</td>
+                        <td><code>useEffect(() => { ... }, [deps])</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>useContext</code></td>
+                        <td>Access context values</td>
+                        <td><code>const theme = useContext(ThemeContext)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>useRef</code></td>
+                        <td>Reference DOM elements or persist values</td>
+                        <td><code>const inputRef = useRef(null)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>useMemo</code></td>
+                        <td>Memoize expensive calculations</td>
+                        <td><code>const value = useMemo(() => compute(), [deps])</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>useCallback</code></td>
+                        <td>Memoize functions</td>
+                        <td><code>const fn = useCallback(() => {}, [deps])</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="target" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">useRef Hook</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">FocusInput.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useRef</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="component">FocusInput</span>() {
+  <span class="keyword">const</span> inputRef <span class="operator">=</span> <span class="hook">useRef</span>(<span class="keyword">null</span>);
+  
+  <span class="keyword">const</span> <span class="function">focusInput</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+    inputRef.current.focus();
+  };
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;input</span> <span class="attr">ref</span><span class="operator">=</span>{inputRef} <span class="attr">type</span><span class="operator">=</span><span class="value">"text"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{focusInput}<span class="tag">&gt;</span>Focus Input<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4><i data-lucide="book-open" style="width:18px;height:18px;"></i> Rules of Hooks</h4>
+                <p>
+                    1. Only call hooks at the top level (not inside loops, conditions, or nested functions)<br>
+                    2. Only call hooks from React function components or custom hooks
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 8: Events -->
+        <div class="section" id="events">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2 class="section-title">Event Handling</h2>
+            </div>
+
+            <p class="topic-description">
+                React events are named using camelCase and you pass a function as the event handler.
+            </p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-header-left">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="code-filename">EventExamples.jsx</span>
+                    </div>
+                    <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useState</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="component">EventExamples</span>() {
+  <span class="keyword">const</span> [message, setMessage] <span class="operator">=</span> <span class="hook">useState</span>(<span class="string">''</span>);
+  
+  <span class="comment">// Click event</span>
+  <span class="keyword">const</span> <span class="function">handleClick</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+    alert(<span class="string">'Button clicked!'</span>);
+  };
+  
+  <span class="comment">// Click with parameter</span>
+  <span class="keyword">const</span> <span class="function">handleGreet</span> <span class="operator">=</span> (name) <span class="operator">=&gt;</span> {
+    alert(<span class="string">`Hello, </span>${name}<span class="string">!`</span>);
+  };
+  
+  <span class="comment">// Event object</span>
+  <span class="keyword">const</span> <span class="function">handleInputChange</span> <span class="operator">=</span> (event) <span class="operator">=&gt;</span> {
+    setMessage(event.target.value);
+  };
+  
+  <span class="comment">// Prevent default behavior</span>
+  <span class="keyword">const</span> <span class="function">handleSubmit</span> <span class="operator">=</span> (event) <span class="operator">=&gt;</span> {
+    event.preventDefault();
+    console.log(<span class="string">'Form submitted!'</span>);
+  };
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="comment">{/* Basic click */}</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{handleClick}<span class="tag">&gt;</span>Click Me<span class="tag">&lt;/button&gt;</span>
+      
+      <span class="comment">{/* Click with parameter - use arrow function */}</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> handleGreet(<span class="string">'Om'</span>)}<span class="tag">&gt;</span>Greet<span class="tag">&lt;/button&gt;</span>
+      
+      <span class="comment">{/* Input change */}</span>
+      <span class="tag">&lt;input</span> 
+        <span class="attr">type</span><span class="operator">=</span><span class="value">"text"</span>
+        <span class="attr">value</span><span class="operator">=</span>{message}
+        <span class="attr">onChange</span><span class="operator">=</span>{handleInputChange}
+        <span class="attr">onFocus</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> console.log(<span class="string">'Focused!'</span>)}
+        <span class="attr">onBlur</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> console.log(<span class="string">'Blurred!'</span>)}
+      <span class="tag">/&gt;</span>
+      
+      <span class="comment">{/* Form submit */}</span>
+      <span class="tag">&lt;form</span> <span class="attr">onSubmit</span><span class="operator">=</span>{handleSubmit}<span class="tag">&gt;</span>
+        <span class="tag">&lt;button</span> <span class="attr">type</span><span class="operator">=</span><span class="value">"submit"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+      <span class="comment">{/* Mouse events */}</span>
+      <span class="tag">&lt;div</span>
+        <span class="attr">onMouseEnter</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> console.log(<span class="string">'Mouse entered'</span>)}
+        <span class="attr">onMouseLeave</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> console.log(<span class="string">'Mouse left'</span>)}
+      <span class="tag">&gt;</span>
+        Hover over me
+      <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9: Conditional Rendering -->
+        <div class="section" id="conditional">
+            <div class="section-header">
+                <div class="section-number">9</div>
+                <h2 class="section-title">Conditional Rendering</h2>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-header-left">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="code-filename">ConditionalRendering.jsx</span>
+                    </div>
+                    <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useState</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="component">ConditionalRendering</span>() {
+  <span class="keyword">const</span> [isLoggedIn, setIsLoggedIn] <span class="operator">=</span> <span class="hook">useState</span>(<span class="keyword">false</span>);
+  <span class="keyword">const</span> [items, setItems] <span class="operator">=</span> <span class="hook">useState</span>([]);
+  <span class="keyword">const</span> [loading, setLoading] <span class="operator">=</span> <span class="hook">useState</span>(<span class="keyword">true</span>);
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="comment">{/* Method 1: If-Else with ternary */}</span>
+      {isLoggedIn ? (
+        <span class="tag">&lt;h1&gt;</span>Welcome back!<span class="tag">&lt;/h1&gt;</span>
+      ) : (
+        <span class="tag">&lt;h1&gt;</span>Please log in<span class="tag">&lt;/h1&gt;</span>
+      )}
+      
+      <span class="comment">{/* Method 2: Logical AND (&&) - render if true */}</span>
+      {isLoggedIn && <span class="tag">&lt;button&gt;</span>Logout<span class="tag">&lt;/button&gt;</span>}
+      
+      <span class="comment">{/* Method 3: Logical OR (||) - render if false/empty */}</span>
+      {items.length || <span class="tag">&lt;p&gt;</span>No items found<span class="tag">&lt;/p&gt;</span>}
+      
+      <span class="comment">{/* Method 4: Nullish coalescing */}</span>
+      <span class="tag">&lt;p&gt;</span>{name ?? <span class="string">'Anonymous'</span>}<span class="tag">&lt;/p&gt;</span>
+      
+      <span class="comment">{/* Method 5: Multiple conditions */}</span>
+      {loading ? (
+        <span class="tag">&lt;p&gt;</span>Loading...<span class="tag">&lt;/p&gt;</span>
+      ) : items.length > <span class="number">0</span> ? (
+        <span class="tag">&lt;ul&gt;</span>
+          {items.map(item <span class="operator">=&gt;</span> <span class="tag">&lt;li</span> <span class="attr">key</span><span class="operator">=</span>{item.id}<span class="tag">&gt;</span>{item.name}<span class="tag">&lt;/li&gt;</span>)}
+        <span class="tag">&lt;/ul&gt;</span>
+      ) : (
+        <span class="tag">&lt;p&gt;</span>No items available<span class="tag">&lt;/p&gt;</span>
+      )}
+      
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> setIsLoggedIn(!isLoggedIn)}<span class="tag">&gt;</span>
+        Toggle Login
+      <span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 10: Lists & Keys -->
+        <div class="section" id="lists">
+            <div class="section-header">
+                <div class="section-number">10</div>
+                <h2 class="section-title">Lists & Keys</h2>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-header-left">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="code-filename">TodoList.jsx</span>
+                    </div>
+                    <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useState</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="component">TodoList</span>() {
+  <span class="keyword">const</span> [todos, setTodos] <span class="operator">=</span> <span class="hook">useState</span>([
+    { id: <span class="number">1</span>, text: <span class="string">'Learn React'</span>, completed: <span class="keyword">false</span> },
+    { id: <span class="number">2</span>, text: <span class="string">'Build Projects'</span>, completed: <span class="keyword">false</span> },
+    { id: <span class="number">3</span>, text: <span class="string">'Get a Job'</span>, completed: <span class="keyword">false</span> },
+  ]);
+  
+  <span class="keyword">const</span> [newTodo, setNewTodo] <span class="operator">=</span> <span class="hook">useState</span>(<span class="string">''</span>);
+  
+  <span class="comment">// Add new todo</span>
+  <span class="keyword">const</span> <span class="function">addTodo</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+    <span class="keyword">if</span> (newTodo.trim()) {
+      setTodos([
+        ...todos,
+        { id: Date.now(), text: newTodo, completed: <span class="keyword">false</span> }
+      ]);
+      setNewTodo(<span class="string">''</span>);
+    }
+  };
+  
+  <span class="comment">// Toggle complete</span>
+  <span class="keyword">const</span> <span class="function">toggleTodo</span> <span class="operator">=</span> (id) <span class="operator">=&gt;</span> {
+    setTodos(todos.map(todo <span class="operator">=&gt;</span>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ));
+  };
+  
+  <span class="comment">// Delete todo</span>
+  <span class="keyword">const</span> <span class="function">deleteTodo</span> <span class="operator">=</span> (id) <span class="operator">=&gt;</span> {
+    setTodos(todos.filter(todo <span class="operator">=&gt;</span> todo.id !== id));
+  };
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;h1&gt;</span>Todo List<span class="tag">&lt;/h1&gt;</span>
+      
+      <span class="tag">&lt;div&gt;</span>
+        <span class="tag">&lt;input</span>
+          <span class="attr">value</span><span class="operator">=</span>{newTodo}
+          <span class="attr">onChange</span><span class="operator">=</span>{(e) <span class="operator">=&gt;</span> setNewTodo(e.target.value)}
+          <span class="attr">placeholder</span><span class="operator">=</span><span class="value">"Add new todo"</span>
+        <span class="tag">/&gt;</span>
+        <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{addTodo}<span class="tag">&gt;</span>Add<span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;ul&gt;</span>
+        {todos.map(todo <span class="operator">=&gt;</span> (
+          <span class="comment">{/* Always use unique key! */}</span>
+          <span class="tag">&lt;li</span> <span class="attr">key</span><span class="operator">=</span>{todo.id}<span class="tag">&gt;</span>
+            <span class="tag">&lt;span</span>
+              <span class="attr">style</span><span class="operator">=</span>{{ 
+                textDecoration: todo.completed ? <span class="string">'line-through'</span> : <span class="string">'none'</span> 
+              }}
+              <span class="attr">onClick</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> toggleTodo(todo.id)}
+            <span class="tag">&gt;</span>
+              {todo.text}
+            <span class="tag">&lt;/span&gt;</span>
+            <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> deleteTodo(todo.id)}<span class="tag">&gt;</span>Delete<span class="tag">&lt;/button&gt;</span>
+          <span class="tag">&lt;/li&gt;</span>
+        ))}
+      <span class="tag">&lt;/ul&gt;</span>
+      
+      <span class="tag">&lt;p&gt;</span>Total: {todos.length} | Completed: {todos.filter(t <span class="operator">=&gt;</span> t.completed).length}<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</pre>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4><i data-lucide="key" style="width:18px;height:18px;"></i> Keys are Important!</h4>
+                <p>Always use unique, stable keys when rendering lists. Don't use array index if the list can change. Use <code>id</code> from your data.</p>
+            </div>
+        </div>
+
+        <!-- Section 11: Forms -->
+        <div class="section" id="forms">
+            <div class="section-header">
+                <div class="section-number">11</div>
+                <h2 class="section-title">Forms & Input</h2>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-header-left">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="code-filename">ContactForm.jsx</span>
+                    </div>
+                    <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useState</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="component">ContactForm</span>() {
+  <span class="keyword">const</span> [formData, setFormData] <span class="operator">=</span> <span class="hook">useState</span>({
+    name: <span class="string">''</span>,
+    email: <span class="string">''</span>,
+    message: <span class="string">''</span>,
+    subscribe: <span class="keyword">false</span>,
+    country: <span class="string">'nepal'</span>
+  });
+  
+  <span class="keyword">const</span> [errors, setErrors] <span class="operator">=</span> <span class="hook">useState</span>({});
+  
+  <span class="comment">// Handle all input changes</span>
+  <span class="keyword">const</span> <span class="function">handleChange</span> <span class="operator">=</span> (e) <span class="operator">=&gt;</span> {
+    <span class="keyword">const</span> { name, value, type, checked } <span class="operator">=</span> e.target;
+    setFormData({
+      ...formData,
+      [name]: type <span class="operator">===</span> <span class="string">'checkbox'</span> ? checked : value
+    });
+  };
+  
+  <span class="comment">// Validate form</span>
+  <span class="keyword">const</span> <span class="function">validate</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+    <span class="keyword">const</span> newErrors <span class="operator">=</span> {};
+    <span class="keyword">if</span> (!formData.name) newErrors.name <span class="operator">=</span> <span class="string">'Name is required'</span>;
+    <span class="keyword">if</span> (!formData.email.includes(<span class="string">'@'</span>)) newErrors.email <span class="operator">=</span> <span class="string">'Invalid email'</span>;
+    <span class="keyword">if</span> (formData.message.length < <span class="number">10</span>) newErrors.message <span class="operator">=</span> <span class="string">'Message too short'</span>;
+    setErrors(newErrors);
+    <span class="keyword">return</span> Object.keys(newErrors).length <span class="operator">===</span> <span class="number">0</span>;
+  };
+  
+  <span class="comment">// Handle submit</span>
+  <span class="keyword">const</span> <span class="function">handleSubmit</span> <span class="operator">=</span> (e) <span class="operator">=&gt;</span> {
+    e.preventDefault();
+    <span class="keyword">if</span> (validate()) {
+      console.log(<span class="string">'Form submitted:'</span>, formData);
+      <span class="comment">// Reset form</span>
+      setFormData({ name: <span class="string">''</span>, email: <span class="string">''</span>, message: <span class="string">''</span>, subscribe: <span class="keyword">false</span>, country: <span class="string">'nepal'</span> });
+    }
+  };
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;form</span> <span class="attr">onSubmit</span><span class="operator">=</span>{handleSubmit}<span class="tag">&gt;</span>
+      <span class="tag">&lt;div&gt;</span>
+        <span class="tag">&lt;label&gt;</span>Name:<span class="tag">&lt;/label&gt;</span>
+        <span class="tag">&lt;input</span>
+          <span class="attr">type</span><span class="operator">=</span><span class="value">"text"</span>
+          <span class="attr">name</span><span class="operator">=</span><span class="value">"name"</span>
+          <span class="attr">value</span><span class="operator">=</span>{formData.name}
+          <span class="attr">onChange</span><span class="operator">=</span>{handleChange}
+        <span class="tag">/&gt;</span>
+        {errors.name && <span class="tag">&lt;span</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"error"</span><span class="tag">&gt;</span>{errors.name}<span class="tag">&lt;/span&gt;</span>}
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;div&gt;</span>
+        <span class="tag">&lt;label&gt;</span>Email:<span class="tag">&lt;/label&gt;</span>
+        <span class="tag">&lt;input</span>
+          <span class="attr">type</span><span class="operator">=</span><span class="value">"email"</span>
+          <span class="attr">name</span><span class="operator">=</span><span class="value">"email"</span>
+          <span class="attr">value</span><span class="operator">=</span>{formData.email}
+          <span class="attr">onChange</span><span class="operator">=</span>{handleChange}
+        <span class="tag">/&gt;</span>
+        {errors.email && <span class="tag">&lt;span</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"error"</span><span class="tag">&gt;</span>{errors.email}<span class="tag">&lt;/span&gt;</span>}
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;div&gt;</span>
+        <span class="tag">&lt;label&gt;</span>Country:<span class="tag">&lt;/label&gt;</span>
+        <span class="tag">&lt;select</span> <span class="attr">name</span><span class="operator">=</span><span class="value">"country"</span> <span class="attr">value</span><span class="operator">=</span>{formData.country} <span class="attr">onChange</span><span class="operator">=</span>{handleChange}<span class="tag">&gt;</span>
+          <span class="tag">&lt;option</span> <span class="attr">value</span><span class="operator">=</span><span class="value">"nepal"</span><span class="tag">&gt;</span>Nepal<span class="tag">&lt;/option&gt;</span>
+          <span class="tag">&lt;option</span> <span class="attr">value</span><span class="operator">=</span><span class="value">"india"</span><span class="tag">&gt;</span>India<span class="tag">&lt;/option&gt;</span>
+          <span class="tag">&lt;option</span> <span class="attr">value</span><span class="operator">=</span><span class="value">"usa"</span><span class="tag">&gt;</span>USA<span class="tag">&lt;/option&gt;</span>
+        <span class="tag">&lt;/select&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;div&gt;</span>
+        <span class="tag">&lt;label&gt;</span>Message:<span class="tag">&lt;/label&gt;</span>
+        <span class="tag">&lt;textarea</span>
+          <span class="attr">name</span><span class="operator">=</span><span class="value">"message"</span>
+          <span class="attr">value</span><span class="operator">=</span>{formData.message}
+          <span class="attr">onChange</span><span class="operator">=</span>{handleChange}
+        <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;div&gt;</span>
+        <span class="tag">&lt;label&gt;</span>
+          <span class="tag">&lt;input</span>
+            <span class="attr">type</span><span class="operator">=</span><span class="value">"checkbox"</span>
+            <span class="attr">name</span><span class="operator">=</span><span class="value">"subscribe"</span>
+            <span class="attr">checked</span><span class="operator">=</span>{formData.subscribe}
+            <span class="attr">onChange</span><span class="operator">=</span>{handleChange}
+          <span class="tag">/&gt;</span>
+          Subscribe to newsletter
+        <span class="tag">&lt;/label&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;button</span> <span class="attr">type</span><span class="operator">=</span><span class="value">"submit"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/form&gt;</span>
+  );
+}</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 12: useEffect -->
+        <div class="section" id="effects">
+            <div class="section-header">
+                <div class="section-number">12</div>
+                <h2 class="section-title">useEffect & Side Effects</h2>
+            </div>
+
+            <p class="topic-description">
+                useEffect lets you perform side effects in function components - data fetching, 
+                subscriptions, manually changing the DOM, etc.
+            </p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-header-left">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="code-filename">DataFetching.jsx</span>
+                    </div>
+                    <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useState</span>, <span class="hook">useEffect</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="component">UserList</span>() {
+  <span class="keyword">const</span> [users, setUsers] <span class="operator">=</span> <span class="hook">useState</span>([]);
+  <span class="keyword">const</span> [loading, setLoading] <span class="operator">=</span> <span class="hook">useState</span>(<span class="keyword">true</span>);
+  <span class="keyword">const</span> [error, setError] <span class="operator">=</span> <span class="hook">useState</span>(<span class="keyword">null</span>);
+  
+  <span class="comment">// Fetch data on component mount</span>
+  <span class="hook">useEffect</span>(() <span class="operator">=&gt;</span> {
+    <span class="keyword">const</span> <span class="function">fetchUsers</span> <span class="operator">=</span> <span class="keyword">async</span> () <span class="operator">=&gt;</span> {
+      <span class="keyword">try</span> {
+        <span class="keyword">const</span> response <span class="operator">=</span> <span class="keyword">await</span> fetch(<span class="string">'https://jsonplaceholder.typicode.com/users'</span>);
+        <span class="keyword">if</span> (!response.ok) <span class="keyword">throw new</span> Error(<span class="string">'Failed to fetch'</span>);
+        <span class="keyword">const</span> data <span class="operator">=</span> <span class="keyword">await</span> response.json();
+        setUsers(data);
+      } <span class="keyword">catch</span> (err) {
+        setError(err.message);
+      } <span class="keyword">finally</span> {
+        setLoading(<span class="keyword">false</span>);
+      }
+    };
+    
+    fetchUsers();
+  }, []); <span class="comment">// Empty array = run once on mount</span>
+  
+  <span class="keyword">if</span> (loading) <span class="keyword">return</span> <span class="tag">&lt;p&gt;</span>Loading...<span class="tag">&lt;/p&gt;</span>;
+  <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="tag">&lt;p&gt;</span>Error: {error}<span class="tag">&lt;/p&gt;</span>;
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;ul&gt;</span>
+      {users.map(user <span class="operator">=&gt;</span> (
+        <span class="tag">&lt;li</span> <span class="attr">key</span><span class="operator">=</span>{user.id}<span class="tag">&gt;</span>{user.name} - {user.email}<span class="tag">&lt;/li&gt;</span>
+      ))}
+    <span class="tag">&lt;/ul&gt;</span>
+  );
+}</pre>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-header-left">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="code-filename">useEffect Patterns</span>
+                    </div>
+                    <span class="code-lang">JSX</span>
+                </div>
+                <div class="code-content">
+<pre><span class="comment">// Pattern 1: Run on every render (no dependency array)</span>
+<span class="hook">useEffect</span>(() <span class="operator">=&gt;</span> {
+  console.log(<span class="string">'Runs on every render'</span>);
+});
+
+<span class="comment">// Pattern 2: Run once on mount (empty array)</span>
+<span class="hook">useEffect</span>(() <span class="operator">=&gt;</span> {
+  console.log(<span class="string">'Runs only once on mount'</span>);
+}, []);
+
+<span class="comment">// Pattern 3: Run when dependency changes</span>
+<span class="hook">useEffect</span>(() <span class="operator">=&gt;</span> {
+  console.log(<span class="string">`Count changed to: </span>${count}<span class="string">`</span>);
+}, [count]);
+
+<span class="comment">// Pattern 4: Cleanup function (return)</span>
+<span class="hook">useEffect</span>(() <span class="operator">=&gt;</span> {
+  <span class="keyword">const</span> timer <span class="operator">=</span> setInterval(() <span class="operator">=&gt;</span> {
+    console.log(<span class="string">'Tick'</span>);
+  }, <span class="number">1000</span>);
+  
+  <span class="comment">// Cleanup when component unmounts or before re-run</span>
+  <span class="keyword">return</span> () <span class="operator">=&gt;</span> {
+    clearInterval(timer);
+    console.log(<span class="string">'Cleaned up!'</span>);
+  };
+}, []);</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 13: Context -->
+        <div class="section" id="context">
+            <div class="section-header">
+                <div class="section-number">13</div>
+                <h2 class="section-title">Context API</h2>
+            </div>
+
+            <p class="topic-description">
+                Context provides a way to pass data through the component tree without 
+                having to pass props down manually at every level.
+            </p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-header-left">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="code-filename">context/ThemeContext.jsx</span>
+                    </div>
+                    <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<pre><span class="keyword">import</span> { createContext, <span class="hook">useState</span>, <span class="hook">useContext</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="comment">// 1. Create Context</span>
+<span class="keyword">const</span> ThemeContext <span class="operator">=</span> createContext();
+
+<span class="comment">// 2. Create Provider Component</span>
+<span class="keyword">export function</span> <span class="component">ThemeProvider</span>({ children }) {
+  <span class="keyword">const</span> [theme, setTheme] <span class="operator">=</span> <span class="hook">useState</span>(<span class="string">'light'</span>);
+  
+  <span class="keyword">const</span> <span class="function">toggleTheme</span> <span class="operator">=</span> () <span class="operator">=&gt;</span> {
+    setTheme(theme <span class="operator">===</span> <span class="string">'light'</span> ? <span class="string">'dark'</span> : <span class="string">'light'</span>);
+  };
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;ThemeContext.Provider</span> <span class="attr">value</span><span class="operator">=</span>{{ theme, toggleTheme }}<span class="tag">&gt;</span>
+      {children}
+    <span class="tag">&lt;/ThemeContext.Provider&gt;</span>
+  );
+}
+
+<span class="comment">// 3. Custom Hook for easy access</span>
+<span class="keyword">export function</span> <span class="function">useTheme</span>() {
+  <span class="keyword">const</span> context <span class="operator">=</span> <span class="hook">useContext</span>(ThemeContext);
+  <span class="keyword">if</span> (!context) {
+    <span class="keyword">throw new</span> Error(<span class="string">'useTheme must be used within ThemeProvider'</span>);
+  }
+  <span class="keyword">return</span> context;
+}</pre>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-header-left">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="code-filename">App.jsx & Component.jsx</span>
+                    </div>
+                    <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<pre><span class="comment">// App.jsx - Wrap with Provider</span>
+<span class="keyword">import</span> { ThemeProvider } <span class="keyword">from</span> <span class="string">'./context/ThemeContext'</span>;
+
+<span class="keyword">function</span> <span class="function">App</span>() {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;<span class="component">ThemeProvider</span>&gt;</span>
+      <span class="tag">&lt;<span class="component">Navbar</span> /&gt;</span>
+      <span class="tag">&lt;<span class="component">MainContent</span> /&gt;</span>
+    <span class="tag">&lt;/<span class="component">ThemeProvider</span>&gt;</span>
+  );
+}
+
+<span class="comment">// Navbar.jsx - Use context</span>
+<span class="keyword">import</span> { useTheme } <span class="keyword">from</span> <span class="string">'./context/ThemeContext'</span>;
+
+<span class="keyword">function</span> <span class="component">Navbar</span>() {
+  <span class="keyword">const</span> { theme, toggleTheme } <span class="operator">=</span> useTheme();
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;nav</span> <span class="attr">className</span><span class="operator">=</span>{<span class="string">`navbar </span>${theme}<span class="string">`</span>}<span class="tag">&gt;</span>
+      <span class="tag">&lt;h1&gt;</span>My App<span class="tag">&lt;/h1&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{toggleTheme}<span class="tag">&gt;</span>
+        Switch to {theme <span class="operator">===</span> <span class="string">'light'</span> ? <span class="string">'Dark'</span> : <span class="string">'Light'</span>} Mode
+      <span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/nav&gt;</span>
+  );
+}</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 14: Routing -->
+        <div class="section" id="routing">
+            <div class="section-header">
+                <div class="section-number">14</div>
+                <h2 class="section-title">React Router</h2>
+            </div>
+
+            <div class="terminal-block">
+                <div class="terminal-header">
+                    <div class="code-dots">
+                        <span class="code-dot code-dot-red"></span>
+                        <span class="code-dot code-dot-yellow"></span>
+                        <span class="code-dot code-dot-green"></span>
+                    </div>
+                    <span class="terminal-title">Terminal</span>
+                </div>
+                <div class="terminal-content">
+<span class="prompt">$</span> <span class="command">npm install react-router-dom</span>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-header-left">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="code-filename">App.jsx</span>
+                    </div>
+                    <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<pre><span class="keyword">import</span> { BrowserRouter, Routes, Route, Link, useParams, useNavigate } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
+
+<span class="comment">// Pages</span>
+<span class="keyword">function</span> <span class="component">Home</span>() {
+  <span class="keyword">return</span> <span class="tag">&lt;h1&gt;</span>Home Page<span class="tag">&lt;/h1&gt;</span>;
+}
+
+<span class="keyword">function</span> <span class="component">About</span>() {
+  <span class="keyword">return</span> <span class="tag">&lt;h1&gt;</span>About Page<span class="tag">&lt;/h1&gt;</span>;
+}
+
+<span class="keyword">function</span> <span class="component">UserProfile</span>() {
+  <span class="keyword">const</span> { userId } <span class="operator">=</span> useParams();
+  <span class="keyword">const</span> navigate <span class="operator">=</span> useNavigate();
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;h1&gt;</span>User Profile: {userId}<span class="tag">&lt;/h1&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> navigate(<span class="string">'/'</span>)}<span class="tag">&gt;</span>Go Home<span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> navigate(-<span class="number">1</span>)}<span class="tag">&gt;</span>Go Back<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}
+
+<span class="keyword">function</span> <span class="component">NotFound</span>() {
+  <span class="keyword">return</span> <span class="tag">&lt;h1&gt;</span>404 - Page Not Found<span class="tag">&lt;/h1&gt;</span>;
+}
+
+<span class="comment">// Navigation</span>
+<span class="keyword">function</span> <span class="component">Navbar</span>() {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;nav&gt;</span>
+      <span class="tag">&lt;Link</span> <span class="attr">to</span><span class="operator">=</span><span class="value">"/"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/Link&gt;</span>
+      <span class="tag">&lt;Link</span> <span class="attr">to</span><span class="operator">=</span><span class="value">"/about"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/Link&gt;</span>
+      <span class="tag">&lt;Link</span> <span class="attr">to</span><span class="operator">=</span><span class="value">"/user/123"</span><span class="tag">&gt;</span>Profile<span class="tag">&lt;/Link&gt;</span>
+    <span class="tag">&lt;/nav&gt;</span>
+  );
+}
+
+<span class="comment">// App with Router</span>
+<span class="keyword">function</span> <span class="function">App</span>() {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;BrowserRouter&gt;</span>
+      <span class="tag">&lt;<span class="component">Navbar</span> /&gt;</span>
+      
+      <span class="tag">&lt;Routes&gt;</span>
+        <span class="tag">&lt;Route</span> <span class="attr">path</span><span class="operator">=</span><span class="value">"/"</span> <span class="attr">element</span><span class="operator">=</span>{<span class="tag">&lt;<span class="component">Home</span> /&gt;</span>} <span class="tag">/&gt;</span>
+        <span class="tag">&lt;Route</span> <span class="attr">path</span><span class="operator">=</span><span class="value">"/about"</span> <span class="attr">element</span><span class="operator">=</span>{<span class="tag">&lt;<span class="component">About</span> /&gt;</span>} <span class="tag">/&gt;</span>
+        <span class="tag">&lt;Route</span> <span class="attr">path</span><span class="operator">=</span><span class="value">"/user/:userId"</span> <span class="attr">element</span><span class="operator">=</span>{<span class="tag">&lt;<span class="component">UserProfile</span> /&gt;</span>} <span class="tag">/&gt;</span>
+        <span class="tag">&lt;Route</span> <span class="attr">path</span><span class="operator">=</span><span class="value">"*"</span> <span class="attr">element</span><span class="operator">=</span>{<span class="tag">&lt;<span class="component">NotFound</span> /&gt;</span>} <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/Routes&gt;</span>
+    <span class="tag">&lt;/BrowserRouter&gt;</span>
+  );
+}
+
+<span class="keyword">export default</span> App;</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 15: Advanced -->
+        <div class="section" id="advanced">
+            <div class="section-header">
+                <div class="section-number">15</div>
+                <h2 class="section-title">Advanced Patterns</h2>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="code-2" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Custom Hooks</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">hooks/useFetch.js</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useState</span>, <span class="hook">useEffect</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="comment">// Custom hook for data fetching</span>
+<span class="keyword">function</span> <span class="function">useFetch</span>(url) {
+  <span class="keyword">const</span> [data, setData] <span class="operator">=</span> <span class="hook">useState</span>(<span class="keyword">null</span>);
+  <span class="keyword">const</span> [loading, setLoading] <span class="operator">=</span> <span class="hook">useState</span>(<span class="keyword">true</span>);
+  <span class="keyword">const</span> [error, setError] <span class="operator">=</span> <span class="hook">useState</span>(<span class="keyword">null</span>);
+  
+  <span class="hook">useEffect</span>(() <span class="operator">=&gt;</span> {
+    <span class="keyword">const</span> <span class="function">fetchData</span> <span class="operator">=</span> <span class="keyword">async</span> () <span class="operator">=&gt;</span> {
+      <span class="keyword">try</span> {
+        setLoading(<span class="keyword">true</span>);
+        <span class="keyword">const</span> response <span class="operator">=</span> <span class="keyword">await</span> fetch(url);
+        <span class="keyword">if</span> (!response.ok) <span class="keyword">throw new</span> Error(<span class="string">'Failed to fetch'</span>);
+        <span class="keyword">const</span> json <span class="operator">=</span> <span class="keyword">await</span> response.json();
+        setData(json);
+      } <span class="keyword">catch</span> (err) {
+        setError(err.message);
+      } <span class="keyword">finally</span> {
+        setLoading(<span class="keyword">false</span>);
+      }
+    };
+    
+    fetchData();
+  }, [url]);
+  
+  <span class="keyword">return</span> { data, loading, error };
+}
+
+<span class="keyword">export default</span> useFetch;
+
+<span class="comment">// Usage</span>
+<span class="keyword">function</span> <span class="component">UserList</span>() {
+  <span class="keyword">const</span> { data: users, loading, error } <span class="operator">=</span> useFetch(<span class="string">'https://api.example.com/users'</span>);
+  
+  <span class="keyword">if</span> (loading) <span class="keyword">return</span> <span class="tag">&lt;p&gt;</span>Loading...<span class="tag">&lt;/p&gt;</span>;
+  <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="tag">&lt;p&gt;</span>Error: {error}<span class="tag">&lt;/p&gt;</span>;
+  
+  <span class="keyword">return</span> <span class="tag">&lt;ul&gt;</span>{users?.map(u <span class="operator">=&gt;</span> <span class="tag">&lt;li</span> <span class="attr">key</span><span class="operator">=</span>{u.id}<span class="tag">&gt;</span>{u.name}<span class="tag">&lt;/li&gt;</span>)}<span class="tag">&lt;/ul&gt;</span>;
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="database" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">useLocalStorage Hook</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">hooks/useLocalStorage.js</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useState</span> } <span class="keyword">from</span> <span class="string">'react';
+
+<span class="keyword">function</span> <span class="function">useLocalStorage</span>(key, initialValue) {
+  <span class="keyword">const</span> [storedValue, setStoredValue] <span class="operator">=</span> <span class="hook">useState</span>(() <span class="operator">=&gt;</span> {
+    <span class="keyword">try</span> {
+      <span class="keyword">const</span> item <span class="operator">=</span> window.localStorage.getItem(key);
+      <span class="keyword">return</span> item ? JSON.parse(item) : initialValue;
+    } <span class="keyword">catch</span> (error) {
+      <span class="keyword">return</span> initialValue;
+    }
+  });
+  
+  <span class="keyword">const</span> <span class="function">setValue</span> <span class="operator">=</span> (value) <span class="operator">=&gt;</span> {
+    <span class="keyword">try</span> {
+      <span class="keyword">const</span> valueToStore <span class="operator">=</span> value <span class="keyword">instanceof</span> Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } <span class="keyword">catch</span> (error) {
+      console.error(error);
+    }
+  };
+  
+  <span class="keyword">return</span> [storedValue, setValue];
+}
+
+<span class="keyword">export default</span> useLocalStorage;
+
+<span class="comment">// Usage</span>
+<span class="keyword">function</span> <span class="component">Settings</span>() {
+  <span class="keyword">const</span> [theme, setTheme] <span class="operator">=</span> useLocalStorage(<span class="string">'theme'</span>, <span class="string">'light'</span>);
+  <span class="keyword">const</span> [user, setUser] <span class="operator">=</span> useLocalStorage(<span class="string">'user'</span>, { name: <span class="string">''</span> });
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> setTheme(theme <span class="operator">===</span> <span class="string">'light'</span> ? <span class="string">'dark'</span> : <span class="string">'light'</span>)}<span class="tag">&gt;</span>
+        Current: {theme}
+      <span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="zap" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Performance Optimization</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">Optimization.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { <span class="hook">useState</span>, <span class="hook">useMemo</span>, <span class="hook">useCallback</span>, memo } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="comment">// useMemo - Memoize expensive calculations</span>
+<span class="keyword">function</span> <span class="component">ExpensiveList</span>({ items, filter }) {
+  <span class="keyword">const</span> filteredItems <span class="operator">=</span> <span class="hook">useMemo</span>(() <span class="operator">=&gt;</span> {
+    console.log(<span class="string">'Filtering items...'</span>);
+    <span class="keyword">return</span> items.filter(item <span class="operator">=&gt;</span> item.includes(filter));
+  }, [items, filter]); <span class="comment">// Only recalculate when items or filter changes</span>
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;ul&gt;</span>
+      {filteredItems.map((item, i) <span class="operator">=&gt;</span> <span class="tag">&lt;li</span> <span class="attr">key</span><span class="operator">=</span>{i}<span class="tag">&gt;</span>{item}<span class="tag">&lt;/li&gt;</span>)}
+    <span class="tag">&lt;/ul&gt;</span>
+  );
+}
+
+<span class="comment">// useCallback - Memoize functions</span>
+<span class="keyword">function</span> <span class="component">Parent</span>() {
+  <span class="keyword">const</span> [count, setCount] <span class="operator">=</span> <span class="hook">useState</span>(<span class="number">0</span>);
+  
+  <span class="comment">// Without useCallback, this creates new function on every render</span>
+  <span class="keyword">const</span> handleClick <span class="operator">=</span> <span class="hook">useCallback</span>(() <span class="operator">=&gt;</span> {
+    console.log(<span class="string">'Button clicked!'</span>);
+  }, []); <span class="comment">// Empty deps = function never changes</span>
+  
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Count: {count}<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> setCount(count + <span class="number">1</span>)}<span class="tag">&gt;</span>Increment<span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;<span class="component">MemoizedChild</span></span> <span class="attr">onClick</span><span class="operator">=</span>{handleClick} <span class="tag">/&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}
+
+<span class="comment">// React.memo - Prevent unnecessary re-renders</span>
+<span class="keyword">const</span> <span class="component">MemoizedChild</span> <span class="operator">=</span> memo(<span class="keyword">function</span> <span class="component">Child</span>({ onClick }) {
+  console.log(<span class="string">'Child rendered'</span>);
+  <span class="keyword">return</span> <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{onClick}<span class="tag">&gt;</span>Click me<span class="tag">&lt;/button&gt;</span>;
+});
+
+<span class="comment">// Lazy Loading Components</span>
+<span class="keyword">import</span> { lazy, Suspense } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">const</span> HeavyComponent <span class="operator">=</span> lazy(() <span class="operator">=&gt;</span> <span class="keyword">import</span>(<span class="string">'./HeavyComponent'</span>));
+
+<span class="keyword">function</span> <span class="function">App</span>() {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;Suspense</span> <span class="attr">fallback</span><span class="operator">=</span>{<span class="tag">&lt;div&gt;</span>Loading...<span class="tag">&lt;/div&gt;</span>}<span class="tag">&gt;</span>
+      <span class="tag">&lt;<span class="component">HeavyComponent</span> /&gt;</span>
+    <span class="tag">&lt;/Suspense&gt;</span>
+  );
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="shield" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Error Boundaries</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">ErrorBoundary.jsx</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Component } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="comment">// Error Boundaries must be class components</span>
+<span class="keyword">class</span> <span class="class">ErrorBoundary</span> <span class="keyword">extends</span> Component {
+  <span class="keyword">constructor</span>(props) {
+    <span class="keyword">super</span>(props);
+    <span class="keyword">this</span>.state <span class="operator">=</span> { hasError: <span class="keyword">false</span>, error: <span class="keyword">null</span> };
+  }
+  
+  <span class="keyword">static</span> <span class="function">getDerivedStateFromError</span>(error) {
+    <span class="keyword">return</span> { hasError: <span class="keyword">true</span>, error };
+  }
+  
+  <span class="function">componentDidCatch</span>(error, errorInfo) {
+    console.error(<span class="string">'Error caught:'</span>, error, errorInfo);
+    <span class="comment">// Log to error reporting service</span>
+  }
+  
+  <span class="function">render</span>() {
+    <span class="keyword">if</span> (<span class="keyword">this</span>.state.hasError) {
+      <span class="keyword">return</span> (
+        <span class="tag">&lt;div</span> <span class="attr">className</span><span class="operator">=</span><span class="value">"error-fallback"</span><span class="tag">&gt;</span>
+          <span class="tag">&lt;h2&gt;</span>Something went wrong!<span class="tag">&lt;/h2&gt;</span>
+          <span class="tag">&lt;button</span> <span class="attr">onClick</span><span class="operator">=</span>{() <span class="operator">=&gt;</span> <span class="keyword">this</span>.setState({ hasError: <span class="keyword">false</span> })}<span class="tag">&gt;</span>
+            Try Again
+          <span class="tag">&lt;/button&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+      );
+    }
+    
+    <span class="keyword">return</span> <span class="keyword">this</span>.props.children;
+  }
+}
+
+<span class="keyword">export default</span> ErrorBoundary;
+
+<span class="comment">// Usage in App.jsx</span>
+<span class="keyword">function</span> <span class="function">App</span>() {
+  <span class="keyword">return</span> (
+    <span class="tag">&lt;<span class="component">ErrorBoundary</span>&gt;</span>
+      <span class="tag">&lt;<span class="component">MyComponent</span> /&gt;</span>
+    <span class="tag">&lt;/<span class="component">ErrorBoundary</span>&gt;</span>
+  );
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="folder-tree" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Recommended Project Structure</h3>
+                </div>
+
+                <div class="file-structure">
+<span class="folder">📁 src/</span>
+├── <span class="folder">📁 assets/</span>              <span class="comment"># Images, fonts, etc.</span>
+├── <span class="folder">📁 components/</span>          <span class="comment"># Reusable components</span>
+│   ├── <span class="folder">📁 common/</span>          <span class="comment"># Button, Input, Modal</span>
+│   ├── <span class="folder">📁 layout/</span>          <span class="comment"># Header, Footer, Sidebar</span>
+│   └── <span class="folder">📁 ui/</span>              <span class="comment"># Card, Badge, Avatar</span>
+├── <span class="folder">📁 context/</span>             <span class="comment"># React Context files</span>
+├── <span class="folder">📁 hooks/</span>               <span class="comment"># Custom hooks</span>
+├── <span class="folder">📁 pages/</span>               <span class="comment"># Page components</span>
+│   ├── <span class="file">Home.jsx</span>
+│   ├── <span class="file">About.jsx</span>
+│   └── <span class="file">Contact.jsx</span>
+├── <span class="folder">📁 services/</span>            <span class="comment"># API calls</span>
+│   └── <span class="file">api.js</span>
+├── <span class="folder">📁 utils/</span>               <span class="comment"># Utility functions</span>
+├── <span class="folder">📁 styles/</span>              <span class="comment"># Global CSS/SCSS</span>
+├── <span class="important">App.jsx</span>
+├── <span class="important">main.jsx</span>
+└── <span class="file">index.css</span>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4><i data-lucide="check-circle" style="width:18px;height:18px;"></i> You're Ready!</h4>
+                <p>You now have all the knowledge to build modern React applications. Practice by building projects!</p>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <i data-lucide="party-popper" class="cta-icon" style="width:80px;height:80px;"></i>
+            <h2 class="cta-title">
+                <i data-lucide="trophy" style="width:32px;height:32px;color:var(--react-blue);"></i>
+                Congratulations!
+            </h2>
+            <p class="cta-description">
+                You've mastered React.js from zero to hero! You're now ready to build 
+                amazing user interfaces. Keep practicing and building projects!
+            </p>
+            <div class="cta-buttons">
+                <a href="./Javscript.html" class="cta-button cta-button-secondary">
+                    <i data-lucide="arrow-left" style="width:18px;height:18px;"></i>
+                    Back to JavaScript
+                </a>
+                <a href="../index.html" class="cta-button">
+                    Explore More
+                    <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="../index.html" class="footer-brand">
+                <span class="footer-logo-text">Om Pandey</span>
+            </a>
+            <div class="footer-social">
+                <a href="https://github.com/ompandey07" target="_blank"><i class="ri-github-fill"></i></a>
+                <a href="https://www.linkedin.com/in/iamompandey/" target="_blank"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://x.com/iam_ompandey" target="_blank"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.instagram.com/ome.exee/" target="_blank"><i class="ri-instagram-line"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Scroll Progress
+        window.addEventListener('scroll', function() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+
+        // Copy Code Function
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block') || button.closest('.terminal-block');
+            const code = codeBlock.querySelector('pre') || codeBlock.querySelector('.terminal-content');
+            navigator.clipboard.writeText(code.textContent).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        // Smooth scroll for TOC
+        document.querySelectorAll('.toc-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+    <script src="../Console.js"></script>
+</body>
+</html>

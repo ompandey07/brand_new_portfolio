@@ -1,0 +1,3174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Angular Framework - Complete Frontend Guide | Om Pandey</title>
+    <meta name="description" content="Master Angular framework from scratch. Complete guide to becoming a frontend developer with Angular by Om Pandey.">
+    <meta name="keywords" content="Angular tutorial, learn Angular, Angular TypeScript, frontend development, Om Pandey">
+    <meta name="author" content="Om Pandey">
+    
+    <link rel="shortcut icon" href="../MainLogo.png" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/agustina" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-script: 'Kaushan Script', cursive;
+            --font-caveat: 'Caveat', cursive;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-code: #1e293b;
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --border-light: #e2e8f0;
+            
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            
+            --angular-red: #dd0031;
+            --angular-dark: #c3002f;
+            --angular-light: #ff4081;
+            
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+            --radius-2xl: 28px;
+            --radius-full: 9999px;
+            
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            
+            --transition-base: 200ms ease;
+            --transition-slow: 300ms ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--angular-dark), var(--angular-red), var(--angular-light));
+            z-index: 10000;
+        }
+
+        /* Header */
+        .header-bar {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .header-brand { text-decoration: none; font-weight: bold; }
+
+        .header-logo-text {
+            font-family: 'Agustina', cursive !important;
+            font-size: 24px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-nav a {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            transition: all var(--transition-base);
+        }
+
+        .header-nav a:hover {
+            background: var(--bg-secondary);
+            color: var(--angular-red);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, rgba(221, 0, 49, 0.08), rgba(255, 64, 129, 0.08));
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(221, 0, 49, 0.12), transparent);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 64, 129, 0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .hero-icon {
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--angular-dark), var(--angular-red), var(--angular-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-caveat);
+            font-size: 24px;
+            color: var(--angular-red);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .hero-badge i { color: var(--angular-red); }
+
+        /* Content */
+        .content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            padding: 32px;
+            margin-bottom: 60px;
+        }
+
+        .toc-title {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toc-title i { color: var(--angular-red); }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .toc-item:hover {
+            border-color: var(--angular-red);
+            color: var(--angular-dark);
+            transform: translateX(4px);
+        }
+
+        .toc-item span {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--angular-dark), var(--angular-red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--angular-red);
+        }
+
+        .section-number {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--angular-dark), var(--angular-red));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        /* Topic */
+        .topic {
+            margin-bottom: 48px;
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .topic-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(221, 0, 49, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--angular-red);
+        }
+
+        .topic-title {
+            font-family: var(--font-caveat);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--angular-dark);
+        }
+
+        .topic-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--bg-code);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: 24px 0;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .code-header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-dot-red { background: #ef4444; }
+        .code-dot-yellow { background: #fbbf24; }
+        .code-dot-green { background: #22c55e; }
+
+        .code-filename {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .code-filename .file-icon {
+            color: var(--angular-red);
+        }
+
+        .code-lang {
+            padding: 4px 10px;
+            background: rgba(221, 0, 49, 0.2);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--angular-light);
+            text-transform: uppercase;
+        }
+
+        .code-copy {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .code-copy:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .code-content {
+            padding: 24px;
+            overflow-x: auto;
+        }
+
+        .code-content pre {
+            margin: 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+
+        .code-content .comment { color: #64748b; }
+        .code-content .keyword { color: #f472b6; }
+        .code-content .string { color: #67e8f9; }
+        .code-content .function { color: #fbbf24; }
+        .code-content .builtin { color: #a78bfa; }
+        .code-content .number { color: #34d399; }
+        .code-content .operator { color: #fb7185; }
+        .code-content .class { color: #38bdf8; }
+        .code-content .decorator { color: #f472b6; }
+        .code-content .tag { color: #f472b6; }
+        .code-content .attr { color: #fbbf24; }
+        .code-content .value { color: #67e8f9; }
+        .code-content .property { color: #7dd3fc; }
+        .code-content .type { color: #4ade80; }
+
+        /* Terminal Block */
+        .terminal-block {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: var(--radius-lg);
+            margin: 24px 0;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+        }
+
+        .terminal-title {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #888;
+        }
+
+        .terminal-content {
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            color: #22c55e;
+        }
+
+        .terminal-content .prompt { color: #3b82f6; }
+        .terminal-content .command { color: #fff; }
+        .terminal-content .output { color: #888; }
+
+        /* Output Block */
+        .output-block {
+            background: #0f172a;
+            border: 2px solid var(--angular-red);
+            border-radius: var(--radius-lg);
+            margin: 16px 0 24px;
+            overflow: hidden;
+        }
+
+        .output-header {
+            padding: 10px 20px;
+            background: rgba(221, 0, 49, 0.1);
+            border-bottom: 1px solid rgba(221, 0, 49, 0.2);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--angular-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .output-content {
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: #22c55e;
+            line-height: 1.8;
+        }
+
+        /* Info Box */
+        .info-box {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(221, 0, 49, 0.06), rgba(255, 64, 129, 0.06));
+            border-left: 4px solid var(--angular-red);
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 24px 0;
+        }
+
+        .info-box h4 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--angular-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1));
+            border-left: 4px solid #f59e0b;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 24px 0;
+        }
+
+        .warning-box h4 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: #b45309;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* Success Box */
+        .success-box {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(34, 197, 94, 0.1));
+            border-left: 4px solid #10b981;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 24px 0;
+        }
+
+        .success-box h4 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: #047857;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .success-box p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* File Structure */
+        .file-structure {
+            background: var(--bg-code);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin: 24px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+
+        .file-structure .folder { color: #fbbf24; }
+        .file-structure .file { color: #67e8f9; }
+        .file-structure .important { color: #f472b6; }
+
+        /* Diagram */
+        .diagram {
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .diagram-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--angular-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .diagram-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .diagram-box {
+            padding: 16px 24px;
+            background: var(--bg-primary);
+            border: 2px solid var(--angular-red);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            color: var(--angular-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .diagram-arrow {
+            font-size: 24px;
+            color: var(--angular-red);
+        }
+
+        /* Step Indicator */
+        .step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-light);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--angular-dark), var(--angular-red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .feature-card {
+            padding: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+
+        .feature-card:hover {
+            border-color: var(--angular-red);
+            transform: translateY(-2px);
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(221, 0, 49, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            color: var(--angular-red);
+        }
+
+        .feature-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .feature-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 60px 24px;
+            background: linear-gradient(135deg, rgba(221, 0, 49, 0.08), rgba(255, 64, 129, 0.08));
+            border-radius: var(--radius-2xl);
+            margin: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: 40px;
+            width: 100px;
+            height: 100px;
+            background: rgba(221, 0, 49, 0.1);
+            border-radius: 50%;
+        }
+
+        .cta-title {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            background: linear-gradient(135deg, var(--angular-dark), var(--angular-red));
+            border: none;
+            border-radius: var(--radius-full);
+            font-family: var(--font-body);
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-slow);
+            box-shadow: 0 4px 20px rgba(221, 0, 49, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(221, 0, 49, 0.5);
+        }
+
+        .cta-button-secondary {
+            background: var(--bg-primary);
+            border: 2px solid var(--angular-red);
+            color: var(--angular-red);
+            box-shadow: none;
+        }
+
+        .cta-button-secondary:hover {
+            background: var(--angular-red);
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-light);
+            padding: 24px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand { text-decoration: none; }
+
+        .footer-logo-text {
+            font-family: 'Agustina', cursive !important;
+            font-size: 22px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 42px;
+            height: 42px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .footer-social a:hover {
+            background: var(--angular-red);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-nav { display: none; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .diagram-flow { flex-direction: column; }
+            .diagram-arrow { transform: rotate(90deg); }
+            .footer-container { flex-direction: column; gap: 20px; }
+            .step { flex-direction: column; text-align: center; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .hero-icon {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header -->
+    <header class="header-bar">
+        <div class="header-container">
+            <a href="../index.html" class="header-brand">
+                <span class="header-logo-text">Om Pandey</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-icon">
+            <img src="../Angular.png" alt="Angular Framework">
+        </div>
+        <h1 class="hero-title">Angular <span>Framework</span></h1>
+        <p class="hero-subtitle">The Modern Platform for Building Web Applications</p>
+        <p class="hero-description">
+            Master Angular - Google's powerful TypeScript-based framework. Build dynamic, 
+            scalable single-page applications with a component-based architecture. From beginner to expert!
+        </p>
+        <div class="hero-badges">
+            <span class="hero-badge"><i data-lucide="boxes" style="width:16px;height:16px;"></i> Component-Based</span>
+            <span class="hero-badge"><i data-lucide="file-code" style="width:16px;height:16px;"></i> TypeScript</span>
+            <span class="hero-badge"><i data-lucide="repeat" style="width:16px;height:16px;"></i> Two-Way Binding</span>
+            <span class="hero-badge"><i data-lucide="puzzle" style="width:16px;height:16px;"></i> Modular</span>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div class="content">
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2 class="toc-title">
+                <i data-lucide="list" style="width:24px;height:24px;"></i>
+                What You'll Learn
+            </h2>
+            <div class="toc-grid">
+                <a href="#intro" class="toc-item"><span>1</span> Introduction to Angular</a>
+                <a href="#install" class="toc-item"><span>2</span> Installation & Setup</a>
+                <a href="#project" class="toc-item"><span>3</span> Project Structure</a>
+                <a href="#components" class="toc-item"><span>4</span> Components</a>
+                <a href="#templates" class="toc-item"><span>5</span> Templates & Data Binding</a>
+                <a href="#directives" class="toc-item"><span>6</span> Directives</a>
+                <a href="#services" class="toc-item"><span>7</span> Services & DI</a>
+                <a href="#routing" class="toc-item"><span>8</span> Routing & Navigation</a>
+                <a href="#forms" class="toc-item"><span>9</span> Forms</a>
+                <a href="#http" class="toc-item"><span>10</span> HTTP & APIs</a>
+                <a href="#pipes" class="toc-item"><span>11</span> Pipes</a>
+                <a href="#advanced" class="toc-item"><span>12</span> Advanced Topics</a>
+            </div>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <div class="section" id="intro">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Introduction to Angular</h2>
+            </div>
+
+            <p class="topic-description">
+                Angular is a powerful, open-source web application framework developed by Google. 
+                It's built with TypeScript and follows a component-based architecture, making it 
+                perfect for building large-scale enterprise applications.
+            </p>
+
+            <div class="info-box">
+                <h4><i data-lucide="lightbulb" style="width:18px;height:18px;"></i> Why Angular?</h4>
+                <p>
+                    <strong>Enterprise Ready:</strong> Angular provides a complete solution out of the box - 
+                    routing, forms, HTTP client, testing, and more. Used by Google, Microsoft, Forbes, and BMW!
+                </p>
+            </div>
+
+            <!-- Angular Architecture Diagram -->
+            <div class="diagram">
+                <div class="diagram-title">
+                    <i data-lucide="layout" style="width:20px;height:20px;color:var(--angular-red);"></i>
+                    Angular Architecture
+                </div>
+                <div class="diagram-flow">
+                    <div class="diagram-box"><i data-lucide="component" style="width:18px;height:18px;"></i> Component</div>
+                    <span class="diagram-arrow">→</span>
+                    <div class="diagram-box"><i data-lucide="file-code-2" style="width:18px;height:18px;"></i> Template</div>
+                    <span class="diagram-arrow">→</span>
+                    <div class="diagram-box"><i data-lucide="briefcase" style="width:18px;height:18px;"></i> Service</div>
+                    <span class="diagram-arrow">→</span>
+                    <div class="diagram-box"><i data-lucide="database" style="width:18px;height:18px;"></i> Data</div>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon"><i data-lucide="boxes" style="width:24px;height:24px;"></i></div>
+                    <h4>Components</h4>
+                    <p>Reusable UI building blocks</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon"><i data-lucide="syringe" style="width:24px;height:24px;"></i></div>
+                    <h4>Dependency Injection</h4>
+                    <p>Built-in DI system</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon"><i data-lucide="repeat" style="width:24px;height:24px;"></i></div>
+                    <h4>Two-Way Binding</h4>
+                    <p>Sync data & UI automatically</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon"><i data-lucide="file-code" style="width:24px;height:24px;"></i></div>
+                    <h4>TypeScript</h4>
+                    <p>Type-safe development</p>
+                </div>
+            </div>
+
+            <div class="topic-description">
+                <strong>Key Concepts:</strong>
+                <ul style="margin-top: 12px; margin-left: 24px;">
+                    <li><strong>Modules:</strong> Organize application into cohesive blocks</li>
+                    <li><strong>Components:</strong> UI building blocks with template, logic, and styles</li>
+                    <li><strong>Services:</strong> Shared logic and data across components</li>
+                    <li><strong>Directives:</strong> Extend HTML with custom attributes and elements</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Installation -->
+        <div class="section" id="install">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Installation & Setup</h2>
+            </div>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Install Node.js</h4>
+                    <p>Make sure you have Node.js 18+ installed. Check with <code>node --version</code></p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Install Angular CLI</h4>
+                    <p>Angular CLI is the official command-line tool for Angular development</p>
+                </div>
+            </div>
+
+            <div class="terminal-block">
+                <div class="terminal-header">
+                    <div class="code-dots">
+                        <span class="code-dot code-dot-red"></span>
+                        <span class="code-dot code-dot-yellow"></span>
+                        <span class="code-dot code-dot-green"></span>
+                    </div>
+                    <span class="terminal-title">Terminal</span>
+                </div>
+                <div class="terminal-content">
+<span class="prompt">$</span> <span class="command"># Install Angular CLI globally</span>
+<span class="prompt">$</span> <span class="command">npm install -g @angular/cli</span>
+
+<span class="output">added 234 packages in 25s</span>
+
+<span class="prompt">$</span> <span class="command"># Verify installation</span>
+<span class="prompt">$</span> <span class="command">ng version</span>
+
+<span class="output">     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+
+Angular CLI: 17.0.0
+Node: 20.10.0
+Package Manager: npm 10.2.3</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Create New Project</h4>
+                    <p>Use Angular CLI to scaffold a new project</p>
+                </div>
+            </div>
+
+            <div class="terminal-block">
+                <div class="terminal-header">
+                    <div class="code-dots">
+                        <span class="code-dot code-dot-red"></span>
+                        <span class="code-dot code-dot-yellow"></span>
+                        <span class="code-dot code-dot-green"></span>
+                    </div>
+                    <span class="terminal-title">Terminal</span>
+                </div>
+                <div class="terminal-content">
+<span class="prompt">$</span> <span class="command"># Create new Angular project</span>
+<span class="prompt">$</span> <span class="command">ng new my-angular-app</span>
+
+<span class="output">? Which stylesheet format would you like to use? CSS
+? Do you want to enable Server-Side Rendering (SSR)? No
+
+CREATE my-angular-app/angular.json
+CREATE my-angular-app/package.json
+CREATE my-angular-app/tsconfig.json
+...</span>
+
+<span class="prompt">$</span> <span class="command"># Navigate to project</span>
+<span class="prompt">$</span> <span class="command">cd my-angular-app</span>
+
+<span class="prompt">$</span> <span class="command"># Start development server</span>
+<span class="prompt">$</span> <span class="command">ng serve</span>
+
+<span class="output">✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names         | Size
+main.js             | main          | 178 kB
+polyfills.js        | polyfills     |  33 kB
+styles.css          | styles        |   0 bytes
+
+** Angular Live Development Server is listening on localhost:4200 **</span>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4><i data-lucide="check-circle" style="width:18px;height:18px;"></i> Angular Project Created!</h4>
+                <p>Open <code>http://localhost:4200</code> in your browser to see your app!</p>
+            </div>
+        </div>
+
+        <!-- Section 3: Project Structure -->
+        <div class="section" id="project">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Project Structure</h2>
+            </div>
+
+            <p class="topic-description">
+                Understanding the project structure is crucial for effective Angular development.
+            </p>
+
+            <div class="file-structure">
+<span class="folder">📁 my-angular-app/</span>
+├── <span class="folder">📁 src/</span>
+│   ├── <span class="folder">📁 app/</span>
+│   │   ├── <span class="important">app.component.ts</span>       <span class="comment"># Root component logic</span>
+│   │   ├── <span class="important">app.component.html</span>     <span class="comment"># Root component template</span>
+│   │   ├── <span class="file">app.component.css</span>      <span class="comment"># Root component styles</span>
+│   │   ├── <span class="file">app.component.spec.ts</span>  <span class="comment"># Unit tests</span>
+│   │   ├── <span class="important">app.module.ts</span>          <span class="comment"># Root module</span>
+│   │   └── <span class="file">app-routing.module.ts</span>  <span class="comment"># Routing configuration</span>
+│   ├── <span class="folder">📁 assets/</span>                 <span class="comment"># Static assets (images, fonts)</span>
+│   ├── <span class="file">index.html</span>                <span class="comment"># Main HTML file</span>
+│   ├── <span class="file">main.ts</span>                   <span class="comment"># Application entry point</span>
+│   └── <span class="file">styles.css</span>                <span class="comment"># Global styles</span>
+├── <span class="file">angular.json</span>                  <span class="comment"># Angular CLI configuration</span>
+├── <span class="file">package.json</span>                  <span class="comment"># NPM dependencies</span>
+├── <span class="file">tsconfig.json</span>                 <span class="comment"># TypeScript configuration</span>
+└── <span class="file">tsconfig.app.json</span>             <span class="comment"># App-specific TS config</span>
+            </div>
+
+            <div class="info-box">
+                <h4><i data-lucide="folder-tree" style="width:18px;height:18px;"></i> Folder Organization</h4>
+                <p>
+                    As your app grows, organize by feature: <code>src/app/features/</code>, 
+                    <code>src/app/shared/</code>, <code>src/app/core/</code>
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 4: Components -->
+        <div class="section" id="components">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Components</h2>
+            </div>
+
+            <p class="topic-description">
+                Components are the fundamental building blocks of Angular applications. 
+                Each component consists of a TypeScript class, an HTML template, and optional CSS styles.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="plus-square" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Creating a Component</h3>
+                </div>
+
+                <div class="terminal-block">
+                    <div class="terminal-header">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="terminal-title">Terminal</span>
+                    </div>
+                    <div class="terminal-content">
+<span class="prompt">$</span> <span class="command"># Generate a new component</span>
+<span class="prompt">$</span> <span class="command">ng generate component header</span>
+<span class="output">CREATE src/app/header/header.component.css
+CREATE src/app/header/header.component.html
+CREATE src/app/header/header.component.spec.ts
+CREATE src/app/header/header.component.ts
+UPDATE src/app/app.module.ts</span>
+
+<span class="prompt">$</span> <span class="command"># Shorthand</span>
+<span class="prompt">$</span> <span class="command">ng g c footer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="code" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Component Structure</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">header.component.ts</span>
+                        </div>
+                        <span class="code-lang">TypeScript</span>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Component, OnInit } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+
+<span class="decorator">@Component</span>({
+  <span class="property">selector</span>: <span class="string">'app-header'</span>,          <span class="comment">// HTML tag name</span>
+  <span class="property">templateUrl</span>: <span class="string">'./header.component.html'</span>,
+  <span class="property">styleUrls</span>: [<span class="string">'./header.component.css'</span>]
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">HeaderComponent</span> <span class="keyword">implements</span> OnInit {
+  
+  <span class="comment">// Properties</span>
+  <span class="property">title</span>: <span class="type">string</span> = <span class="string">'My Angular App'</span>;
+  <span class="property">isLoggedIn</span>: <span class="type">boolean</span> = <span class="keyword">false</span>;
+  <span class="property">user</span>: { <span class="property">name</span>: <span class="type">string</span>; <span class="property">email</span>: <span class="type">string</span> } | <span class="type">null</span> = <span class="keyword">null</span>;
+
+  <span class="comment">// Constructor</span>
+  <span class="function">constructor</span>() { }
+
+  <span class="comment">// Lifecycle hook - runs after component initializes</span>
+  <span class="function">ngOnInit</span>(): <span class="type">void</span> {
+    <span class="builtin">console</span>.log(<span class="string">'Header component initialized'</span>);
+  }
+
+  <span class="comment">// Methods</span>
+  <span class="function">login</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.isLoggedIn = <span class="keyword">true</span>;
+    <span class="keyword">this</span>.user = { <span class="property">name</span>: <span class="string">'Om Pandey'</span>, <span class="property">email</span>: <span class="string">'om@example.com'</span> };
+  }
+
+  <span class="function">logout</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.isLoggedIn = <span class="keyword">false</span>;
+    <span class="keyword">this</span>.user = <span class="keyword">null</span>;
+  }
+}</pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">header.component.html</span>
+                        </div>
+                        <span class="code-lang">HTML</span>
+                    </div>
+                    <div class="code-content">
+<pre><span class="tag">&lt;header</span> <span class="attr">class</span>=<span class="value">"app-header"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>{{ title }}<span class="tag">&lt;/h1&gt;</span>
+  
+  <span class="tag">&lt;nav&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">routerLink</span>=<span class="value">"/"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">routerLink</span>=<span class="value">"/about"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">routerLink</span>=<span class="value">"/contact"</span><span class="tag">&gt;</span>Contact<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/nav&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"auth-section"</span><span class="tag">&gt;</span>
+    <span class="comment">&lt;!-- Conditional rendering --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">*ngIf</span>=<span class="value">"isLoggedIn; else loginButton"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;span&gt;</span>Welcome, {{ user?.name }}<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">(click)</span>=<span class="value">"logout()"</span><span class="tag">&gt;</span>Logout<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    
+    <span class="tag">&lt;ng-template</span> <span class="attr">#loginButton</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">(click)</span>=<span class="value">"login()"</span><span class="tag">&gt;</span>Login<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/ng-template&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/header&gt;</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="arrow-down-up" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Component Communication</h3>
+                </div>
+
+                <p class="topic-description">
+                    Components communicate using <code>@Input()</code> and <code>@Output()</code> decorators.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">child.component.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Component, Input, Output, EventEmitter } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+
+<span class="decorator">@Component</span>({
+  <span class="property">selector</span>: <span class="string">'app-user-card'</span>,
+  <span class="property">template</span>: <span class="string">`
+    &lt;div class="user-card"&gt;
+      &lt;h3&gt;{{ user.name }}&lt;/h3&gt;
+      &lt;p&gt;{{ user.email }}&lt;/p&gt;
+      &lt;button (click)="onSelect()"&gt;Select User&lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">UserCardComponent</span> {
+  
+  <span class="comment">// Input - receive data from parent</span>
+  <span class="decorator">@Input</span>() <span class="property">user</span>!: { <span class="property">name</span>: <span class="type">string</span>; <span class="property">email</span>: <span class="type">string</span> };
+  
+  <span class="comment">// Output - send events to parent</span>
+  <span class="decorator">@Output</span>() <span class="property">userSelected</span> = <span class="keyword">new</span> EventEmitter&lt;<span class="type">string</span>&gt;();
+  
+  <span class="function">onSelect</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.userSelected.emit(<span class="keyword">this</span>.user.name);
+  }
+}</pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">parent.component.html</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">&lt;!-- Parent component using child --&gt;</span>
+<span class="tag">&lt;app-user-card</span>
+  <span class="attr">[user]</span>=<span class="value">"currentUser"</span>
+  <span class="attr">(userSelected)</span>=<span class="value">"handleUserSelection($event)"</span>
+<span class="tag">&gt;&lt;/app-user-card&gt;</span>
+
+<span class="comment">&lt;!-- Loop through users --&gt;</span>
+<span class="tag">&lt;app-user-card</span>
+  <span class="attr">*ngFor</span>=<span class="value">"let user of users"</span>
+  <span class="attr">[user]</span>=<span class="value">"user"</span>
+  <span class="attr">(userSelected)</span>=<span class="value">"handleUserSelection($event)"</span>
+<span class="tag">&gt;&lt;/app-user-card&gt;</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="refresh-cw" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Lifecycle Hooks</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">lifecycle.component.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { 
+  Component, OnInit, OnDestroy, OnChanges, 
+  AfterViewInit, SimpleChanges 
+} <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+
+<span class="decorator">@Component</span>({...})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">LifecycleComponent</span> <span class="keyword">implements</span> 
+    OnInit, OnDestroy, OnChanges, AfterViewInit {
+  
+  <span class="comment">// Called when input properties change</span>
+  <span class="function">ngOnChanges</span>(<span class="property">changes</span>: SimpleChanges): <span class="type">void</span> {
+    <span class="builtin">console</span>.log(<span class="string">'Input changed:'</span>, changes);
+  }
+  
+  <span class="comment">// Called once after component is initialized</span>
+  <span class="function">ngOnInit</span>(): <span class="type">void</span> {
+    <span class="builtin">console</span>.log(<span class="string">'Component initialized'</span>);
+    <span class="comment">// Perfect for API calls, subscriptions</span>
+  }
+  
+  <span class="comment">// Called after view is fully initialized</span>
+  <span class="function">ngAfterViewInit</span>(): <span class="type">void</span> {
+    <span class="builtin">console</span>.log(<span class="string">'View initialized'</span>);
+    <span class="comment">// Access @ViewChild elements here</span>
+  }
+  
+  <span class="comment">// Called when component is destroyed</span>
+  <span class="function">ngOnDestroy</span>(): <span class="type">void</span> {
+    <span class="builtin">console</span>.log(<span class="string">'Component destroyed'</span>);
+    <span class="comment">// Cleanup subscriptions, timers, etc.</span>
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Templates & Data Binding -->
+        <div class="section" id="templates">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Templates & Data Binding</h2>
+            </div>
+
+            <p class="topic-description">
+                Angular templates use special syntax to bind data between the component and the view.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="link-2" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Types of Data Binding</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">data-binding.component.html</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">&lt;!-- 1. INTERPOLATION - Display data {{ }} --&gt;</span>
+<span class="tag">&lt;h1&gt;</span>{{ title }}<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ user.name }} - {{ user.email }}<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 2 + 2 }}<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ getFullName() }}<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- 2. PROPERTY BINDING - [ ] --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">[src]</span>=<span class="value">"imageUrl"</span> <span class="attr">[alt]</span>=<span class="value">"imageAlt"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">[disabled]</span>=<span class="value">"isLoading"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">[class.active]</span>=<span class="value">"isActive"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">[style.color]</span>=<span class="value">"textColor"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">[ngClass]</span>=<span class="value">"{'active': isActive, 'disabled': isDisabled}"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">[ngStyle]</span>=<span class="value">"{'color': textColor, 'font-size': fontSize + 'px'}"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- 3. EVENT BINDING - ( ) --&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">(click)</span>=<span class="value">"handleClick()"</span><span class="tag">&gt;</span>Click Me<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">(click)</span>=<span class="value">"handleClick($event)"</span><span class="tag">&gt;</span>With Event<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">(input)</span>=<span class="value">"onInput($event)"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">(keyup.enter)</span>=<span class="value">"onEnter()"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;form</span> <span class="attr">(submit)</span>=<span class="value">"onSubmit($event)"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/form&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">(mouseenter)</span>=<span class="value">"onHover()"</span> <span class="attr">(mouseleave)</span>=<span class="value">"onLeave()"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- 4. TWO-WAY BINDING - [( )] (Banana in a Box) --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">[(ngModel)]</span>=<span class="value">"username"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;p&gt;</span>Hello, {{ username }}!<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Equivalent to: --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">[ngModel]</span>=<span class="value">"username"</span> <span class="attr">(ngModelChange)</span>=<span class="value">"username = $event"</span><span class="tag">&gt;</span></pre>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i data-lucide="alert-triangle" style="width:18px;height:18px;"></i> FormsModule Required!</h4>
+                    <p>To use <code>[(ngModel)]</code>, import <code>FormsModule</code> in your module.</p>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="hash" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Template Reference Variables</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">template-ref.component.html</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">&lt;!-- Create reference with # --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">#nameInput</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">placeholder</span>=<span class="value">"Enter name"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">(click)</span>=<span class="value">"greet(nameInput.value)"</span><span class="tag">&gt;</span>Greet<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- Display input length --&gt;</span>
+<span class="tag">&lt;p&gt;</span>Length: {{ nameInput.value.length }}<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Access in component with @ViewChild --&gt;</span></pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">component.ts - @ViewChild</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Component, ViewChild, ElementRef, AfterViewInit } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+
+<span class="decorator">@Component</span>({...})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">MyComponent</span> <span class="keyword">implements</span> AfterViewInit {
+  
+  <span class="decorator">@ViewChild</span>(<span class="string">'nameInput'</span>) <span class="property">inputRef</span>!: ElementRef&lt;HTMLInputElement&gt;;
+  
+  <span class="function">ngAfterViewInit</span>(): <span class="type">void</span> {
+    <span class="comment">// Focus input on load</span>
+    <span class="keyword">this</span>.inputRef.nativeElement.focus();
+  }
+  
+  <span class="function">greet</span>(<span class="property">name</span>: <span class="type">string</span>): <span class="type">void</span> {
+    <span class="builtin">alert</span>(<span class="string">`Hello, </span>${name}<span class="string">!`</span>);
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Directives -->
+        <div class="section" id="directives">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Directives</h2>
+            </div>
+
+            <p class="topic-description">
+                Directives are instructions in the DOM. Angular has three types: Components, 
+                Structural directives, and Attribute directives.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="layout-template" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Structural Directives</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">structural-directives.html</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">&lt;!-- *ngIf - Conditional rendering --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">*ngIf</span>=<span class="value">"isLoggedIn"</span><span class="tag">&gt;</span>Welcome back!<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- *ngIf with else --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">*ngIf</span>=<span class="value">"isLoggedIn; else loginTemplate"</span><span class="tag">&gt;</span>
+  Welcome, {{ userName }}!
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;ng-template</span> <span class="attr">#loginTemplate</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;button&gt;</span>Please Login<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/ng-template&gt;</span>
+
+<span class="comment">&lt;!-- *ngIf with then and else --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">*ngIf</span>=<span class="value">"isLoading; then loadingTpl; else contentTpl"</span><span class="tag">&gt;&lt;/div&gt;</span>
+<span class="tag">&lt;ng-template</span> <span class="attr">#loadingTpl</span><span class="tag">&gt;</span>Loading...<span class="tag">&lt;/ng-template&gt;</span>
+<span class="tag">&lt;ng-template</span> <span class="attr">#contentTpl</span><span class="tag">&gt;</span>Content loaded!<span class="tag">&lt;/ng-template&gt;</span>
+
+<span class="comment">&lt;!-- *ngFor - Loop through arrays --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li</span> <span class="attr">*ngFor</span>=<span class="value">"let item of items"</span><span class="tag">&gt;</span>{{ item }}<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="comment">&lt;!-- *ngFor with index and other variables --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">*ngFor</span>=<span class="value">"let user of users; let i = index; let first = first; let last = last; let even = even"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p</span> <span class="attr">[class.highlight]</span>=<span class="value">"even"</span><span class="tag">&gt;</span>
+    {{ i + 1 }}. {{ user.name }}
+    <span class="tag">&lt;span</span> <span class="attr">*ngIf</span>=<span class="value">"first"</span><span class="tag">&gt;</span>(First)<span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;span</span> <span class="attr">*ngIf</span>=<span class="value">"last"</span><span class="tag">&gt;</span>(Last)<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- *ngFor with trackBy for performance --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">*ngFor</span>=<span class="value">"let item of items; trackBy: trackById"</span><span class="tag">&gt;</span>
+  {{ item.name }}
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- ngSwitch --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">[ngSwitch]</span>=<span class="value">"status"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p</span> <span class="attr">*ngSwitchCase</span>=<span class="value">"'active'"</span><span class="tag">&gt;</span>User is active<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p</span> <span class="attr">*ngSwitchCase</span>=<span class="value">"'inactive'"</span><span class="tag">&gt;</span>User is inactive<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p</span> <span class="attr">*ngSwitchCase</span>=<span class="value">"'pending'"</span><span class="tag">&gt;</span>User is pending<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p</span> <span class="attr">*ngSwitchDefault</span><span class="tag">&gt;</span>Unknown status<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="sparkles" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Custom Directive</h3>
+                </div>
+
+                <div class="terminal-block">
+                    <div class="terminal-header">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="terminal-title">Terminal</span>
+                    </div>
+                    <div class="terminal-content">
+<span class="prompt">$</span> <span class="command">ng generate directive highlight</span>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">highlight.directive.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Directive, ElementRef, HostListener, Input } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+
+<span class="decorator">@Directive</span>({
+  <span class="property">selector</span>: <span class="string">'[appHighlight]'</span>
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">HighlightDirective</span> {
+  
+  <span class="decorator">@Input</span>() <span class="property">appHighlight</span>: <span class="type">string</span> = <span class="string">'yellow'</span>;
+  <span class="decorator">@Input</span>() <span class="property">defaultColor</span>: <span class="type">string</span> = <span class="string">'transparent'</span>;
+  
+  <span class="function">constructor</span>(<span class="keyword">private</span> <span class="property">el</span>: ElementRef) {}
+  
+  <span class="decorator">@HostListener</span>(<span class="string">'mouseenter'</span>)
+  <span class="function">onMouseEnter</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.highlight(<span class="keyword">this</span>.appHighlight || <span class="string">'yellow'</span>);
+  }
+  
+  <span class="decorator">@HostListener</span>(<span class="string">'mouseleave'</span>)
+  <span class="function">onMouseLeave</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.highlight(<span class="keyword">this</span>.defaultColor);
+  }
+  
+  <span class="keyword">private</span> <span class="function">highlight</span>(<span class="property">color</span>: <span class="type">string</span>): <span class="type">void</span> {
+    <span class="keyword">this</span>.el.nativeElement.style.backgroundColor = color;
+  }
+}</pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">Usage in template</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">&lt;!-- Default highlight (yellow) --&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">appHighlight</span><span class="tag">&gt;</span>Hover over me!<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Custom highlight color --&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">[appHighlight]</span>=<span class="value">"'lightblue'"</span><span class="tag">&gt;</span>Blue highlight<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- With default color --&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">appHighlight</span>=<span class="value">"pink"</span> <span class="attr">defaultColor</span>=<span class="value">"lightgray"</span><span class="tag">&gt;</span>Pink highlight<span class="tag">&lt;/p&gt;</span></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Services & DI -->
+        <div class="section" id="services">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">Services & Dependency Injection</h2>
+            </div>
+
+            <p class="topic-description">
+                Services are classes that handle business logic, data fetching, and shared functionality. 
+                Angular's Dependency Injection system makes services available throughout your app.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="cog" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Creating a Service</h3>
+                </div>
+
+                <div class="terminal-block">
+                    <div class="terminal-header">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="terminal-title">Terminal</span>
+                    </div>
+                    <div class="terminal-content">
+<span class="prompt">$</span> <span class="command">ng generate service services/user</span>
+<span class="output">CREATE src/app/services/user.service.spec.ts
+CREATE src/app/services/user.service.ts</span>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">services/user.service.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Injectable } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+<span class="keyword">import</span> { HttpClient } <span class="keyword">from</span> <span class="string">'@angular/common/http'</span>;
+<span class="keyword">import</span> { Observable, BehaviorSubject } <span class="keyword">from</span> <span class="string">'rxjs'</span>;
+
+<span class="keyword">export</span> <span class="keyword">interface</span> <span class="class">User</span> {
+  <span class="property">id</span>: <span class="type">number</span>;
+  <span class="property">name</span>: <span class="type">string</span>;
+  <span class="property">email</span>: <span class="type">string</span>;
+}
+
+<span class="decorator">@Injectable</span>({
+  <span class="property">providedIn</span>: <span class="string">'root'</span>  <span class="comment">// Available app-wide</span>
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">UserService</span> {
+  
+  <span class="keyword">private</span> <span class="property">apiUrl</span> = <span class="string">'https://api.example.com/users'</span>;
+  <span class="keyword">private</span> <span class="property">currentUserSubject</span> = <span class="keyword">new</span> BehaviorSubject&lt;User | <span class="type">null</span>&gt;(<span class="keyword">null</span>);
+  
+  <span class="comment">// Observable for components to subscribe</span>
+  <span class="property">currentUser$</span> = <span class="keyword">this</span>.currentUserSubject.asObservable();
+  
+  <span class="function">constructor</span>(<span class="keyword">private</span> <span class="property">http</span>: HttpClient) {}
+  
+  <span class="comment">// Get all users</span>
+  <span class="function">getUsers</span>(): Observable&lt;User[]&gt; {
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.get&lt;User[]&gt;(<span class="keyword">this</span>.apiUrl);
+  }
+  
+  <span class="comment">// Get user by ID</span>
+  <span class="function">getUserById</span>(<span class="property">id</span>: <span class="type">number</span>): Observable&lt;User&gt; {
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.get&lt;User&gt;(<span class="string">`</span>${<span class="keyword">this</span>.apiUrl}<span class="string">/</span>${id}<span class="string">`</span>);
+  }
+  
+  <span class="comment">// Create user</span>
+  <span class="function">createUser</span>(<span class="property">user</span>: Omit&lt;User, <span class="string">'id'</span>&gt;): Observable&lt;User&gt; {
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.post&lt;User&gt;(<span class="keyword">this</span>.apiUrl, user);
+  }
+  
+  <span class="comment">// Update user</span>
+  <span class="function">updateUser</span>(<span class="property">id</span>: <span class="type">number</span>, <span class="property">user</span>: Partial&lt;User&gt;): Observable&lt;User&gt; {
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.put&lt;User&gt;(<span class="string">`</span>${<span class="keyword">this</span>.apiUrl}<span class="string">/</span>${id}<span class="string">`</span>, user);
+  }
+  
+  <span class="comment">// Delete user</span>
+  <span class="function">deleteUser</span>(<span class="property">id</span>: <span class="type">number</span>): Observable&lt;<span class="type">void</span>&gt; {
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.delete&lt;<span class="type">void</span>&gt;(<span class="string">`</span>${<span class="keyword">this</span>.apiUrl}<span class="string">/</span>${id}<span class="string">`</span>);
+  }
+  
+  <span class="comment">// Set current user</span>
+  <span class="function">setCurrentUser</span>(<span class="property">user</span>: User): <span class="type">void</span> {
+    <span class="keyword">this</span>.currentUserSubject.next(user);
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="syringe" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Using Service in Component</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">user-list.component.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Component, OnInit, OnDestroy } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+<span class="keyword">import</span> { UserService, User } <span class="keyword">from</span> <span class="string">'../services/user.service'</span>;
+<span class="keyword">import</span> { Subscription } <span class="keyword">from</span> <span class="string">'rxjs'</span>;
+
+<span class="decorator">@Component</span>({
+  <span class="property">selector</span>: <span class="string">'app-user-list'</span>,
+  <span class="property">templateUrl</span>: <span class="string">'./user-list.component.html'</span>
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">UserListComponent</span> <span class="keyword">implements</span> OnInit, OnDestroy {
+  
+  <span class="property">users</span>: User[] = [];
+  <span class="property">loading</span> = <span class="keyword">false</span>;
+  <span class="property">error</span>: <span class="type">string</span> | <span class="type">null</span> = <span class="keyword">null</span>;
+  <span class="keyword">private</span> <span class="property">subscription</span>!: Subscription;
+  
+  <span class="comment">// Inject service via constructor</span>
+  <span class="function">constructor</span>(<span class="keyword">private</span> <span class="property">userService</span>: UserService) {}
+  
+  <span class="function">ngOnInit</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.loadUsers();
+  }
+  
+  <span class="function">loadUsers</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.loading = <span class="keyword">true</span>;
+    <span class="keyword">this</span>.subscription = <span class="keyword">this</span>.userService.getUsers().subscribe({
+      <span class="function">next</span>: (<span class="property">users</span>) => {
+        <span class="keyword">this</span>.users = users;
+        <span class="keyword">this</span>.loading = <span class="keyword">false</span>;
+      },
+      <span class="function">error</span>: (<span class="property">err</span>) => {
+        <span class="keyword">this</span>.error = <span class="string">'Failed to load users'</span>;
+        <span class="keyword">this</span>.loading = <span class="keyword">false</span>;
+        <span class="builtin">console</span>.error(err);
+      }
+    });
+  }
+  
+  <span class="function">selectUser</span>(<span class="property">user</span>: User): <span class="type">void</span> {
+    <span class="keyword">this</span>.userService.setCurrentUser(user);
+  }
+  
+  <span class="function">deleteUser</span>(<span class="property">id</span>: <span class="type">number</span>): <span class="type">void</span> {
+    <span class="keyword">this</span>.userService.deleteUser(id).subscribe({
+      <span class="function">next</span>: () => {
+        <span class="keyword">this</span>.users = <span class="keyword">this</span>.users.filter(<span class="property">u</span> => u.id !== id);
+      },
+      <span class="function">error</span>: (<span class="property">err</span>) => <span class="builtin">console</span>.error(err)
+    });
+  }
+  
+  <span class="function">ngOnDestroy</span>(): <span class="type">void</span> {
+    <span class="comment">// Clean up subscription</span>
+    <span class="keyword">if</span> (<span class="keyword">this</span>.subscription) {
+      <span class="keyword">this</span>.subscription.unsubscribe();
+    }
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: Routing -->
+        <div class="section" id="routing">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2 class="section-title">Routing & Navigation</h2>
+            </div>
+
+            <p class="topic-description">
+                Angular Router enables navigation between views and supports features like 
+                lazy loading, route guards, and nested routes.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="route" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Route Configuration</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">app-routing.module.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { NgModule } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+<span class="keyword">import</span> { RouterModule, Routes } <span class="keyword">from</span> <span class="string">'@angular/router'</span>;
+
+<span class="keyword">import</span> { HomeComponent } <span class="keyword">from</span> <span class="string">'./home/home.component'</span>;
+<span class="keyword">import</span> { AboutComponent } <span class="keyword">from</span> <span class="string">'./about/about.component'</span>;
+<span class="keyword">import</span> { UserListComponent } <span class="keyword">from</span> <span class="string">'./user-list/user-list.component'</span>;
+<span class="keyword">import</span> { UserDetailComponent } <span class="keyword">from</span> <span class="string">'./user-detail/user-detail.component'</span>;
+<span class="keyword">import</span> { NotFoundComponent } <span class="keyword">from</span> <span class="string">'./not-found/not-found.component'</span>;
+<span class="keyword">import</span> { AuthGuard } <span class="keyword">from</span> <span class="string">'./guards/auth.guard'</span>;
+
+<span class="keyword">const</span> <span class="property">routes</span>: Routes = [
+  <span class="comment">// Basic routes</span>
+  { <span class="property">path</span>: <span class="string">''</span>, <span class="property">component</span>: HomeComponent },
+  { <span class="property">path</span>: <span class="string">'about'</span>, <span class="property">component</span>: AboutComponent },
+  
+  <span class="comment">// Route with parameter</span>
+  { <span class="property">path</span>: <span class="string">'users'</span>, <span class="property">component</span>: UserListComponent },
+  { <span class="property">path</span>: <span class="string">'users/:id'</span>, <span class="property">component</span>: UserDetailComponent },
+  
+  <span class="comment">// Protected route with guard</span>
+  { 
+    <span class="property">path</span>: <span class="string">'dashboard'</span>, 
+    <span class="property">component</span>: DashboardComponent,
+    <span class="property">canActivate</span>: [AuthGuard]
+  },
+  
+  <span class="comment">// Lazy loaded module</span>
+  {
+    <span class="property">path</span>: <span class="string">'admin'</span>,
+    <span class="property">loadChildren</span>: () => <span class="keyword">import</span>(<span class="string">'./admin/admin.module'</span>)
+      .then(<span class="property">m</span> => m.AdminModule),
+    <span class="property">canActivate</span>: [AuthGuard]
+  },
+  
+  <span class="comment">// Redirect</span>
+  { <span class="property">path</span>: <span class="string">'home'</span>, <span class="property">redirectTo</span>: <span class="string">''</span>, <span class="property">pathMatch</span>: <span class="string">'full'</span> },
+  
+  <span class="comment">// Wildcard - 404 page</span>
+  { <span class="property">path</span>: <span class="string">'**'</span>, <span class="property">component</span>: NotFoundComponent }
+];
+
+<span class="decorator">@NgModule</span>({
+  <span class="property">imports</span>: [RouterModule.forRoot(routes)],
+  <span class="property">exports</span>: [RouterModule]
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">AppRoutingModule</span> { }</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="link" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Navigation</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">navigation.component.html</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">&lt;!-- Router outlet - where routed components render --&gt;</span>
+<span class="tag">&lt;router-outlet&gt;&lt;/router-outlet&gt;</span>
+
+<span class="comment">&lt;!-- Navigation links --&gt;</span>
+<span class="tag">&lt;nav&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">routerLink</span>=<span class="value">"/"</span> <span class="attr">routerLinkActive</span>=<span class="value">"active"</span> <span class="attr">[routerLinkActiveOptions]</span>=<span class="value">"{exact: true}"</span><span class="tag">&gt;</span>
+    Home
+  <span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">routerLink</span>=<span class="value">"/about"</span> <span class="attr">routerLinkActive</span>=<span class="value">"active"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">routerLink</span>=<span class="value">"/users"</span> <span class="attr">routerLinkActive</span>=<span class="value">"active"</span><span class="tag">&gt;</span>Users<span class="tag">&lt;/a&gt;</span>
+  
+  <span class="comment">&lt;!-- Dynamic route --&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">[routerLink]</span>=<span class="value">"['/users', userId]"</span><span class="tag">&gt;</span>User Profile<span class="tag">&lt;/a&gt;</span>
+  
+  <span class="comment">&lt;!-- With query params --&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">[routerLink]</span>=<span class="value">"['/users']"</span> <span class="attr">[queryParams]</span>=<span class="value">"{page: 1, sort: 'name'}"</span><span class="tag">&gt;</span>
+    Users Page 1
+  <span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/nav&gt;</span></pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">Programmatic Navigation</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Router, ActivatedRoute } <span class="keyword">from</span> <span class="string">'@angular/router'</span>;
+
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">UserDetailComponent</span> <span class="keyword">implements</span> OnInit {
+  <span class="property">userId</span>!: <span class="type">string</span>;
+  
+  <span class="function">constructor</span>(
+    <span class="keyword">private</span> <span class="property">router</span>: Router,
+    <span class="keyword">private</span> <span class="property">route</span>: ActivatedRoute
+  ) {}
+  
+  <span class="function">ngOnInit</span>(): <span class="type">void</span> {
+    <span class="comment">// Get route parameter</span>
+    <span class="keyword">this</span>.userId = <span class="keyword">this</span>.route.snapshot.paramMap.get(<span class="string">'id'</span>) || <span class="string">''</span>;
+    
+    <span class="comment">// Subscribe to param changes</span>
+    <span class="keyword">this</span>.route.paramMap.subscribe(<span class="property">params</span> => {
+      <span class="keyword">this</span>.userId = params.get(<span class="string">'id'</span>) || <span class="string">''</span>;
+    });
+    
+    <span class="comment">// Get query params</span>
+    <span class="keyword">this</span>.route.queryParamMap.subscribe(<span class="property">params</span> => {
+      <span class="keyword">const</span> <span class="property">page</span> = params.get(<span class="string">'page'</span>);
+    });
+  }
+  
+  <span class="function">goToUsers</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.router.navigate([<span class="string">'/users'</span>]);
+  }
+  
+  <span class="function">goToUserWithParams</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.router.navigate([<span class="string">'/users'</span>, <span class="number">123</span>], {
+      <span class="property">queryParams</span>: { <span class="property">tab</span>: <span class="string">'profile'</span> }
+    });
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="shield" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Route Guards</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">guards/auth.guard.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Injectable } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+<span class="keyword">import</span> { 
+  CanActivate, Router, ActivatedRouteSnapshot, 
+  RouterStateSnapshot, UrlTree 
+} <span class="keyword">from</span> <span class="string">'@angular/router'</span>;
+<span class="keyword">import</span> { Observable } <span class="keyword">from</span> <span class="string">'rxjs'</span>;
+<span class="keyword">import</span> { AuthService } <span class="keyword">from</span> <span class="string">'../services/auth.service'</span>;
+
+<span class="decorator">@Injectable</span>({
+  <span class="property">providedIn</span>: <span class="string">'root'</span>
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">AuthGuard</span> <span class="keyword">implements</span> CanActivate {
+  
+  <span class="function">constructor</span>(
+    <span class="keyword">private</span> <span class="property">authService</span>: AuthService,
+    <span class="keyword">private</span> <span class="property">router</span>: Router
+  ) {}
+  
+  <span class="function">canActivate</span>(
+    <span class="property">route</span>: ActivatedRouteSnapshot,
+    <span class="property">state</span>: RouterStateSnapshot
+  ): Observable&lt;<span class="type">boolean</span> | UrlTree&gt; | <span class="type">boolean</span> | UrlTree {
+    
+    <span class="keyword">if</span> (<span class="keyword">this</span>.authService.isLoggedIn()) {
+      <span class="keyword">return</span> <span class="keyword">true</span>;
+    }
+    
+    <span class="comment">// Redirect to login with return URL</span>
+    <span class="keyword">return</span> <span class="keyword">this</span>.router.createUrlTree([<span class="string">'/login'</span>], {
+      <span class="property">queryParams</span>: { <span class="property">returnUrl</span>: state.url }
+    });
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9: Forms -->
+        <div class="section" id="forms">
+            <div class="section-header">
+                <div class="section-number">9</div>
+                <h2 class="section-title">Forms</h2>
+            </div>
+
+            <p class="topic-description">
+                Angular provides two approaches to forms: Template-driven and Reactive forms.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="file-input" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Template-Driven Forms</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">template-form.component.html</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="tag">&lt;form</span> <span class="attr">#userForm</span>=<span class="value">"ngForm"</span> <span class="attr">(ngSubmit)</span>=<span class="value">"onSubmit(userForm)"</span><span class="tag">&gt;</span>
+  
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"form-group"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="value">"name"</span><span class="tag">&gt;</span>Name<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span>
+      <span class="attr">type</span>=<span class="value">"text"</span>
+      <span class="attr">id</span>=<span class="value">"name"</span>
+      <span class="attr">name</span>=<span class="value">"name"</span>
+      <span class="attr">[(ngModel)]</span>=<span class="value">"user.name"</span>
+      <span class="attr">required</span>
+      <span class="attr">minlength</span>=<span class="value">"3"</span>
+      <span class="attr">#name</span>=<span class="value">"ngModel"</span>
+    <span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">*ngIf</span>=<span class="value">"name.invalid && name.touched"</span> <span class="attr">class</span>=<span class="value">"error"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">*ngIf</span>=<span class="value">"name.errors?.['required']"</span><span class="tag">&gt;</span>Name is required<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">*ngIf</span>=<span class="value">"name.errors?.['minlength']"</span><span class="tag">&gt;</span>Min 3 characters<span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"form-group"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="value">"email"</span><span class="tag">&gt;</span>Email<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span>
+      <span class="attr">type</span>=<span class="value">"email"</span>
+      <span class="attr">id</span>=<span class="value">"email"</span>
+      <span class="attr">name</span>=<span class="value">"email"</span>
+      <span class="attr">[(ngModel)]</span>=<span class="value">"user.email"</span>
+      <span class="attr">required</span>
+      <span class="attr">email</span>
+      <span class="attr">#email</span>=<span class="value">"ngModel"</span>
+    <span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">*ngIf</span>=<span class="value">"email.invalid && email.touched"</span> <span class="attr">class</span>=<span class="value">"error"</span><span class="tag">&gt;</span>
+      Please enter a valid email
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  
+  <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="value">"submit"</span> <span class="attr">[disabled]</span>=<span class="value">"userForm.invalid"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
+  
+<span class="tag">&lt;/form&gt;</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="code-2" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Reactive Forms</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">reactive-form.component.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Component, OnInit } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+<span class="keyword">import</span> { FormBuilder, FormGroup, Validators } <span class="keyword">from</span> <span class="string">'@angular/forms'</span>;
+
+<span class="decorator">@Component</span>({
+  <span class="property">selector</span>: <span class="string">'app-reactive-form'</span>,
+  <span class="property">templateUrl</span>: <span class="string">'./reactive-form.component.html'</span>
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">ReactiveFormComponent</span> <span class="keyword">implements</span> OnInit {
+  
+  <span class="property">userForm</span>!: FormGroup;
+  
+  <span class="function">constructor</span>(<span class="keyword">private</span> <span class="property">fb</span>: FormBuilder) {}
+  
+  <span class="function">ngOnInit</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.userForm = <span class="keyword">this</span>.fb.group({
+      <span class="property">name</span>: [<span class="string">''</span>, [Validators.required, Validators.minLength(<span class="number">3</span>)]],
+      <span class="property">email</span>: [<span class="string">''</span>, [Validators.required, Validators.email]],
+      <span class="property">password</span>: [<span class="string">''</span>, [Validators.required, Validators.minLength(<span class="number">8</span>)]],
+      <span class="property">address</span>: <span class="keyword">this</span>.fb.group({
+        <span class="property">street</span>: [<span class="string">''</span>],
+        <span class="property">city</span>: [<span class="string">''</span>, Validators.required],
+        <span class="property">zipCode</span>: [<span class="string">''</span>, Validators.pattern(<span class="string">/^\d{5}$/</span>)]
+      })
+    });
+  }
+  
+  <span class="comment">// Convenience getters</span>
+  <span class="keyword">get</span> <span class="function">name</span>() { <span class="keyword">return</span> <span class="keyword">this</span>.userForm.get(<span class="string">'name'</span>); }
+  <span class="keyword">get</span> <span class="function">email</span>() { <span class="keyword">return</span> <span class="keyword">this</span>.userForm.get(<span class="string">'email'</span>); }
+  <span class="keyword">get</span> <span class="function">password</span>() { <span class="keyword">return</span> <span class="keyword">this</span>.userForm.get(<span class="string">'password'</span>); }
+  
+  <span class="function">onSubmit</span>(): <span class="type">void</span> {
+    <span class="keyword">if</span> (<span class="keyword">this</span>.userForm.valid) {
+      <span class="builtin">console</span>.log(<span class="keyword">this</span>.userForm.value);
+    }
+  }
+  
+  <span class="function">resetForm</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.userForm.reset();
+  }
+}</pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">reactive-form.component.html</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="tag">&lt;form</span> <span class="attr">[formGroup]</span>=<span class="value">"userForm"</span> <span class="attr">(ngSubmit)</span>=<span class="value">"onSubmit()"</span><span class="tag">&gt;</span>
+  
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"form-group"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label&gt;</span>Name<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">formControlName</span>=<span class="value">"name"</span> <span class="attr">type</span>=<span class="value">"text"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">*ngIf</span>=<span class="value">"name?.invalid && name?.touched"</span> <span class="attr">class</span>=<span class="value">"error"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">*ngIf</span>=<span class="value">"name?.errors?.['required']"</span><span class="tag">&gt;</span>Name is required<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">*ngIf</span>=<span class="value">"name?.errors?.['minlength']"</span><span class="tag">&gt;</span>Min 3 characters<span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"form-group"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label&gt;</span>Email<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">formControlName</span>=<span class="value">"email"</span> <span class="attr">type</span>=<span class="value">"email"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  
+  <span class="comment">&lt;!-- Nested form group --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">formGroupName</span>=<span class="value">"address"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">formControlName</span>=<span class="value">"street"</span> <span class="attr">placeholder</span>=<span class="value">"Street"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">formControlName</span>=<span class="value">"city"</span> <span class="attr">placeholder</span>=<span class="value">"City"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">formControlName</span>=<span class="value">"zipCode"</span> <span class="attr">placeholder</span>=<span class="value">"Zip Code"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  
+  <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="value">"submit"</span> <span class="attr">[disabled]</span>=<span class="value">"userForm.invalid"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
+  
+<span class="tag">&lt;/form&gt;</span></pre>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4><i data-lucide="info" style="width:18px;height:18px;"></i> Import ReactiveFormsModule</h4>
+                    <p>Don't forget to import <code>ReactiveFormsModule</code> in your module!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 10: HTTP -->
+        <div class="section" id="http">
+            <div class="section-header">
+                <div class="section-number">10</div>
+                <h2 class="section-title">HTTP & APIs</h2>
+            </div>
+
+            <p class="topic-description">
+                Angular's HttpClient module provides a simplified API for HTTP functionality.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="globe" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">HTTP Client Setup</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">app.module.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { HttpClientModule } <span class="keyword">from</span> <span class="string">'@angular/common/http'</span>;
+
+<span class="decorator">@NgModule</span>({
+  <span class="property">imports</span>: [
+    BrowserModule,
+    HttpClientModule,  <span class="comment">// Add this</span>
+    ...
+  ],
+  ...
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">AppModule</span> { }</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="send" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">API Service with HTTP Methods</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">api.service.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Injectable } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+<span class="keyword">import</span> { HttpClient, HttpHeaders, HttpParams } <span class="keyword">from</span> <span class="string">'@angular/common/http'</span>;
+<span class="keyword">import</span> { Observable, throwError } <span class="keyword">from</span> <span class="string">'rxjs'</span>;
+<span class="keyword">import</span> { catchError, retry, map } <span class="keyword">from</span> <span class="string">'rxjs/operators'</span>;
+
+<span class="keyword">interface</span> <span class="class">Post</span> {
+  <span class="property">id</span>: <span class="type">number</span>;
+  <span class="property">title</span>: <span class="type">string</span>;
+  <span class="property">body</span>: <span class="type">string</span>;
+  <span class="property">userId</span>: <span class="type">number</span>;
+}
+
+<span class="decorator">@Injectable</span>({ <span class="property">providedIn</span>: <span class="string">'root'</span> })
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">ApiService</span> {
+  
+  <span class="keyword">private</span> <span class="property">baseUrl</span> = <span class="string">'https://jsonplaceholder.typicode.com'</span>;
+  
+  <span class="keyword">private</span> <span class="property">httpOptions</span> = {
+    <span class="property">headers</span>: <span class="keyword">new</span> HttpHeaders({
+      <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,
+      <span class="string">'Authorization'</span>: <span class="string">'Bearer token'</span>
+    })
+  };
+  
+  <span class="function">constructor</span>(<span class="keyword">private</span> <span class="property">http</span>: HttpClient) {}
+  
+  <span class="comment">// GET - Fetch all posts</span>
+  <span class="function">getPosts</span>(): Observable&lt;Post[]&gt; {
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.get&lt;Post[]&gt;(<span class="string">`</span>${<span class="keyword">this</span>.baseUrl}<span class="string">/posts`</span>).pipe(
+      retry(<span class="number">2</span>),
+      catchError(<span class="keyword">this</span>.handleError)
+    );
+  }
+  
+  <span class="comment">// GET with query params</span>
+  <span class="function">getPostsByUser</span>(<span class="property">userId</span>: <span class="type">number</span>): Observable&lt;Post[]&gt; {
+    <span class="keyword">const</span> <span class="property">params</span> = <span class="keyword">new</span> HttpParams().set(<span class="string">'userId'</span>, userId.toString());
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.get&lt;Post[]&gt;(<span class="string">`</span>${<span class="keyword">this</span>.baseUrl}<span class="string">/posts`</span>, { params });
+  }
+  
+  <span class="comment">// GET single item</span>
+  <span class="function">getPost</span>(<span class="property">id</span>: <span class="type">number</span>): Observable&lt;Post&gt; {
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.get&lt;Post&gt;(<span class="string">`</span>${<span class="keyword">this</span>.baseUrl}<span class="string">/posts/</span>${id}<span class="string">`</span>);
+  }
+  
+  <span class="comment">// POST - Create</span>
+  <span class="function">createPost</span>(<span class="property">post</span>: Omit&lt;Post, <span class="string">'id'</span>&gt;): Observable&lt;Post&gt; {
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.post&lt;Post&gt;(
+      <span class="string">`</span>${<span class="keyword">this</span>.baseUrl}<span class="string">/posts`</span>,
+      post,
+      <span class="keyword">this</span>.httpOptions
+    );
+  }
+  
+  <span class="comment">// PUT - Update</span>
+  <span class="function">updatePost</span>(<span class="property">id</span>: <span class="type">number</span>, <span class="property">post</span>: Partial&lt;Post&gt;): Observable&lt;Post&gt; {
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.put&lt;Post&gt;(
+      <span class="string">`</span>${<span class="keyword">this</span>.baseUrl}<span class="string">/posts/</span>${id}<span class="string">`</span>,
+      post,
+      <span class="keyword">this</span>.httpOptions
+    );
+  }
+  
+  <span class="comment">// DELETE</span>
+  <span class="function">deletePost</span>(<span class="property">id</span>: <span class="type">number</span>): Observable&lt;<span class="type">void</span>&gt; {
+    <span class="keyword">return</span> <span class="keyword">this</span>.http.delete&lt;<span class="type">void</span>&gt;(<span class="string">`</span>${<span class="keyword">this</span>.baseUrl}<span class="string">/posts/</span>${id}<span class="string">`</span>);
+  }
+  
+  <span class="comment">// Error handling</span>
+  <span class="keyword">private</span> <span class="function">handleError</span>(<span class="property">error</span>: <span class="type">any</span>): Observable&lt;<span class="type">never</span>&gt; {
+    <span class="builtin">console</span>.error(<span class="string">'An error occurred:'</span>, error);
+    <span class="keyword">return</span> throwError(() => <span class="keyword">new</span> Error(<span class="string">'Something went wrong'</span>));
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="filter" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">HTTP Interceptors</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">interceptors/auth.interceptor.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Injectable } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+<span class="keyword">import</span> {
+  HttpInterceptor, HttpRequest, HttpHandler,
+  HttpEvent, HttpErrorResponse
+} <span class="keyword">from</span> <span class="string">'@angular/common/http'</span>;
+<span class="keyword">import</span> { Observable, throwError } <span class="keyword">from</span> <span class="string">'rxjs'</span>;
+<span class="keyword">import</span> { catchError } <span class="keyword">from</span> <span class="string">'rxjs/operators'</span>;
+
+<span class="decorator">@Injectable</span>()
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">AuthInterceptor</span> <span class="keyword">implements</span> HttpInterceptor {
+  
+  <span class="function">intercept</span>(
+    <span class="property">req</span>: HttpRequest&lt;<span class="type">any</span>&gt;,
+    <span class="property">next</span>: HttpHandler
+  ): Observable&lt;HttpEvent&lt;<span class="type">any</span>&gt;&gt; {
+    
+    <span class="comment">// Get token from storage</span>
+    <span class="keyword">const</span> <span class="property">token</span> = localStorage.getItem(<span class="string">'token'</span>);
+    
+    <span class="comment">// Clone request and add auth header</span>
+    <span class="keyword">if</span> (token) {
+      <span class="keyword">const</span> <span class="property">authReq</span> = req.clone({
+        <span class="property">setHeaders</span>: {
+          <span class="property">Authorization</span>: <span class="string">`Bearer </span>${token}<span class="string">`</span>
+        }
+      });
+      <span class="keyword">return</span> next.handle(authReq).pipe(
+        catchError(<span class="keyword">this</span>.handleError)
+      );
+    }
+    
+    <span class="keyword">return</span> next.handle(req);
+  }
+  
+  <span class="keyword">private</span> <span class="function">handleError</span>(<span class="property">error</span>: HttpErrorResponse): Observable&lt;<span class="type">never</span>&gt; {
+    <span class="keyword">if</span> (error.status === <span class="number">401</span>) {
+      <span class="comment">// Redirect to login</span>
+      <span class="builtin">console</span>.log(<span class="string">'Unauthorized - redirecting to login'</span>);
+    }
+    <span class="keyword">return</span> throwError(() => error);
+  }
+}</pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">app.module.ts - Register Interceptor</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { HTTP_INTERCEPTORS } <span class="keyword">from</span> <span class="string">'@angular/common/http'</span>;
+<span class="keyword">import</span> { AuthInterceptor } <span class="keyword">from</span> <span class="string">'./interceptors/auth.interceptor'</span>;
+
+<span class="decorator">@NgModule</span>({
+  <span class="property">providers</span>: [
+    {
+      <span class="property">provide</span>: HTTP_INTERCEPTORS,
+      <span class="property">useClass</span>: AuthInterceptor,
+      <span class="property">multi</span>: <span class="keyword">true</span>
+    }
+  ]
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">AppModule</span> { }</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 11: Pipes -->
+        <div class="section" id="pipes">
+            <div class="section-header">
+                <div class="section-number">11</div>
+                <h2 class="section-title">Pipes</h2>
+            </div>
+
+            <p class="topic-description">
+                Pipes transform data in templates. Angular provides built-in pipes and allows custom pipe creation.
+            </p>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="wand-2" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Built-in Pipes</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">pipes-example.component.html</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">&lt;!-- String pipes --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 'hello world' | uppercase }}<span class="tag">&lt;/p&gt;</span>  <span class="comment">&lt;!-- HELLO WORLD --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 'HELLO WORLD' | lowercase }}<span class="tag">&lt;/p&gt;</span>  <span class="comment">&lt;!-- hello world --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 'hello world' | titlecase }}<span class="tag">&lt;/p&gt;</span>  <span class="comment">&lt;!-- Hello World --&gt;</span>
+
+<span class="comment">&lt;!-- Date pipe --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ today | date }}<span class="tag">&lt;/p&gt;</span>                  <span class="comment">&lt;!-- Jan 25, 2025 --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ today | date:'short' }}<span class="tag">&lt;/p&gt;</span>          <span class="comment">&lt;!-- 1/25/25, 10:30 AM --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ today | date:'fullDate' }}<span class="tag">&lt;/p&gt;</span>       <span class="comment">&lt;!-- Saturday, January 25, 2025 --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ today | date:'yyyy-MM-dd' }}<span class="tag">&lt;/p&gt;</span>    <span class="comment">&lt;!-- 2025-01-25 --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ today | date:'HH:mm:ss' }}<span class="tag">&lt;/p&gt;</span>      <span class="comment">&lt;!-- 10:30:45 --&gt;</span>
+
+<span class="comment">&lt;!-- Number pipes --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 3.14159 | number:'1.2-2' }}<span class="tag">&lt;/p&gt;</span>     <span class="comment">&lt;!-- 3.14 --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 1234567 | number }}<span class="tag">&lt;/p&gt;</span>             <span class="comment">&lt;!-- 1,234,567 --&gt;</span>
+
+<span class="comment">&lt;!-- Currency pipe --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 99.99 | currency }}<span class="tag">&lt;/p&gt;</span>             <span class="comment">&lt;!-- $99.99 --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 99.99 | currency:'EUR' }}<span class="tag">&lt;/p&gt;</span>       <span class="comment">&lt;!-- €99.99 --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 99.99 | currency:'INR':'symbol' }}<span class="tag">&lt;/p&gt;</span> <span class="comment">&lt;!-- ₹99.99 --&gt;</span>
+
+<span class="comment">&lt;!-- Percent pipe --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 0.25 | percent }}<span class="tag">&lt;/p&gt;</span>               <span class="comment">&lt;!-- 25% --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 0.2567 | percent:'1.2-2' }}<span class="tag">&lt;/p&gt;</span>    <span class="comment">&lt;!-- 25.67% --&gt;</span>
+
+<span class="comment">&lt;!-- JSON pipe (useful for debugging) --&gt;</span>
+<span class="tag">&lt;pre&gt;</span>{{ user | json }}<span class="tag">&lt;/pre&gt;</span>
+
+<span class="comment">&lt;!-- Slice pipe --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ 'Hello World' | slice:0:5 }}<span class="tag">&lt;/p&gt;</span>    <span class="comment">&lt;!-- Hello --&gt;</span>
+<span class="tag">&lt;li</span> <span class="attr">*ngFor</span>=<span class="value">"let item of items | slice:0:5"</span><span class="tag">&gt;</span>{{ item }}<span class="tag">&lt;/li&gt;</span>
+
+<span class="comment">&lt;!-- Async pipe (auto subscribes/unsubscribes) --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ user$ | async }}<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">*ngIf</span>=<span class="value">"users$ | async as users"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p</span> <span class="attr">*ngFor</span>=<span class="value">"let user of users"</span><span class="tag">&gt;</span>{{ user.name }}<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- KeyValue pipe (for objects) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">*ngFor</span>=<span class="value">"let item of myObject | keyvalue"</span><span class="tag">&gt;</span>
+  {{ item.key }}: {{ item.value }}
+<span class="tag">&lt;/div&gt;</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="hammer" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Custom Pipe</h3>
+                </div>
+
+                <div class="terminal-block">
+                    <div class="terminal-header">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="terminal-title">Terminal</span>
+                    </div>
+                    <div class="terminal-content">
+<span class="prompt">$</span> <span class="command">ng generate pipe pipes/truncate</span>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">pipes/truncate.pipe.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Pipe, PipeTransform } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+
+<span class="decorator">@Pipe</span>({
+  <span class="property">name</span>: <span class="string">'truncate'</span>
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">TruncatePipe</span> <span class="keyword">implements</span> PipeTransform {
+  
+  <span class="function">transform</span>(
+    <span class="property">value</span>: <span class="type">string</span>,
+    <span class="property">limit</span>: <span class="type">number</span> = <span class="number">50</span>,
+    <span class="property">ellipsis</span>: <span class="type">string</span> = <span class="string">'...'</span>
+  ): <span class="type">string</span> {
+    <span class="keyword">if</span> (!value) <span class="keyword">return</span> <span class="string">''</span>;
+    <span class="keyword">if</span> (value.length <= limit) <span class="keyword">return</span> value;
+    <span class="keyword">return</span> value.substring(<span class="number">0</span>, limit) + ellipsis;
+  }
+}</pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">Usage in template</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="comment">&lt;!-- Default: 50 chars with ... --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ longText | truncate }}<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Custom limit --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ longText | truncate:100 }}<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Custom limit and ellipsis --&gt;</span>
+<span class="tag">&lt;p&gt;</span>{{ longText | truncate:30:' [Read More]' }}<span class="tag">&lt;/p&gt;</span></pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">pipes/time-ago.pipe.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Pipe, PipeTransform } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+
+<span class="decorator">@Pipe</span>({
+  <span class="property">name</span>: <span class="string">'timeAgo'</span>
+})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">TimeAgoPipe</span> <span class="keyword">implements</span> PipeTransform {
+  
+  <span class="function">transform</span>(<span class="property">value</span>: Date | <span class="type">string</span>): <span class="type">string</span> {
+    <span class="keyword">const</span> <span class="property">date</span> = <span class="keyword">new</span> Date(value);
+    <span class="keyword">const</span> <span class="property">now</span> = <span class="keyword">new</span> Date();
+    <span class="keyword">const</span> <span class="property">seconds</span> = Math.floor((now.getTime() - date.getTime()) / <span class="number">1000</span>);
+    
+    <span class="keyword">if</span> (seconds < <span class="number">60</span>) <span class="keyword">return</span> <span class="string">'Just now'</span>;
+    <span class="keyword">if</span> (seconds < <span class="number">3600</span>) <span class="keyword">return</span> <span class="string">`</span>${Math.floor(seconds / <span class="number">60</span>)}<span class="string"> minutes ago`</span>;
+    <span class="keyword">if</span> (seconds < <span class="number">86400</span>) <span class="keyword">return</span> <span class="string">`</span>${Math.floor(seconds / <span class="number">3600</span>)}<span class="string"> hours ago`</span>;
+    <span class="keyword">if</span> (seconds < <span class="number">604800</span>) <span class="keyword">return</span> <span class="string">`</span>${Math.floor(seconds / <span class="number">86400</span>)}<span class="string"> days ago`</span>;
+    
+    <span class="keyword">return</span> date.toLocaleDateString();
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 12: Advanced Topics -->
+        <div class="section" id="advanced">
+            <div class="section-header">
+                <div class="section-number">12</div>
+                <h2 class="section-title">Advanced Topics</h2>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="eye" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">RxJS Observables</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">rxjs-examples.component.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { Component, OnInit, OnDestroy } <span class="keyword">from</span> <span class="string">'@angular/core'</span>;
+<span class="keyword">import</span> { 
+  Observable, Subject, BehaviorSubject, 
+  Subscription, interval, fromEvent, of 
+} <span class="keyword">from</span> <span class="string">'rxjs'</span>;
+<span class="keyword">import</span> { 
+  map, filter, debounceTime, distinctUntilChanged,
+  switchMap, catchError, takeUntil, tap
+} <span class="keyword">from</span> <span class="string">'rxjs/operators'</span>;
+
+<span class="decorator">@Component</span>({...})
+<span class="keyword">export</span> <span class="keyword">class</span> <span class="class">RxjsExamplesComponent</span> <span class="keyword">implements</span> OnInit, OnDestroy {
+  
+  <span class="keyword">private</span> <span class="property">destroy$</span> = <span class="keyword">new</span> Subject&lt;<span class="type">void</span>&gt;();
+  <span class="property">searchResults$</span>!: Observable&lt;<span class="type">any</span>[]&gt;;
+  
+  <span class="function">ngOnInit</span>(): <span class="type">void</span> {
+    <span class="comment">// Example 1: Transform data with map</span>
+    of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).pipe(
+      map(<span class="property">x</span> => x * <span class="number">2</span>),
+      filter(<span class="property">x</span> => x > <span class="number">4</span>)
+    ).subscribe(<span class="property">val</span> => <span class="builtin">console</span>.log(val)); <span class="comment">// 6, 8, 10</span>
+    
+    <span class="comment">// Example 2: Search with debounce</span>
+    <span class="keyword">this</span>.searchResults$ = <span class="keyword">this</span>.searchInput$.pipe(
+      debounceTime(<span class="number">300</span>),
+      distinctUntilChanged(),
+      switchMap(<span class="property">term</span> => <span class="keyword">this</span>.searchService.search(term)),
+      catchError(<span class="property">err</span> => of([]))
+    );
+    
+    <span class="comment">// Example 3: Auto-unsubscribe with takeUntil</span>
+    interval(<span class="number">1000</span>).pipe(
+      takeUntil(<span class="keyword">this</span>.destroy$)
+    ).subscribe(<span class="property">val</span> => <span class="builtin">console</span>.log(val));
+  }
+  
+  <span class="function">ngOnDestroy</span>(): <span class="type">void</span> {
+    <span class="keyword">this</span>.destroy$.next();
+    <span class="keyword">this</span>.destroy$.complete();
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="box" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">State Management with NgRx</h3>
+                </div>
+
+                <div class="terminal-block">
+                    <div class="terminal-header">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="terminal-title">Terminal</span>
+                    </div>
+                    <div class="terminal-content">
+<span class="prompt">$</span> <span class="command">ng add @ngrx/store@latest</span>
+<span class="prompt">$</span> <span class="command">ng add @ngrx/effects@latest</span>
+<span class="prompt">$</span> <span class="command">ng add @ngrx/store-devtools@latest</span>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">store/user/user.actions.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { createAction, props } <span class="keyword">from</span> <span class="string">'@ngrx/store'</span>;
+<span class="keyword">import</span> { User } <span class="keyword">from</span> <span class="string">'../models/user.model'</span>;
+
+<span class="keyword">export</span> <span class="keyword">const</span> <span class="property">loadUsers</span> = createAction(<span class="string">'[User] Load Users'</span>);
+<span class="keyword">export</span> <span class="keyword">const</span> <span class="property">loadUsersSuccess</span> = createAction(
+  <span class="string">'[User] Load Users Success'</span>,
+  props&lt;{ <span class="property">users</span>: User[] }&gt;()
+);
+<span class="keyword">export</span> <span class="keyword">const</span> <span class="property">loadUsersFailure</span> = createAction(
+  <span class="string">'[User] Load Users Failure'</span>,
+  props&lt;{ <span class="property">error</span>: <span class="type">string</span> }&gt;()
+);</pre>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">store/user/user.reducer.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">import</span> { createReducer, on } <span class="keyword">from</span> <span class="string">'@ngrx/store'</span>;
+<span class="keyword">import</span> * <span class="keyword">as</span> UserActions <span class="keyword">from</span> <span class="string">'./user.actions'</span>;
+
+<span class="keyword">export</span> <span class="keyword">interface</span> <span class="class">UserState</span> {
+  <span class="property">users</span>: User[];
+  <span class="property">loading</span>: <span class="type">boolean</span>;
+  <span class="property">error</span>: <span class="type">string</span> | <span class="type">null</span>;
+}
+
+<span class="keyword">const</span> <span class="property">initialState</span>: UserState = {
+  <span class="property">users</span>: [],
+  <span class="property">loading</span>: <span class="keyword">false</span>,
+  <span class="property">error</span>: <span class="keyword">null</span>
+};
+
+<span class="keyword">export</span> <span class="keyword">const</span> <span class="property">userReducer</span> = createReducer(
+  initialState,
+  on(UserActions.loadUsers, (<span class="property">state</span>) => ({
+    ...state,
+    <span class="property">loading</span>: <span class="keyword">true</span>
+  })),
+  on(UserActions.loadUsersSuccess, (<span class="property">state</span>, { <span class="property">users</span> }) => ({
+    ...state,
+    <span class="property">users</span>,
+    <span class="property">loading</span>: <span class="keyword">false</span>
+  })),
+  on(UserActions.loadUsersFailure, (<span class="property">state</span>, { <span class="property">error</span> }) => ({
+    ...state,
+    <span class="property">error</span>,
+    <span class="property">loading</span>: <span class="keyword">false</span>
+  }))
+);</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="package" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Lazy Loading Modules</h3>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">app-routing.module.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">const</span> <span class="property">routes</span>: Routes = [
+  { <span class="property">path</span>: <span class="string">''</span>, <span class="property">component</span>: HomeComponent },
+  
+  <span class="comment">// Lazy loaded feature modules</span>
+  {
+    <span class="property">path</span>: <span class="string">'admin'</span>,
+    <span class="property">loadChildren</span>: () => <span class="keyword">import</span>(<span class="string">'./admin/admin.module'</span>)
+      .then(<span class="property">m</span> => m.AdminModule)
+  },
+  {
+    <span class="property">path</span>: <span class="string">'products'</span>,
+    <span class="property">loadChildren</span>: () => <span class="keyword">import</span>(<span class="string">'./products/products.module'</span>)
+      .then(<span class="property">m</span> => m.ProductsModule)
+  },
+  
+  <span class="comment">// Lazy load with preloading strategy</span>
+  {
+    <span class="property">path</span>: <span class="string">'dashboard'</span>,
+    <span class="property">loadChildren</span>: () => <span class="keyword">import</span>(<span class="string">'./dashboard/dashboard.module'</span>)
+      .then(<span class="property">m</span> => m.DashboardModule),
+    <span class="property">data</span>: { <span class="property">preload</span>: <span class="keyword">true</span> }
+  }
+];</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">
+                    <div class="topic-icon"><i data-lucide="rocket" style="width:20px;height:20px;"></i></div>
+                    <h3 class="topic-title">Production Build & Deployment</h3>
+                </div>
+
+                <div class="terminal-block">
+                    <div class="terminal-header">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="terminal-title">Terminal - Build Commands</span>
+                    </div>
+                    <div class="terminal-content">
+<span class="prompt">$</span> <span class="command"># Development build</span>
+<span class="prompt">$</span> <span class="command">ng build</span>
+
+<span class="prompt">$</span> <span class="command"># Production build (optimized)</span>
+<span class="prompt">$</span> <span class="command">ng build --configuration=production</span>
+
+<span class="prompt">$</span> <span class="command"># Build with source maps for debugging</span>
+<span class="prompt">$</span> <span class="command">ng build --source-map</span>
+
+<span class="prompt">$</span> <span class="command"># Analyze bundle size</span>
+<span class="prompt">$</span> <span class="command">ng build --stats-json</span>
+<span class="prompt">$</span> <span class="command">npx webpack-bundle-analyzer dist/my-app/stats.json</span>
+
+<span class="prompt">$</span> <span class="command"># Run tests</span>
+<span class="prompt">$</span> <span class="command">ng test</span>
+<span class="prompt">$</span> <span class="command">ng test --code-coverage</span>
+
+<span class="prompt">$</span> <span class="command"># E2E tests</span>
+<span class="prompt">$</span> <span class="command">ng e2e</span>
+
+<span class="output">Build output in: dist/my-app/</span>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-header-left">
+                            <div class="code-dots">
+                                <span class="code-dot code-dot-red"></span>
+                                <span class="code-dot code-dot-yellow"></span>
+                                <span class="code-dot code-dot-green"></span>
+                            </div>
+                            <span class="code-filename">environment.prod.ts</span>
+                        </div>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <div class="code-content">
+<pre><span class="keyword">export</span> <span class="keyword">const</span> <span class="property">environment</span> = {
+  <span class="property">production</span>: <span class="keyword">true</span>,
+  <span class="property">apiUrl</span>: <span class="string">'https://api.production.com'</span>,
+  <span class="property">analyticsKey</span>: <span class="string">'PROD_ANALYTICS_KEY'</span>
+};</pre>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4><i data-lucide="server" style="width:18px;height:18px;"></i> Deployment Options</h4>
+                    <p>
+                        Deploy your Angular app to: <strong>Vercel</strong>, <strong>Netlify</strong>, 
+                        <strong>Firebase Hosting</strong>, <strong>AWS S3 + CloudFront</strong>, 
+                        <strong>Azure Static Web Apps</strong>, or any static hosting service.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">
+                <i data-lucide="party-popper" style="width:32px;height:32px;color:var(--angular-red);"></i>
+                Congratulations!
+            </h2>
+            <p class="cta-description">
+                You've mastered Angular from zero to hero! You're now ready to build 
+                powerful, scalable frontend applications. Keep practicing and building projects!
+            </p>
+            <div class="cta-buttons">
+                <a href="./Javscript.html" class="cta-button cta-button-secondary">
+                    <i data-lucide="arrow-left" style="width:18px;height:18px;"></i>
+                    Back to JavaScript
+                </a>
+                <a href="../index.html" class="cta-button">
+                    Explore More
+                    <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="/index.html" class="footer-brand">
+                <span class="footer-logo-text">Om Pandey</span>
+            </a>
+            <div class="footer-social">
+                <a href="https://github.com/ompandey07" target="_blank"><i class="ri-github-fill"></i></a>
+                <a href="https://www.linkedin.com/in/iamompandey/" target="_blank"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://x.com/iam_ompandey" target="_blank"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.instagram.com/ome.exee/" target="_blank"><i class="ri-instagram-line"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Scroll Progress
+        window.addEventListener('scroll', function() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+
+        // Copy Code Function
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block') || button.closest('.terminal-block');
+            const code = codeBlock.querySelector('pre') || codeBlock.querySelector('.terminal-content');
+            navigator.clipboard.writeText(code.textContent).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        // Smooth scroll for TOC
+        document.querySelectorAll('.toc-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+    <script src="../Console.js"></script>
+</body>
+</html>
