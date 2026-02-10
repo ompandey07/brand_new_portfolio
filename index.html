@@ -190,7 +190,7 @@
      crossorigin="anonymous"></script>
     
     <link rel="stylesheet" href="main.css">
-
+    <link rel="stylesheet" href="darkmode.css">
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js')
@@ -299,12 +299,20 @@
                     <i data-lucide="coffee"></i>
                     Buy Me Coffee
                 </a>
-                
                 <a href="#blogs" target="_blank" class="nav-link">
                     <i data-lucide="book-open"></i>
                     Blogs
                 </a>
+                
+                <!-- Theme Toggle Button -->
+                <div class="theme-toggle-wrapper">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i data-lucide="sun" class="theme-icon-light"></i>
+                        <i data-lucide="moon" class="theme-icon-dark"></i>
+                    </button>
+                </div>
             </div>
+            
         </div>
     </nav>
 
@@ -1426,5 +1434,6 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
 
     <!-- Link Music JS -->
     <script src="music.js"></script>
+    <script src="darkmode.js"></script>
 </body>
 </html>

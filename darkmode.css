@@ -1,0 +1,332 @@
+/* ============================================
+   Dark Mode Variables & Styles
+   ============================================ */
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #242424;
+    --bg-code: #1a1a1a;
+    --bg-dark: #000000;
+    
+    --text-primary: #e4e4e7;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --text-white: #ffffff;
+    
+    --border-light: #27272a;
+    --border-medium: #3f3f46;
+    
+    --accent-primary: #818cf8;
+    --accent-secondary: #a78bfa;
+    --accent-light: #c4b5fd;
+    --accent-lighter: #ddd6fe;
+    --accent-gradient: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #c084fc 100%);
+    
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.3);
+    --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.5);
+    --shadow-glow: 0 0 40px rgba(129, 140, 248, 0.2);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.theme-icon-light,
+.theme-icon-dark {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    color: var(--text-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-icon-dark {
+    opacity: 0;
+    transform: translateY(20px) rotate(180deg);
+}
+
+[data-theme="dark"] .theme-icon-light {
+    opacity: 0;
+    transform: translateY(-20px) rotate(-180deg);
+}
+
+[data-theme="dark"] .theme-icon-dark {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    color: var(--accent-primary);
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] body {
+    background: var(--bg-primary);
+}
+
+[data-theme="dark"] .nav {
+    background: rgba(15, 15, 15, 0.95);
+}
+
+[data-theme="dark"] .hero-bg {
+    background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(129, 140, 248, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 50%, rgba(167, 139, 250, 0.06), transparent);
+}
+
+[data-theme="dark"] .hero-grid {
+    background-image: 
+        linear-gradient(rgba(129, 140, 248, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(129, 140, 248, 0.02) 1px, transparent 1px);
+}
+
+[data-theme="dark"] .hero-eyebrow {
+    background: rgba(129, 140, 248, 0.15);
+    border-color: rgba(129, 140, 248, 0.3);
+}
+
+[data-theme="dark"] .hero-code,
+[data-theme="dark"] .about-code,
+[data-theme="dark"] .skills-code,
+[data-theme="dark"] .contact-code {
+    background: #0a0a0a;
+    border: 1px solid var(--border-light);
+}
+
+[data-theme="dark"] .code-header {
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom-color: rgba(255, 255, 255, 0.04);
+}
+
+/* ============================================
+   About Image - Dark Mode Fix
+   ============================================ */
+[data-theme="dark"] .about-image-wrapper {
+    position: relative;
+    background: radial-gradient(ellipse at center, rgba(129, 140, 248, 0.08) 0%, transparent 70%);
+    border-radius: inherit;
+}
+
+[data-theme="dark"] .about-image {
+    filter: brightness(1.3) contrast(1.1) saturate(1.15) drop-shadow(0 0 20px rgba(129, 140, 248, 0.25));
+    mix-blend-mode: screen;
+    transition: filter 0.4s ease, mix-blend-mode 0.4s ease;
+}
+
+[data-theme="dark"] .about-image-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        135deg,
+        rgba(129, 140, 248, 0.06) 0%,
+        rgba(167, 139, 250, 0.04) 50%,
+        rgba(192, 132, 252, 0.06) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+[data-theme="dark"] .about-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: var(--accent-gradient);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+
+[data-theme="dark"] .about-image-wrapper:hover::after {
+    opacity: 0.15;
+}
+
+[data-theme="dark"] .about-image-wrapper:hover .about-image {
+    filter: brightness(1.4) contrast(1.15) saturate(1.2) drop-shadow(0 0 30px rgba(129, 140, 248, 0.35));
+}
+
+/* ============================================
+   Rest of Dark Mode Styles
+   ============================================ */
+[data-theme="dark"] .skill-card {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .skill-card:hover {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .big-deal-card {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .big-deal-tech span {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .other-project-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+}
+
+[data-theme="dark"] .other-project-item:hover .other-project-overlay {
+    background: linear-gradient(to top, rgba(129, 140, 248, 0.9) 0%, rgba(129, 140, 248, 0.5) 50%, rgba(129, 140, 248, 0.1) 100%);
+}
+
+[data-theme="dark"] .contact-card {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .contact-icon {
+    background: rgba(129, 140, 248, 0.15);
+}
+
+[data-theme="dark"] .social-link {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .social-link:hover {
+    background: var(--accent-gradient);
+}
+
+[data-theme="dark"] .contact-popup {
+    background: var(--bg-secondary);
+    border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .popup-links a:hover,
+[data-theme="dark"] .popup-links i {
+    color: var(--accent-light);
+}
+
+[data-theme="dark"] .floating-icon {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .blog-card {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .award-circle-image {
+    border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .award-circle:hover .award-circle-image {
+    box-shadow: 0 0 30px rgba(129, 140, 248, 0.5);
+}
+
+[data-theme="dark"] .music-player {
+    background: var(--bg-secondary);
+    border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .music-player-header {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .music-control-btn {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .music-player-volume {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .volume-slider {
+    background: var(--bg-primary);
+}
+
+[data-theme="dark"] .music-widget-label {
+    background: var(--bg-secondary);
+    border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .music-widget-label .music-widget-arrow {
+    background: var(--bg-secondary);
+    border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .companies-marquee-wrapper::before {
+    background: linear-gradient(to right, var(--bg-primary), transparent);
+}
+
+[data-theme="dark"] .companies-marquee-wrapper::after {
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+}
+
+[data-theme="dark"] .modal {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+[data-theme="dark"] .modal-close {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] #preloader {
+    background: #000000;
+}
+
+[data-theme="dark"] .section-label {
+    background: rgba(129, 140, 248, 0.15);
+    color: var(--accent-light);
+}
+
+[data-theme="dark"] .github-btn {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+}
+
+[data-theme="dark"] .github-btn:hover {
+    background: var(--bg-secondary);
+    border-color: var(--accent-primary);
+}
+
+/* Smooth transitions for theme switching */
+* {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Mobile responsive theme toggle */
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .theme-icon-light,
+    .theme-icon-dark {
+        width: 18px;
+        height: 18px;
+    }
+}
