@@ -1,0 +1,721 @@
+/* ============================================
+   Custom Cursor Styles
+   ============================================ */
+
+/* Hide default cursor on desktop */
+@media (min-width: 1024px) and (hover: hover) {
+    * {
+        cursor: none !important;
+    }
+}
+
+/* ============================================
+   Cursor Wrapper
+   ============================================ */
+.cursor-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99998;
+    overflow: hidden;
+}
+
+/* ============================================
+   Cursor Dot - Main Pointer
+   ============================================ */
+.cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    mix-blend-mode: difference;
+}
+
+/* Dot States */
+.cursor-dot.cursor-link {
+    width: 12px;
+    height: 12px;
+    background: var(--accent-light);
+}
+
+.cursor-dot.cursor-button {
+    width: 6px;
+    height: 6px;
+    background: white;
+}
+
+.cursor-dot.cursor-text {
+    width: 4px;
+    height: 4px;
+    background: var(--accent-primary);
+    mix-blend-mode: normal;
+}
+
+.cursor-dot.cursor-image {
+    width: 10px;
+    height: 10px;
+    background: white;
+    mix-blend-mode: difference;
+}
+
+.cursor-dot.cursor-project {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.cursor-dot.cursor-view {
+    width: 6px;
+    height: 6px;
+    background: white;
+}
+
+.cursor-dot.cursor-read {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-light);
+}
+
+.cursor-dot.cursor-social {
+    width: 10px;
+    height: 10px;
+    background: white;
+}
+
+.cursor-dot.cursor-skill {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-secondary);
+}
+
+.cursor-dot.cursor-drag {
+    width: 14px;
+    height: 14px;
+    background: var(--accent-primary);
+}
+
+.cursor-dot.cursor-close {
+    width: 10px;
+    height: 10px;
+    background: var(--error);
+}
+
+.cursor-dot.cursor-nav {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-light);
+}
+
+/* Clicking State */
+.cursor-dot.clicking {
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+/* ============================================
+   Cursor Outline - Following Circle
+   ============================================ */
+.cursor-outline {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--accent-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99997;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, 
+                background 0.3s ease, opacity 0.3s ease, border-width 0.3s ease;
+    opacity: 0.6;
+}
+
+/* SVG Circle for animation */
+.cursor-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.cursor-circle {
+    fill: none;
+    stroke: var(--accent-primary);
+    stroke-width: 2;
+    stroke-dasharray: 145;
+    stroke-dashoffset: 145;
+    transition: stroke-dashoffset 0.3s ease, stroke 0.3s ease;
+}
+
+/* Outline States */
+.cursor-outline.cursor-link {
+    width: 60px;
+    height: 60px;
+    border-color: var(--accent-light);
+    opacity: 0.4;
+}
+
+.cursor-outline.cursor-link .cursor-circle {
+    stroke-dashoffset: 0;
+    stroke: var(--accent-light);
+}
+
+.cursor-outline.cursor-button {
+    width: 70px;
+    height: 70px;
+    border-color: var(--accent-secondary);
+    background: rgba(99, 102, 241, 0.1);
+    opacity: 0.8;
+}
+
+.cursor-outline.cursor-button .cursor-circle {
+    stroke-dashoffset: 0;
+    stroke: var(--accent-secondary);
+}
+
+.cursor-outline.cursor-text {
+    width: 80px;
+    height: 80px;
+    border-color: transparent;
+    background: rgba(99, 102, 241, 0.05);
+    border-width: 1px;
+    opacity: 0.5;
+}
+
+.cursor-outline.cursor-image {
+    width: 100px;
+    height: 100px;
+    border-color: white;
+    border-style: dashed;
+    opacity: 0.3;
+    animation: cursorRotate 4s linear infinite;
+}
+
+@keyframes cursorRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.cursor-outline.cursor-project {
+    width: 120px;
+    height: 120px;
+    border-color: var(--accent-primary);
+    background: rgba(99, 102, 241, 0.15);
+    opacity: 1;
+    border-width: 3px;
+}
+
+.cursor-outline.cursor-project .cursor-circle {
+    stroke-dashoffset: 0;
+    stroke: var(--accent-primary);
+    stroke-width: 3;
+}
+
+.cursor-outline.cursor-view {
+    width: 90px;
+    height: 90px;
+    border-color: var(--accent-light);
+    background: rgba(167, 139, 250, 0.1);
+    opacity: 0.9;
+}
+
+.cursor-outline.cursor-view .cursor-circle {
+    stroke-dashoffset: 0;
+}
+
+.cursor-outline.cursor-read {
+    width: 80px;
+    height: 80px;
+    border-color: var(--accent-primary);
+    background: rgba(99, 102, 241, 0.08);
+    opacity: 0.8;
+}
+
+.cursor-outline.cursor-social {
+    width: 65px;
+    height: 65px;
+    border-color: white;
+    border-width: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
+    mix-blend-mode: difference;
+}
+
+.cursor-outline.cursor-skill {
+    width: 55px;
+    height: 55px;
+    border-color: var(--accent-secondary);
+    background: rgba(139, 92, 246, 0.1);
+    opacity: 0.7;
+}
+
+.cursor-outline.cursor-drag {
+    width: 50px;
+    height: 50px;
+    border-color: var(--accent-primary);
+    border-style: dashed;
+    opacity: 0.8;
+    animation: cursorPulse 1s ease-in-out infinite;
+}
+
+@keyframes cursorPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.cursor-outline.cursor-close {
+    width: 60px;
+    height: 60px;
+    border-color: var(--error);
+    background: rgba(239, 68, 68, 0.1);
+    opacity: 0.9;
+}
+
+.cursor-outline.cursor-nav {
+    width: 50px;
+    height: 50px;
+    border-color: var(--accent-light);
+    opacity: 0.5;
+}
+
+/* Clicking State */
+.cursor-outline.clicking {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+}
+
+/* ============================================
+   Cursor Text - For Project Cards
+   ============================================ */
+.cursor-text {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cursor-text span {
+    display: block;
+    padding: 10px 20px;
+    background: var(--accent-gradient);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.cursor-text.visible {
+    opacity: 1;
+}
+
+.cursor-text.cursor-project {
+    opacity: 1;
+}
+
+.cursor-text.cursor-project span {
+    animation: cursorTextBounce 0.5s ease-out;
+}
+
+@keyframes cursorTextBounce {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ============================================
+   Cursor Glow - Ambient Effect
+   ============================================ */
+.cursor-glow {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99990;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+    opacity: 0.5;
+}
+
+/* Glow States */
+.cursor-glow.cursor-link {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.2) 0%, transparent 70%);
+    opacity: 0.7;
+}
+
+.cursor-glow.cursor-button {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
+    opacity: 0.8;
+}
+
+.cursor-glow.cursor-text {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+    opacity: 0.4;
+}
+
+.cursor-glow.cursor-image {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    mix-blend-mode: overlay;
+}
+
+.cursor-glow.cursor-project {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+    opacity: 1;
+}
+
+.cursor-glow.cursor-view {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.25) 0%, transparent 70%);
+}
+
+.cursor-glow.cursor-social {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    mix-blend-mode: overlay;
+}
+
+.cursor-glow.cursor-close {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.2) 0%, transparent 70%);
+}
+
+/* Clicking State */
+.cursor-glow.clicking {
+    width: 150px;
+    height: 150px;
+    opacity: 1;
+}
+
+/* ============================================
+   Cursor Trail
+   ============================================ */
+.cursor-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99989;
+    overflow: hidden;
+}
+
+.trail-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    opacity: 0.6;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+/* Different trail colors */
+.trail-particle:nth-child(odd) {
+    background: var(--accent-secondary);
+}
+
+.trail-particle:nth-child(3n) {
+    background: var(--accent-light);
+    width: 4px;
+    height: 4px;
+}
+
+.trail-particle:nth-child(5n) {
+    background: var(--accent-lighter);
+    width: 8px;
+    height: 8px;
+    opacity: 0.4;
+}
+
+/* ============================================
+   Cursor Magnetic Effect Styles
+   ============================================ */
+[data-cursor] {
+    transition: transform 0.3s ease;
+}
+
+[data-cursor="button"]:hover,
+[data-cursor="link"]:hover {
+    transform: scale(1.02);
+}
+
+[data-cursor="project"]:hover {
+    transform: translateY(-10px);
+}
+
+/* ============================================
+   Cursor Hover Ripple Effect
+   ============================================ */
+.cursor-ripple {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99988;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--accent-primary);
+    animation: rippleExpand 0.6s ease-out forwards;
+}
+
+@keyframes rippleExpand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   Cursor Loading State
+   ============================================ */
+.cursor-outline.cursor-loading {
+    border-color: var(--accent-primary);
+    border-top-color: transparent;
+    animation: cursorSpin 0.8s linear infinite;
+}
+
+@keyframes cursorSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ============================================
+   Cursor Hidden State
+   ============================================ */
+.cursor-dot.hidden,
+.cursor-outline.hidden,
+.cursor-glow.hidden {
+    opacity: 0 !important;
+    visibility: hidden;
+}
+
+/* ============================================
+   Dark Mode Cursor Adjustments
+   ============================================ */
+[data-theme="dark"] .cursor-dot {
+    background: var(--accent-light);
+}
+
+[data-theme="dark"] .cursor-outline {
+    border-color: var(--accent-light);
+}
+
+[data-theme="dark"] .cursor-circle {
+    stroke: var(--accent-light);
+}
+
+[data-theme="dark"] .cursor-glow {
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.2) 0%, transparent 70%);
+}
+
+[data-theme="dark"] .trail-particle {
+    background: var(--accent-light);
+}
+
+[data-theme="dark"] .trail-particle:nth-child(odd) {
+    background: var(--accent-lighter);
+}
+
+/* ============================================
+   Focus/Highlight Effect on Interactive Elements
+   ============================================ */
+[data-cursor="link"]::after,
+[data-cursor="button"]::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: inherit;
+    opacity: 0;
+    background: var(--accent-gradient);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+[data-cursor="link"]:hover::after,
+[data-cursor="button"]:hover::after {
+    opacity: 0.1;
+}
+
+/* ============================================
+   Cursor Blend Modes for Different Sections
+   ============================================ */
+.hero .cursor-dot {
+    mix-blend-mode: difference;
+}
+
+.section-alt .cursor-glow {
+    mix-blend-mode: multiply;
+}
+
+/* ============================================
+   Cursor Animations - Extra Effects
+   ============================================ */
+
+/* Heartbeat effect for buttons */
+.cursor-outline.cursor-button {
+    animation: cursorHeartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes cursorHeartbeat {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1); 
+        opacity: 0.8;
+    }
+    25% { 
+        transform: translate(-50%, -50%) scale(1.05); 
+        opacity: 1;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1); 
+        opacity: 0.8;
+    }
+    75% { 
+        transform: translate(-50%, -50%) scale(1.03); 
+        opacity: 0.9;
+    }
+}
+
+/* Orbit effect for project cards */
+.cursor-outline.cursor-project::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: orbitCursor 2s linear infinite;
+}
+
+@keyframes orbitCursor {
+    from {
+        transform: translateX(-50%) rotate(0deg) translateY(-60px) rotate(0deg);
+    }
+    to {
+        transform: translateX(-50%) rotate(360deg) translateY(-60px) rotate(-360deg);
+    }
+}
+
+/* Shimmer effect for social links */
+.cursor-outline.cursor-social::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%);
+    animation: shimmerCursor 2s linear infinite;
+}
+
+@keyframes shimmerCursor {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Responsive - Hide on Mobile/Touch
+   ============================================ */
+@media (max-width: 1023px), (hover: none) {
+    .cursor-wrapper,
+    .cursor-trail,
+    .cursor-dot,
+    .cursor-outline,
+    .cursor-text,
+    .cursor-glow {
+        display: none !important;
+    }
+    
+    * {
+        cursor: auto !important;
+    }
+    
+    a, button, [onclick] {
+        cursor: pointer !important;
+    }
+}
+
+/* ============================================
+   Reduced Motion Preference
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .cursor-outline,
+    .cursor-glow,
+    .trail-particle {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .cursor-outline.cursor-image {
+        animation: none;
+    }
+    
+    .cursor-outline.cursor-button {
+        animation: none;
+    }
+    
+    .cursor-outline.cursor-project::before {
+        animation: none;
+        display: none;
+    }
+}
+
+/* ============================================
+   High Contrast Mode
+   ============================================ */
+@media (prefers-contrast: high) {
+    .cursor-dot {
+        background: white;
+        border: 2px solid black;
+    }
+    
+    .cursor-outline {
+        border-color: white;
+        border-width: 3px;
+    }
+    
+    .cursor-glow {
+        display: none;
+    }
+}
+
+/* ============================================
+   Print - Hide Cursor Elements
+   ============================================ */
+@media print {
+    .cursor-wrapper,
+    .cursor-trail {
+        display: none !important;
+    }
+}
