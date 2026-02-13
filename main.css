@@ -122,24 +122,6 @@ body.loading {
     pointer-events: none;
 }
 
-/* Preloader Signature - Top Left */
-.preloader-signature {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    z-index: 10;
-}
-
-.signature-text {
-    font-family: 'Agustina', cursive;
-    font-size: 32px;
-    color: var(--preloader-text-color);
-    letter-spacing: 1px;
-    position: relative;
-    display: inline-block;
-    opacity: 0;
-    animation: signatureWrite 3s ease-out forwards;
-}
 
 @keyframes signatureWrite {
     0% {
@@ -2635,14 +2617,6 @@ body.loading {
 }
 
 @media (max-width: 768px) {
-    .preloader-signature {
-        top: 30px;
-        left: 30px;
-    }
-
-    .signature-text {
-        font-size: 26px;
-    }
 
     .nav-links {
         display: none;
