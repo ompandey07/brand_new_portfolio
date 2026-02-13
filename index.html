@@ -65,13 +65,11 @@
     <link rel="icon" type="image/png" sizes="192x192" href="icons/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="icons/android-chrome-512x512.png">
 
-   <!-- Microsoft Tiles -->
+    <!-- Microsoft Tiles -->
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="icons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
 
-
-    
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +81,7 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&family=Kaushan+Script&family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Agustina Font -->
     <link href="https://fonts.cdnfonts.com/css/agustina" rel="stylesheet">
@@ -94,6 +92,10 @@
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RQHLP1SY98"></script>
@@ -203,6 +205,11 @@
 <body class="loading">
     <!-- Preloader - Dark Theme -->
     <div id="preloader">
+        <!-- Signature at Top Left -->
+        <div class="preloader-signature">
+            <span class="signature-text">Om Pandey</span>
+        </div>
+        
         <div class="preloader-content">
             <div class="loader">
                 <svg class="legl" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20.69332" height="68.19944" viewBox="0,0,20.69332,68.19944">
@@ -316,97 +323,120 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Section - Redesigned with Animations -->
+    <section class="hero" id="hero">
+        <!-- Background Elements -->
         <div class="hero-bg"></div>
         <div class="hero-grid"></div>
         
+        <!-- Large Background Text -->
+        <div class="hero-bg-text" data-speed="-5">
+            <span>DEVELOPER</span>
+        </div>
+        
+        <!-- Floating Circles -->
+        <div class="hero-floating-elements">
+            <div class="float-circle c1"></div>
+            <div class="float-circle c2"></div>
+            <div class="float-circle c3"></div>
+        </div>
+        
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-eyebrow">
+                <div class="hero-eyebrow" data-animate="fade-up">
                     <span class="hero-eyebrow-dot"></span>
                     Available for Projects • Based in Nepal
                 </div>
                 
                 <h1 class="hero-title">
-                    They Call Me
-                    <span class="hero-title-accent">Pandey</span>
+                    <div class="title-line" data-animate="reveal">
+                        <span class="title-mask"><span>They Call Me</span></span>
+                    </div>
+                    <div class="title-line" data-animate="reveal" data-delay="0.2">
+                        <span class="title-mask"><span class="hero-title-accent">Pandey</span></span>
+                    </div>
                 </h1>
                 
-                <p class="hero-description">
+                <p class="hero-description" data-animate="fade-up" data-delay="0.4">
                     I build powerful, scalable solutions that transform businesses and create 
                     lasting impact through innovative technology. Full Stack Developer with 5+ years 
                     of experience crafting digital experiences.
                 </p>
-
-                <!-- Code Block -->
-                <div class="hero-code">
-                    <div class="code-header">
-                        <div class="code-dots">
-                            <span class="code-dot code-dot-red"></span>
-                            <span class="code-dot code-dot-yellow"></span>
-                            <span class="code-dot code-dot-green"></span>
-                        </div>
-                        <span class="code-title">developer.js</span>
-                    </div>
-                    <div class="code-content">
-<pre><span class="comment">// Developer mindset</span>
-<span class="keyword">while</span> (<span class="property">alive</span>) {
-  <span class="function">code</span>();
-  <span class="function">learn</span>();
-  <span class="function">innovate</span>();
-}</pre>
-                    </div>
-                </div>
                 
-                <div class="hero-stats">
+                <div class="hero-stats" data-animate="fade-up" data-delay="0.5">
                     <div class="hero-stat">
-                        <span class="hero-stat-value">5+</span>
+                        <span class="hero-stat-value" data-counter="5">0</span>
+                        <span class="hero-stat-suffix">+</span>
                         <span class="hero-stat-label">Years Experience</span>
                     </div>
                     <div class="hero-stat">
-                        <span class="hero-stat-value">40+</span>
+                        <span class="hero-stat-value" data-counter="40">0</span>
+                        <span class="hero-stat-suffix">+</span>
                         <span class="hero-stat-label">Projects</span>
                     </div>
                     <div class="hero-stat">
-                        <span class="hero-stat-value">15+</span>
+                        <span class="hero-stat-value" data-counter="15">0</span>
+                        <span class="hero-stat-suffix">+</span>
                         <span class="hero-stat-label">Happy Clients</span>
                     </div>
                 </div>
                 
-                <div class="hero-buttons">
-                    <a href="#featured" class="hero-btn hero-btn-primary">
+                <div class="hero-buttons" data-animate="fade-up" data-delay="0.6">
+                    <a href="#featured" class="hero-btn hero-btn-primary magnetic-btn">
                         <i data-lucide="rocket"></i>
                         View My Work
                     </a>
-                    <a href="#contact" class="hero-btn hero-btn-secondary">
+                    <a href="#contact" class="hero-btn hero-btn-secondary magnetic-btn">
                         <i data-lucide="mail"></i>
                         Get In Touch
                     </a>
                 </div>
             </div>
             
-            <div class="hero-image-wrapper">
+            <div class="hero-image-wrapper" data-animate="scale-in">
                 <div class="hero-image-container">
-                    <img src="MyImage.png.png" alt="Om Pandey - Full Stack Developer" class="hero-image">
+                    <div class="hero-image-inner">
+                        <img src="MyImage.png.png" alt="Om Pandey - Full Stack Developer" class="hero-image">
+                    </div>
                     <div class="hero-image-ring hero-image-ring-1"></div>
                     <div class="hero-image-ring hero-image-ring-2"></div>
+                    <div class="hero-image-ring hero-image-ring-3"></div>
                     <div class="hero-image-glow"></div>
                 </div>
                 
                 <!-- Floating Tech Icons -->
-                <div class="floating-icon floating-icon-1">
+                <div class="floating-icon floating-icon-1" data-speed="5">
                     <i class="devicon-react-original colored"></i>
                 </div>
-                <div class="floating-icon floating-icon-2">
+                <div class="floating-icon floating-icon-2" data-speed="-3">
                     <i class="devicon-python-plain colored"></i>
                 </div>
-                <div class="floating-icon floating-icon-3">
+                <div class="floating-icon floating-icon-3" data-speed="2.5">
                     <i class="devicon-django-plain colored"></i>
                 </div>
-                <div class="floating-icon floating-icon-4">
+                <div class="floating-icon floating-icon-4" data-speed="-2">
                     <i class="devicon-nodejs-plain colored"></i>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="hero-scroll-indicator" data-animate="fade-up" data-delay="0.8">
+            <div class="scroll-line"></div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Skills Marquee Section -->
+    <section class="marquee-section">
+        <div class="marquee marquee-top">
+            <div class="marquee-track">
+                <span class="marquee-text">REACT ✦ PYTHON ✦ DJANGO ✦ NODE.JS ✦ JAVASCRIPT ✦ HTML5 ✦ CSS3 ✦ MYSQL ✦ POSTGRESQL ✦ DOCKER ✦ GITHUB ✦ REACT ✦ PYTHON ✦ DJANGO ✦ NODE.JS ✦ JAVASCRIPT ✦ HTML5 ✦ CSS3 ✦ MYSQL ✦ POSTGRESQL ✦ DOCKER ✦ GITHUB ✦</span>
+            </div>
+        </div>
+        <div class="marquee marquee-bottom">
+            <div class="marquee-track marquee-reverse">
+                <span class="marquee-text">FULL STACK ✦ WEB DEVELOPMENT ✦ API DESIGN ✦ DATABASE ✦ CLOUD ✦ DEVOPS ✦ UI/UX ✦ RESPONSIVE ✦ SCALABLE ✦ CLEAN CODE ✦ FULL STACK ✦ WEB DEVELOPMENT ✦ API DESIGN ✦ DATABASE ✦ CLOUD ✦ DEVOPS ✦ UI/UX ✦ RESPONSIVE ✦ SCALABLE ✦ CLEAN CODE ✦</span>
             </div>
         </div>
     </section>
@@ -414,14 +444,14 @@
     <!-- About Section -->
     <section class="section section-alt" id="about">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-animate="fade-up">
                 <div class="section-header-inner">
                     <div class="section-header-content">
                         <div class="section-label">
                             <i data-lucide="user"></i>
                             About Me
                         </div>
-                        <h2 class="section-title">Building Digital Excellence</h2>
+                        <h2 class="section-title split-text">Building Digital Excellence</h2>
                         <p class="section-subtitle">
                             It all started with a simple line of code and a big curiosity about how things work.
                         </p>
@@ -430,11 +460,13 @@
             </div>
 
             <div class="about-grid">
-                <div class="about-image-wrapper">
-                    <img src="output-onlinegiftools.gif" alt="About Om Pandey" class="about-image">
+                <div class="about-image-wrapper" data-animate="fade-right">
+                    <div class="about-image-container img-reveal">
+                        <img src="output-onlinegiftools.gif" alt="About Om Pandey" class="about-image">
+                    </div>
                 </div>
 
-                <div class="about-content">
+                <div class="about-content" data-animate="fade-left">
                     <div class="about-code">
                         <div class="code-header">
                             <div class="code-dots">
@@ -491,232 +523,346 @@
         </div>
     </section>
 
-    <!-- Worked With Section - MODIFIED MARQUEE STYLE -->
-    <section class="section" id="worked-with">
+    <!-- Worked With Section - Marquee Style (No text marquee) -->
+    <section class="section worked-with-section" id="worked-with">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-animate="fade-up">
                 <div class="section-header-inner">
                     <div class="section-header-content">
                         <div class="section-label">
                             <i data-lucide="building-2"></i>
                             Collaborations
                         </div>
-                        <h2 class="section-title">Worked With</h2>
+                        <h2 class="section-title split-text">Worked With</h2>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="companies-marquee-wrapper">
-                <div class="companies-marquee" id="companiesMarquee">
-                    <div class="companies-marquee-track">
-                        <!-- First set of logos -->
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/axislogo.png" alt="Axis">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/PioneerLogo.png" alt="Pioneer Logo">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/Logo.png" alt="Logo">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/MegaMinds.png" alt="MegaMinds">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/RisingYouths.png" alt="Rising Youths">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/RoyalPains.png" alt="Royal Pains">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/TVS.jpg" alt="TVS">
-                        </div>
-                        <!-- Duplicate set for seamless loop -->
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/axislogo.png" alt="Axis">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/PioneerLogo.png" alt="Pioneer Logo">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/Logo.png" alt="Logo">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/MegaMinds.png" alt="MegaMinds">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/RisingYouths.png" alt="Rising Youths">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/RoyalPains.png" alt="Royal Pains">
-                        </div>
-                        <div class="company-logo-item" onclick="toggleMarquee(this)">
-                            <img src="/Compinies/TVS.jpg" alt="TVS">
-                        </div>
+        <div class="companies-marquee-wrapper">
+            <div class="companies-marquee">
+                <div class="companies-marquee-track">
+                    <!-- First set of logos -->
+                    <div class="company-logo-item">
+                        <img src="/Compinies/axislogo.png" alt="Axis">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/PioneerLogo.png" alt="Pioneer Logo">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/Logo.png" alt="Logo">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/MegaMinds.png" alt="MegaMinds">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/RisingYouths.png" alt="Rising Youths">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/RoyalPains.png" alt="Royal Pains">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/TVS.jpg" alt="TVS">
+                    </div>
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="company-logo-item">
+                        <img src="/Compinies/axislogo.png" alt="Axis">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/PioneerLogo.png" alt="Pioneer Logo">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/Logo.png" alt="Logo">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/MegaMinds.png" alt="MegaMinds">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/RisingYouths.png" alt="Rising Youths">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/RoyalPains.png" alt="Royal Pains">
+                    </div>
+                    <div class="company-logo-item">
+                        <img src="/Compinies/TVS.jpg" alt="TVS">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section - Icon Marquee -->
     <section class="section section-alt" id="skills">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-animate="fade-up">
                 <div class="section-header-inner">
                     <div class="section-header-content">
                         <div class="section-label">
                             <i data-lucide="code-2"></i>
                             Technical Skills
                         </div>
-                        <h2 class="section-title">My Tech Arsenal</h2>
-                        <p class="section-subtitle">
-                            Technologies and tools I use to bring ideas to life.
-                        </p>
+                        <h2 class="section-title split-text">My Tech Arsenal</h2>
                     </div>
                 </div>
             </div>
 
-            <div class="skills-code">
-                <div class="code-header">
-                    <div class="code-dots">
-                        <span class="code-dot code-dot-red"></span>
-                        <span class="code-dot code-dot-yellow"></span>
-                        <span class="code-dot code-dot-green"></span>
+            <!-- Skills Icons Marquee -->
+            <div class="skills-icons-marquee-wrapper">
+                <div class="skills-icons-marquee">
+                    <div class="skills-icons-track">
+                        <!-- First set -->
+                        <div class="skill-marquee-item">
+                            <i class="devicon-react-original colored"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-python-plain colored"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-nodejs-plain colored"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-django-plain colored"></i>
+                            <span>Django</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-php-plain colored"></i>
+                            <span>PHP</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="ri-router-line"></i>
+                            <span>Cisco</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-html5-plain colored"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-css3-plain colored"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-javascript-plain colored"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-github-original"></i>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-docker-plain colored"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-mysql-plain colored"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-postgresql-plain colored"></i>
+                            <span>PostgreSQL</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-gitlab-plain colored"></i>
+                            <span>GitLab</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-vim-plain colored"></i>
+                            <span>Vim</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-bash-plain"></i>
+                            <span>Bash</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="ri-shield-keyhole-line"></i>
+                            <span>Hydra</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-canva-original colored"></i>
+                            <span>Canva</span>
+                        </div>
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="skill-marquee-item">
+                            <i class="devicon-react-original colored"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-python-plain colored"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-nodejs-plain colored"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-django-plain colored"></i>
+                            <span>Django</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-php-plain colored"></i>
+                            <span>PHP</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="ri-router-line"></i>
+                            <span>Cisco</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-html5-plain colored"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-css3-plain colored"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-javascript-plain colored"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-github-original"></i>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-docker-plain colored"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-mysql-plain colored"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-postgresql-plain colored"></i>
+                            <span>PostgreSQL</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-gitlab-plain colored"></i>
+                            <span>GitLab</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-vim-plain colored"></i>
+                            <span>Vim</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-bash-plain"></i>
+                            <span>Bash</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="ri-shield-keyhole-line"></i>
+                            <span>Hydra</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-canva-original colored"></i>
+                            <span>Canva</span>
+                        </div>
                     </div>
-                    <span class="code-title">skills.js</span>
-                </div>
-                <div class="code-content">
-<pre><span class="keyword">let</span> skills = [<span class="string">'React'</span>, <span class="string">'Python'</span>, <span class="string">'Django'</span>, <span class="string">'PHP'</span>, <span class="string">'Cisco'</span>, ...];
-skills.<span class="function">map</span>(skill => <span class="function">master</span>(skill));</pre>
                 </div>
             </div>
-            
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-react-original colored"></i>
-                    </div>
-                    <span class="skill-name">React</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-python-plain colored"></i>
-                    </div>
-                    <span class="skill-name">Python</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-nodejs-plain colored"></i>
-                    </div>
-                    <span class="skill-name">Node.js</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-django-plain colored"></i>
-                    </div>
-                    <span class="skill-name">Django</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-php-plain colored"></i>
-                    </div>
-                    <span class="skill-name">PHP</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="ri-router-line"></i>
-                    </div>
-                    <span class="skill-name">Cisco</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-html5-plain colored"></i>
-                    </div>
-                    <span class="skill-name">HTML5</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-css3-plain colored"></i>
-                    </div>
-                    <span class="skill-name">CSS3</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-javascript-plain colored"></i>
-                    </div>
-                    <span class="skill-name">JavaScript</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-github-original"></i>
-                    </div>
-                    <span class="skill-name">GitHub</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-docker-plain colored"></i>
-                    </div>
-                    <span class="skill-name">Docker</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-mysql-plain colored"></i>
-                    </div>
-                    <span class="skill-name">MySQL</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-postgresql-plain colored"></i>
-                    </div>
-                    <span class="skill-name">PostgreSQL</span>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-gitlab-plain colored"></i>
-                    </div>
-                    <span class="skill-name">GitLab</span>
-                </div>
 
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-vim-plain colored"></i>
+            <!-- Reverse Direction Marquee -->
+            <div class="skills-icons-marquee-wrapper">
+                <div class="skills-icons-marquee reverse">
+                    <div class="skills-icons-track reverse-track">
+                        <!-- First set -->
+                        <div class="skill-marquee-item">
+                            <i class="devicon-typescript-plain colored"></i>
+                            <span>TypeScript</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-mongodb-plain colored"></i>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-redis-plain colored"></i>
+                            <span>Redis</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-nginx-original colored"></i>
+                            <span>Nginx</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-linux-plain"></i>
+                            <span>Linux</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-git-plain colored"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-figma-plain colored"></i>
+                            <span>Figma</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-tailwindcss-plain colored"></i>
+                            <span>Tailwind</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-bootstrap-plain colored"></i>
+                            <span>Bootstrap</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-sass-original colored"></i>
+                            <span>Sass</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-jest-plain colored"></i>
+                            <span>Jest</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-vscode-plain colored"></i>
+                            <span>VS Code</span>
+                        </div>
+                        <!-- Duplicate set -->
+                        <div class="skill-marquee-item">
+                            <i class="devicon-typescript-plain colored"></i>
+                            <span>TypeScript</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-mongodb-plain colored"></i>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-redis-plain colored"></i>
+                            <span>Redis</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-nginx-original colored"></i>
+                            <span>Nginx</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-linux-plain"></i>
+                            <span>Linux</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-git-plain colored"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-figma-plain colored"></i>
+                            <span>Figma</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-tailwindcss-plain colored"></i>
+                            <span>Tailwind</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-bootstrap-plain colored"></i>
+                            <span>Bootstrap</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-sass-original colored"></i>
+                            <span>Sass</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-jest-plain colored"></i>
+                            <span>Jest</span>
+                        </div>
+                        <div class="skill-marquee-item">
+                            <i class="devicon-vscode-plain colored"></i>
+                            <span>VS Code</span>
+                        </div>
                     </div>
-                    <span class="skill-name">Vim</span>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-bash-plain"></i>
-                    </div>
-                    <span class="skill-name">Bash</span>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="ri-shield-keyhole-line"></i>
-                    </div>
-                    <span class="skill-name">Hydra</span>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="devicon-canva-original colored"></i>
-                    </div>
-                    <span class="skill-name">Canva</span>
                 </div>
             </div>
         </div>
@@ -725,14 +871,14 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
     <!-- Featured Projects Section - My Big Deals -->
     <section class="section" id="featured">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-animate="fade-up">
                 <div class="section-header-inner">
                     <div class="section-header-content">
                         <div class="section-label">
                             <i data-lucide="rocket"></i>
                             Featured Work
                         </div>
-                        <h2 class="section-title">My Big Deals</h2>
+                        <h2 class="section-title split-text">My Big Deals</h2>
                         <p class="section-subtitle">
                             Major projects that are live and serving real users.
                         </p>
@@ -742,8 +888,8 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
             
             <div class="big-deals-grid">
                 <!-- MSS ERP -->
-                <div class="big-deal-card" onclick="window.open('http://beantrack.finixdev.com/', '_blank')">
-                    <div class="big-deal-image">
+                <div class="big-deal-card" onclick="window.open('http://beantrack.finixdev.com/', '_blank')" data-animate="fade-up" data-delay="0.1">
+                    <div class="big-deal-image img-reveal">
                         <img src="ProjectImages/MSSERP.png" alt="MSS ERP">
                     </div>
                     <div class="big-deal-content">
@@ -773,8 +919,8 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 </div>
 
                 <!-- Nepali Date Picker -->
-                <div class="big-deal-card" onclick="window.open('https://nepalidate.omkumarpandey.com.np/', '_blank')">
-                    <div class="big-deal-image">
+                <div class="big-deal-card" onclick="window.open('https://nepalidate.omkumarpandey.com.np/', '_blank')" data-animate="fade-up" data-delay="0.2">
+                    <div class="big-deal-image img-reveal">
                         <img src="ProjectImages/NEPALIDATE.png" alt="Nepali Date Picker">
                     </div>
                     <div class="big-deal-content">
@@ -808,20 +954,22 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
     <!-- Other Projects - Grid Style -->
     <section class="section section-alt" id="projects">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-animate="fade-up">
                 <div class="section-header-inner">
                     <div class="section-header-content">
                         <div class="section-label">
                             <i data-lucide="folder-open"></i>
                             More Projects
                         </div>
-                        <h2 class="section-title">Other Works</h2>
+                        <h2 class="section-title">
+                            <span class="split-line" data-split>Other Works</span>
+                        </h2>
                     </div>
                 </div>
             </div>
             
             <div class="other-projects-grid">
-                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/Ultron', '_blank')">
+                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/Ultron', '_blank')" data-animate="fade-up">
                     <img src="ProjectImages/Ultron.png" alt="ULTRON">
                     <div class="other-project-overlay">
                         <span class="other-project-title">ULTRON</span>
@@ -829,7 +977,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     </div>
                 </div>
 
-                <div class="other-project-item" onclick="window.open('https://etdl.finixdev.com/', '_blank')">
+                <div class="other-project-item" onclick="window.open('https://etdl.finixdev.com/', '_blank')" data-animate="fade-up">
                     <img src="ProjectImages/ETDL.png" alt="E-TDL">
                     <div class="other-project-overlay">
                         <span class="other-project-title">E-TDL</span>
@@ -837,7 +985,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     </div>
                 </div>
 
-                <div class="other-project-item" onclick="window.open('https://tvsfirstchoice.com/', '_blank')">
+                <div class="other-project-item" onclick="window.open('https://tvsfirstchoice.com/', '_blank')" data-animate="fade-up">
                     <img src="ProjectImages/TVS.jpg" alt="TVS First Choice">
                     <div class="other-project-overlay">
                         <span class="other-project-title">TVS</span>
@@ -845,7 +993,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     </div>
                 </div>
 
-                <div class="other-project-item" onclick="window.open('https://nunuai.pythonanywhere.com/', '_blank')">
+                <div class="other-project-item" onclick="window.open('https://nunuai.pythonanywhere.com/', '_blank')" data-animate="fade-up">
                     <img src="ProjectImages/QUERY.png" alt="Rising Youths">
                     <div class="other-project-overlay">
                         <span class="other-project-title">QuoryAI</span>
@@ -853,7 +1001,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     </div>
                 </div>
 
-                <div class="other-project-item" onclick="window.open('https://easyshare.pythonanywhere.com/', '_blank')">
+                <div class="other-project-item" onclick="window.open('https://easyshare.pythonanywhere.com/', '_blank')" data-animate="fade-up">
                     <img src="ProjectImages/EasyShare.png" alt="Easy Share">
                     <div class="other-project-overlay">
                         <span class="other-project-title">Easy Share</span>
@@ -861,7 +1009,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     </div>
                 </div>
 
-                <div class="other-project-item" onclick="window.open('https://tapstik.net/', '_blank')">
+                <div class="other-project-item" onclick="window.open('https://tapstik.net/', '_blank')" data-animate="fade-up">
                     <img src="ProjectImages/Tapstik.jpg" alt="Tapstik">
                     <div class="other-project-overlay">
                         <span class="other-project-title">Tapstik</span>
@@ -869,7 +1017,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     </div>
                 </div>
 
-                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/FinixLog', '_blank')">
+                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/FinixLog', '_blank')" data-animate="fade-up">
                     <img src="ProjectImages/FinixLog.png" alt="Tapstik">
                     <div class="other-project-overlay">
                         <span class="other-project-title">Finix Log</span>
@@ -877,7 +1025,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     </div>
                 </div>
 
-                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/ManawPayroll', '_blank')">
+                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/ManawPayroll', '_blank')" data-animate="fade-up">
                     <img src="ProjectImages/Manaw.jpg" alt="Tapstik">
                     <div class="other-project-overlay">
                         <span class="other-project-title">Manaw</span>
@@ -885,7 +1033,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     </div>
                 </div>
 
-                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/NUNU', '_blank')">
+                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/NUNU', '_blank')" data-animate="fade-up">
                     <img src="ProjectImages/Nunu.png" alt="NUNU">
                     <div class="other-project-overlay">
                         <span class="other-project-title">NUNU</span>
@@ -893,7 +1041,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     </div>
                 </div>
 
-                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/finport', '_blank')">
+                <div class="other-project-item" onclick="window.open('https://github.com/ompandey07/finport', '_blank')" data-animate="fade-up">
                     <img src="ProjectImages/Finport.png" alt="NUNU">
                     <div class="other-project-overlay">
                         <span class="other-project-title">Finport</span>
@@ -902,8 +1050,8 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 </div>
             </div>
 
-            <div class="show-all-github">
-                <a href="https://github.com/ompandey07" target="_blank" rel="noopener noreferrer" class="github-btn">
+            <div class="show-all-github" data-animate="fade-up">
+                <a href="https://github.com/ompandey07" target="_blank" rel="noopener noreferrer" class="github-btn magnetic-btn">
                     <i data-lucide="github"></i>
                     Show All on GitHub
                 </a>
@@ -911,23 +1059,25 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
         </div>
     </section>
 
-    <!-- Awards Section - Circle Style -->
+    <!-- Awards Section - Circle Style (No text marquee) -->
     <section class="section" id="awards">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-animate="fade-up">
                 <div class="section-header-inner">
                     <div class="section-header-content">
                         <div class="section-label">
                             <i data-lucide="award"></i>
                             Achievements
                         </div>
-                        <h2 class="section-title">Awards & Certifications</h2>
+                        <h2 class="section-title">
+                            <span class="split-line" data-split>Awards & Certifications</span>
+                        </h2>
                     </div>
                 </div>
             </div>
             
             <div class="awards-circle-grid">
-                <div class="award-circle" onclick="openModal('Awards/Django.jpg')">
+                <div class="award-circle" onclick="openModal('Awards/Django.jpg')" data-animate="fade-up" data-delay="0.1">
                     <div class="award-circle-image">
                         <img src="Awards/Django.jpg" alt="Django Certification">
                         <div class="award-circle-hover">
@@ -937,7 +1087,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     <span class="award-circle-label">Django</span>
                 </div>
 
-                <div class="award-circle" onclick="openModal('Awards/DjangoProficeincy.jpg')">
+                <div class="award-circle" onclick="openModal('Awards/DjangoProficeincy.jpg')" data-animate="fade-up" data-delay="0.15">
                     <div class="award-circle-image">
                         <img src="Awards/DjangoProficeincy.jpg" alt="Django Proficiency">
                         <div class="award-circle-hover">
@@ -947,7 +1097,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     <span class="award-circle-label">Django Pro</span>
                 </div>
 
-                <div class="award-circle" onclick="openModal('Awards/Html.jpg')">
+                <div class="award-circle" onclick="openModal('Awards/Html.jpg')" data-animate="fade-up" data-delay="0.2">
                     <div class="award-circle-image">
                         <img src="Awards/Html.jpg" alt="HTML Certification">
                         <div class="award-circle-hover">
@@ -957,7 +1107,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     <span class="award-circle-label">HTML5</span>
                 </div>
 
-                <div class="award-circle" onclick="openModal('Awards/Linux.jpg')">
+                <div class="award-circle" onclick="openModal('Awards/Linux.jpg')" data-animate="fade-up" data-delay="0.25">
                     <div class="award-circle-image">
                         <img src="Awards/Linux.jpg" alt="Linux Certification">
                         <div class="award-circle-hover">
@@ -967,7 +1117,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     <span class="award-circle-label">Linux</span>
                 </div>
 
-                <div class="award-circle" onclick="openModal('Awards/MERN.jpg')">
+                <div class="award-circle" onclick="openModal('Awards/MERN.jpg')" data-animate="fade-up" data-delay="0.3">
                     <div class="award-circle-image">
                         <img src="Awards/MERN.jpg" alt="MERN Stack Certification">
                         <div class="award-circle-hover">
@@ -977,7 +1127,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     <span class="award-circle-label">MERN Stack</span>
                 </div>
 
-                <div class="award-circle" onclick="openModal('Awards/PythonUses.jpg')">
+                <div class="award-circle" onclick="openModal('Awards/PythonUses.jpg')" data-animate="fade-up" data-delay="0.35">
                     <div class="award-circle-image">
                         <img src="Awards/PythonUses.jpg" alt="Python Certification">
                         <div class="award-circle-hover">
@@ -991,16 +1141,16 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
     </section>
 
     <!-- Latest Blogs Section -->
-    <section class="section" id="blogs">
+    <section class="section section-alt" id="blogs">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-animate="fade-up">
                 <div class="section-header-inner">
                     <div class="section-header-content">
                         <div class="section-label">
                             <i data-lucide="book-open"></i>
                             Latest Blogs
                         </div>
-                        <h2 class="section-title">From My Desk</h2>
+                        <h2 class="section-title split-text">From My Desk</h2>
                         <p class="section-subtitle">
                             Thoughts, tutorials, and stories from my coding journey.
                         </p>
@@ -1010,7 +1160,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
 
             <div class="blogs-grid">
                 <!-- Featured Blog - Story of Om Pandey -->
-                <a href="/Blog/Detailed/StoryOfOm.html" target="_blank" class="blog-card blog-card-featured">
+                <a href="/Blog/Detailed/StoryOfOm.html" target="_blank" class="blog-card blog-card-featured" data-animate="fade-up" data-delay="0.1">
                     <div class="blog-card-image">
                         <img src="/Blog/BlogImage.png" alt="Story of Om Pandey">
                         <span class="blog-card-category">Personal</span>
@@ -1037,7 +1187,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 </a>
 
                 <!-- Python 0 to Hero Blog Card -->
-                <a href="/Blog/Detailed/Python0toHero.html" target="_blank" class="blog-card">
+                <a href="/Blog/Detailed/Python0toHero.html" target="_blank" class="blog-card" data-animate="fade-up" data-delay="0.2">
                     <div class="blog-card-image">
                         <img src="/Blog/Python.jpg" alt="Story of Om Pandey">
                         <span class="blog-card-category">Python</span>
@@ -1064,7 +1214,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 </a>
 
                 <!-- Django Hero Blog Card -->
-                <a href="/Blog/Detailed/Django.html" target="_blank" class="blog-card">
+                <a href="/Blog/Detailed/Django.html" target="_blank" class="blog-card" data-animate="fade-up" data-delay="0.3">
                     <div class="blog-card-image">
                         <img src="/Blog/Django.jpg" alt="Story of Om Pandey">
                         <span class="blog-card-category">Django</span>
@@ -1091,8 +1241,8 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 </a>
             </div>
 
-            <div class="blogs-view-all">
-                <a href="/Blog/index.html" target="_blank" class="blogs-btn">
+            <div class="blogs-view-all" data-animate="fade-up">
+                <a href="/Blog/index.html" target="_blank" class="blogs-btn magnetic-btn">
                     <i data-lucide="book-open"></i>
                     Read All Blogs
                 </a>
@@ -1100,19 +1250,17 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
         </div>
     </section>
 
-
-
     <!-- Contact Section -->
-    <section class="section section-alt" id="contact">
+    <section class="section" id="contact">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-animate="fade-up">
                 <div class="section-header-inner">
                     <div class="section-header-content">
                         <div class="section-label">
                             <i data-lucide="mail"></i>
                             Get In Touch
                         </div>
-                        <h2 class="section-title">Let's Work Together</h2>
+                        <h2 class="section-title split-text">Let's Work Together</h2>
                         <p class="section-subtitle">
                             Have a project in mind? Let's create something amazing together.
                         </p>
@@ -1120,7 +1268,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 </div>
             </div>
 
-            <div class="contact-code">
+            <div class="contact-code" data-animate="fade-up">
                 <div class="code-header">
                     <div class="code-dots">
                         <span class="code-dot code-dot-red"></span>
@@ -1138,7 +1286,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
             </div>
             
             <div class="contact-grid">
-                <div class="contact-card">
+                <div class="contact-card" data-animate="fade-up" data-delay="0.1">
                     <div class="contact-icon">
                         <i data-lucide="phone"></i>
                     </div>
@@ -1146,7 +1294,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     <a href="tel:+9779863588895">+977-9863588895</a>
                 </div>
 
-                <div class="contact-card">
+                <div class="contact-card" data-animate="fade-up" data-delay="0.2">
                     <div class="contact-icon">
                         <i data-lucide="mail"></i>
                     </div>
@@ -1154,7 +1302,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                     <a href="mailto:admin@omkumarpandey.com.np">admin@omkumarpandey.com.np</a>
                 </div>
 
-                <div class="contact-card">
+                <div class="contact-card" data-animate="fade-up" data-delay="0.3">
                     <div class="contact-icon">
                         <i data-lucide="map-pin"></i>
                     </div>
@@ -1163,7 +1311,7 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
                 </div>
             </div>
 
-            <div class="contact-social">
+            <div class="contact-social" data-animate="fade-up">
                 <a href="https://www.instagram.com/ome.exee/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
                     <i class="ri-instagram-line"></i>
                 </a>
@@ -1241,6 +1389,95 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
         </div>
     </div>
 
+    <!-- Music Widget - Left Side -->
+    <div class="music-widget">
+        <div class="music-widget-label" id="musicWidgetLabel">
+            <span>Feeling Bored?</span>
+            <div class="music-widget-arrow"></div>
+        </div>
+        <div class="music-widget-button" id="musicWidgetBtn" onclick="toggleMusicPlayer()">
+            <i data-lucide="music"></i>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <div class="music-player-header" id="musicPlayerHeader">
+            <span class="music-player-drag-hint">
+                <i data-lucide="grip-horizontal"></i>
+            </span>
+            <div class="music-player-header-actions">
+                <button class="music-player-minimize" id="musicPlayerMinimize">
+                    <i data-lucide="minus"></i>
+                </button>
+                <button class="music-player-close" id="musicPlayerClose">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="music-player-body" id="musicPlayerBody">
+            <div class="music-player-cover">
+                <img src="" alt="Album Cover" id="musicCover">
+                <div class="music-player-disc"></div>
+            </div>
+
+            <div class="music-player-info">
+                <h3 class="music-player-title" id="musicTitle">Song Title</h3>
+                <p class="music-player-artist" id="musicArtist">Artist</p>
+            </div>
+
+            <div class="music-player-progress">
+                <div class="progress-bar-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="progress-time">
+                    <span id="currentTime">0:00</span>
+                    <span id="durationTime">0:00</span>
+                </div>
+            </div>
+
+            <div class="music-player-controls">
+                <button class="music-control-btn" id="prevBtn">
+                    <i data-lucide="skip-back"></i>
+                </button>
+                <button class="music-control-btn music-control-play" id="playPauseBtn">
+                    <i data-lucide="play"></i>
+                </button>
+                <button class="music-control-btn" id="nextBtn">
+                    <i data-lucide="skip-forward"></i>
+                </button>
+            </div>
+
+            <div class="music-player-volume">
+                <button class="volume-btn" id="volumeBtn">
+                    <i data-lucide="volume-2"></i>
+                </button>
+                <div class="volume-slider-container">
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+                </div>
+            </div>
+        </div>
+
+        <!-- Minimized View -->
+        <div class="music-player-mini" id="musicPlayerMini" style="display: none;">
+            <img src="" alt="Cover" id="musicCoverMini">
+            <div class="mini-info">
+                <span id="musicTitleMini">Song</span>
+            </div>
+            <button class="mini-play-btn" id="miniPlayPauseBtn">
+                <i data-lucide="play"></i>
+            </button>
+            <button class="mini-expand-btn" id="miniExpandBtn">
+                <i data-lucide="maximize-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audioPlayer"></audio>
+
+    <!-- Scripts -->
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
@@ -1253,6 +1490,9 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
             setTimeout(function() {
                 preloader.classList.add('fade-out');
                 body.classList.remove('loading');
+                
+                // Initialize GSAP animations after preloader
+                initAnimations();
             }, 2000);
         });
 
@@ -1314,125 +1554,320 @@ skills.<span class="function">map</span>(skill => <span class="function">master<
             }
         });
 
-        // Marquee Toggle Function - Click to pause/resume
-        let marqueesPaused = false;
-        let activeItem = null;
+        // ============================================
+        // GSAP Animations
+        // ============================================
+        gsap.registerPlugin(ScrollTrigger);
 
-        function toggleMarquee(element) {
-            const marquee = document.getElementById('companiesMarquee');
-            
-            if (activeItem === element) {
-                // Same item clicked again - resume scrolling
-                marquee.classList.remove('paused');
-                element.classList.remove('active');
-                activeItem = null;
-                marqueesPaused = false;
-            } else {
-                // New item clicked - pause scrolling
-                if (activeItem) {
-                    activeItem.classList.remove('active');
+        function initAnimations() {
+            // Hero Title Animation
+            gsap.fromTo('.title-mask span', 
+                { y: '100%' },
+                { 
+                    y: '0%', 
+                    duration: 1.2, 
+                    stagger: 0.15, 
+                    ease: 'power4.out',
+                    delay: 0.3
                 }
-                marquee.classList.add('paused');
-                element.classList.add('active');
-                activeItem = element;
-                marqueesPaused = true;
+            );
+
+            // Hero Eyebrow
+            gsap.fromTo('.hero-eyebrow',
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
+            );
+
+            // Hero Description
+            gsap.fromTo('.hero-description',
+                { y: 40, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.6 }
+            );
+
+            // Hero Stats
+            gsap.fromTo('.hero-stats',
+                { y: 40, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.7 }
+            );
+
+            // Hero Buttons
+            gsap.fromTo('.hero-buttons',
+                { y: 40, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.8 }
+            );
+
+            // Hero Image
+            gsap.fromTo('.hero-image-wrapper',
+                { scale: 0.8, opacity: 0 },
+                { scale: 1, opacity: 1, duration: 1.2, ease: 'power3.out', delay: 0.5 }
+            );
+
+            // Scroll Indicator
+            gsap.fromTo('.hero-scroll-indicator',
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 1 }
+            );
+
+            // Counter Animation
+            document.querySelectorAll('[data-counter]').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-counter'));
+                gsap.to(counter, {
+                    textContent: target,
+                    duration: 2,
+                    ease: 'power2.out',
+                    snap: { textContent: 1 },
+                    delay: 1
+                });
+            });
+
+            // Background Text Parallax
+            gsap.to('.hero-bg-text', {
+                xPercent: -20,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 2
+                }
+            });
+
+            // Floating Circles Animation
+            gsap.to('.c1', {
+                y: -100,
+                x: 50,
+                rotation: 360,
+                duration: 20,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+
+            gsap.to('.c2', {
+                y: 80,
+                x: -40,
+                duration: 15,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+
+            gsap.to('.c3', {
+                y: -50,
+                x: 30,
+                scale: 1.5,
+                duration: 10,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+
+            // Floating Icons Animation
+            document.querySelectorAll('.floating-icon').forEach((icon, i) => {
+                gsap.to(icon, {
+                    y: '-=20',
+                    duration: 2 + i * 0.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+            });
+
+            // ============================================
+            // Split Line Text Animation on Scroll
+            // ============================================
+            gsap.utils.toArray('.split-line').forEach((line) => {
+                gsap.fromTo(line,
+                    { 
+                        y: 80, 
+                        opacity: 0,
+                        rotationX: 45
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        rotationX: 0,
+                        duration: 1,
+                        ease: 'power4.out',
+                        scrollTrigger: {
+                            trigger: line,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none'
+                        }
+                    }
+                );
+            });
+
+            // Split Text Animation
+            gsap.utils.toArray('.split-text').forEach((text) => {
+                gsap.fromTo(text,
+                    { 
+                        y: 60, 
+                        opacity: 0,
+                        clipPath: 'inset(100% 0% 0% 0%)'
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        clipPath: 'inset(0% 0% 0% 0%)',
+                        duration: 1.2,
+                        ease: 'power4.out',
+                        scrollTrigger: {
+                            trigger: text,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none'
+                        }
+                    }
+                );
+            });
+
+            // Scroll Triggered Animations
+            gsap.utils.toArray('[data-animate]').forEach((el) => {
+                const animation = el.getAttribute('data-animate');
+                const delay = parseFloat(el.getAttribute('data-delay')) || 0;
+
+                let fromVars = { opacity: 0 };
+                let toVars = { opacity: 1, duration: 1, ease: 'power3.out', delay };
+
+                switch(animation) {
+                    case 'fade-up':
+                        fromVars.y = 50;
+                        toVars.y = 0;
+                        break;
+                    case 'fade-down':
+                        fromVars.y = -50;
+                        toVars.y = 0;
+                        break;
+                    case 'fade-left':
+                        fromVars.x = 50;
+                        toVars.x = 0;
+                        break;
+                    case 'fade-right':
+                        fromVars.x = -50;
+                        toVars.x = 0;
+                        break;
+                    case 'scale-in':
+                        fromVars.scale = 0.8;
+                        toVars.scale = 1;
+                        break;
+                }
+
+                gsap.fromTo(el, fromVars, {
+                    ...toVars,
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            // Image Reveal Animations
+            gsap.utils.toArray('.img-reveal').forEach((el) => {
+                const img = el.querySelector('img');
+                
+                gsap.fromTo(el,
+                    { clipPath: 'inset(100% 0% 0% 0%)' },
+                    {
+                        clipPath: 'inset(0% 0% 0% 0%)',
+                        duration: 1.2,
+                        ease: 'power4.inOut',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 80%',
+                            toggleActions: 'play none none none'
+                        }
+                    }
+                );
+
+                if (img) {
+                    gsap.fromTo(img,
+                        { scale: 1.3 },
+                        {
+                            scale: 1,
+                            duration: 1.5,
+                            ease: 'power4.out',
+                            scrollTrigger: {
+                                trigger: el,
+                                start: 'top 80%',
+                                toggleActions: 'play none none none'
+                            }
+                        }
+                    );
+                }
+            });
+
+            // Parallax Effects on Scroll
+            gsap.utils.toArray('[data-speed]').forEach((el) => {
+                const speed = parseFloat(el.getAttribute('data-speed'));
+                gsap.to(el, {
+                    y: speed * 100,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: el.closest('section') || el,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: 1.5
+                    }
+                });
+            });
+
+            // Magnetic Button Effect
+            const isDesktop = window.matchMedia('(hover: hover)').matches;
+            
+            if (isDesktop) {
+                document.querySelectorAll('.magnetic-btn').forEach((btn) => {
+                    btn.addEventListener('mousemove', (e) => {
+                        const rect = btn.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+                        
+                        gsap.to(btn, {
+                            x: x * 0.3,
+                            y: y * 0.3,
+                            duration: 0.3,
+                            ease: 'power2.out'
+                        });
+                    });
+                    
+                    btn.addEventListener('mouseleave', () => {
+                        gsap.to(btn, {
+                            x: 0,
+                            y: 0,
+                            duration: 0.5,
+                            ease: 'elastic.out(1, 0.5)'
+                        });
+                    });
+                });
             }
+
+            // Nav Animation on Scroll
+            const nav = document.querySelector('.nav');
+            ScrollTrigger.create({
+                start: 100,
+                onUpdate: (self) => {
+                    if (self.scroll() > 100) {
+                        nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                        nav.style.backdropFilter = 'blur(30px)';
+                    } else {
+                        nav.style.boxShadow = 'none';
+                        nav.style.backdropFilter = 'blur(20px)';
+                    }
+                }
+            });
         }
+
+        // Visibility change handler
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                gsap.globalTimeline.pause();
+            } else {
+                gsap.globalTimeline.resume();
+            }
+        });
     </script>
+    
     <script src="app.js"></script>
-
-    <!-- Music Widget - Left Side -->
-    <div class="music-widget">
-        <div class="music-widget-label" id="musicWidgetLabel">
-            <span>Feeling Bored?</span>
-            <div class="music-widget-arrow"></div>
-        </div>
-        <div class="music-widget-button" id="musicWidgetBtn" onclick="toggleMusicPlayer()">
-            <i data-lucide="music"></i>
-        </div>
-    </div>
-
-    <!-- Music Player -->
-    <div class="music-player" id="musicPlayer">
-        <div class="music-player-header" id="musicPlayerHeader">
-            <span class="music-player-drag-hint">
-                <i data-lucide="grip-horizontal"></i>
-            </span>
-            <div class="music-player-header-actions">
-                <button class="music-player-minimize" id="musicPlayerMinimize">
-                    <i data-lucide="minus"></i>
-                </button>
-                <button class="music-player-close" id="musicPlayerClose">
-                    <i data-lucide="x"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="music-player-body" id="musicPlayerBody">
-            <div class="music-player-cover">
-                <img src="" alt="Album Cover" id="musicCover">
-                <div class="music-player-disc"></div>
-            </div>
-
-            <div class="music-player-info">
-                <h3 class="music-player-title" id="musicTitle">Song Title</h3>
-                <p class="music-player-artist" id="musicArtist">Artist</p>
-            </div>
-
-            <div class="music-player-progress">
-                <div class="progress-bar-container" id="progressContainer">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-                <div class="progress-time">
-                    <span id="currentTime">0:00</span>
-                    <span id="durationTime">0:00</span>
-                </div>
-            </div>
-
-            <div class="music-player-controls">
-                <button class="music-control-btn" id="prevBtn">
-                    <i data-lucide="skip-back"></i>
-                </button>
-                <!-- Simplified Play/Pause Button -->
-                <button class="music-control-btn music-control-play" id="playPauseBtn">
-                    <i data-lucide="play"></i>
-                </button>
-                <button class="music-control-btn" id="nextBtn">
-                    <i data-lucide="skip-forward"></i>
-                </button>
-            </div>
-
-            <div class="music-player-volume">
-                <!-- Simplified Volume Button -->
-                <button class="volume-btn" id="volumeBtn">
-                    <i data-lucide="volume-2"></i>
-                </button>
-                <div class="volume-slider-container">
-                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
-                </div>
-            </div>
-        </div>
-
-        <!-- Minimized View -->
-        <div class="music-player-mini" id="musicPlayerMini" style="display: none;">
-            <img src="" alt="Cover" id="musicCoverMini">
-            <div class="mini-info">
-                <span id="musicTitleMini">Song</span>
-            </div>
-            <!-- Simplified Mini Play/Pause Button -->
-            <button class="mini-play-btn" id="miniPlayPauseBtn">
-                <i data-lucide="play"></i>
-            </button>
-            <button class="mini-expand-btn" id="miniExpandBtn">
-                <i data-lucide="maximize-2"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Audio Element -->
-    <audio id="audioPlayer"></audio>
-
-    <!-- Link Music JS -->
     <script src="music.js"></script>
     <script src="darkmode.js"></script>
 </body>

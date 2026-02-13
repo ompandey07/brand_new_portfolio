@@ -30,6 +30,9 @@
     --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.3);
     --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.5);
     --shadow-glow: 0 0 40px rgba(129, 140, 248, 0.2);
+
+    /* Marquee text color - White in dark mode */
+    --marquee-text-color: #ffffff;
 }
 
 /* Theme Toggle Button */
@@ -124,6 +127,76 @@
 }
 
 /* ============================================
+   Marquee Text - Dark Mode (White Color)
+   ============================================ */
+[data-theme="dark"] .marquee-text {
+    color: var(--marquee-text-color);
+}
+
+[data-theme="dark"] .marquee-section {
+    background: var(--bg-secondary);
+    border-top-color: var(--border-light);
+    border-bottom-color: var(--border-light);
+}
+
+/* ============================================
+   Skills Marquee - Dark Mode
+   ============================================ */
+[data-theme="dark"] .skills-marquee-wrapper {
+    background: var(--bg-secondary);
+    border-color: var(--border-light);
+}
+
+[data-theme="dark"] .skills-marquee-wrapper::before {
+    background: linear-gradient(to right, var(--bg-secondary), transparent);
+}
+
+[data-theme="dark"] .skills-marquee-wrapper::after {
+    background: linear-gradient(to left, var(--bg-secondary), transparent);
+}
+
+[data-theme="dark"] .skills-marquee .marquee-text {
+    color: var(--marquee-text-color);
+    opacity: 0.95;
+}
+
+/* ============================================
+   Worked With Marquee - Dark Mode
+   ============================================ */
+[data-theme="dark"] .worked-with-marquee-wrapper::before {
+    background: linear-gradient(to right, var(--bg-primary), transparent);
+}
+
+[data-theme="dark"] .worked-with-marquee-wrapper::after {
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+}
+
+[data-theme="dark"] .worked-with-marquee .marquee-text {
+    color: var(--marquee-text-color);
+    opacity: 0.9;
+}
+
+/* ============================================
+   Awards Marquee - Dark Mode
+   ============================================ */
+[data-theme="dark"] .awards-marquee-wrapper {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .awards-marquee-wrapper::before {
+    background: linear-gradient(to right, var(--bg-secondary), transparent);
+}
+
+[data-theme="dark"] .awards-marquee-wrapper::after {
+    background: linear-gradient(to left, var(--bg-secondary), transparent);
+}
+
+[data-theme="dark"] .awards-marquee .marquee-text {
+    color: var(--marquee-text-color);
+    opacity: 0.95;
+}
+
+/* ============================================
    About Image - Dark Mode Fix
    ============================================ */
 [data-theme="dark"] .about-image-wrapper {
@@ -170,6 +243,33 @@
 
 [data-theme="dark"] .about-image-wrapper:hover .about-image {
     filter: brightness(1.4) contrast(1.15) saturate(1.2) drop-shadow(0 0 30px rgba(129, 140, 248, 0.35));
+}
+
+/* ============================================
+   Hero Background Text - Dark Mode
+   ============================================ */
+[data-theme="dark"] .hero-bg-text span {
+    -webkit-text-stroke: 1px rgba(129, 140, 248, 0.08);
+}
+
+/* ============================================
+   Float Circles - Dark Mode
+   ============================================ */
+[data-theme="dark"] .float-circle {
+    border-color: rgba(129, 140, 248, 0.1);
+}
+
+[data-theme="dark"] .float-circle.c1 {
+    border-color: rgba(129, 140, 248, 0.08);
+}
+
+[data-theme="dark"] .float-circle.c2 {
+    background: radial-gradient(circle, rgba(129, 140, 248, 0.08) 0%, transparent 70%);
+}
+
+[data-theme="dark"] .float-circle.c3 {
+    background: var(--accent-primary);
+    opacity: 0.06;
 }
 
 /* ============================================
@@ -312,9 +412,347 @@
     border-color: var(--accent-primary);
 }
 
+/* ============================================
+   Hero Stats Border - Dark Mode
+   ============================================ */
+[data-theme="dark"] .hero-stats {
+    border-top-color: var(--border-light);
+    border-bottom-color: var(--border-light);
+}
+
+/* ============================================
+   Hero Image Rings - Dark Mode
+   ============================================ */
+[data-theme="dark"] .hero-image-ring {
+    border-color: rgba(129, 140, 248, 0.15);
+}
+
+[data-theme="dark"] .hero-image-ring-3 {
+    border-color: rgba(129, 140, 248, 0.1);
+}
+
+[data-theme="dark"] .hero-image {
+    border-color: rgba(129, 140, 248, 0.25);
+}
+
+/* ============================================
+   Hero Button Secondary - Dark Mode
+   ============================================ */
+[data-theme="dark"] .hero-btn-secondary {
+    background: var(--bg-secondary);
+    border-color: var(--border-medium);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .hero-btn-secondary:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+/* ============================================
+   Section Header Border - Dark Mode
+   ============================================ */
+[data-theme="dark"] .section-header-inner {
+    border-left-color: var(--accent-primary);
+}
+
+/* ============================================
+   Blog Card Footer Border - Dark Mode
+   ============================================ */
+[data-theme="dark"] .blog-card-footer {
+    border-top-color: var(--border-light);
+}
+
+/* ============================================
+   Popup Profile Border - Dark Mode
+   ============================================ */
+[data-theme="dark"] .popup-profile {
+    border-bottom-color: var(--border-light);
+}
+
+/* ============================================
+   Progress Bar - Dark Mode
+   ============================================ */
+[data-theme="dark"] .progress-bar-container {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .progress-bar::after {
+    background: var(--bg-primary);
+    border-color: var(--accent-light);
+}
+
+/* ============================================
+   Scroll Line - Dark Mode
+   ============================================ */
+[data-theme="dark"] .scroll-line {
+    background: var(--border-medium);
+}
+
+/* ============================================
+   Company Logo Items - Dark Mode
+   ============================================ */
+[data-theme="dark"] .company-logo-item img {
+    filter: grayscale(100%) brightness(0.8) opacity(0.5);
+}
+
+[data-theme="dark"] .company-logo-item:hover img {
+    filter: grayscale(0%) brightness(1) opacity(1);
+}
+
+/* ============================================
+   Split Line Text - Dark Mode
+   ============================================ */
+[data-theme="dark"] .split-line,
+[data-theme="dark"] .split-text {
+    color: var(--text-primary);
+}
+
+/* ============================================
+   Section Alt Background - Dark Mode
+   ============================================ */
+[data-theme="dark"] .section-alt {
+    background: var(--bg-secondary);
+}
+
+/* ============================================
+   Nav Link Hover - Dark Mode
+   ============================================ */
+[data-theme="dark"] .nav-link:hover {
+    background: var(--bg-tertiary);
+}
+
+/* ============================================
+   About Code Block - Dark Mode
+   ============================================ */
+[data-theme="dark"] .about-code {
+    background: #0a0a0a;
+}
+
+/* ============================================
+   About Highlight Icon - Dark Mode
+   ============================================ */
+[data-theme="dark"] .about-highlight i {
+    color: var(--success);
+}
+
+/* ============================================
+   Big Deal Badge - Dark Mode
+   ============================================ */
+[data-theme="dark"] .badge-ai {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(139, 92, 246, 0.2));
+    color: #a78bfa;
+}
+
+[data-theme="dark"] .badge-open {
+    background: rgba(129, 140, 248, 0.15);
+    color: var(--accent-light);
+}
+
+[data-theme="dark"] .badge-live {
+    background: rgba(16, 185, 129, 0.15);
+}
+
+/* ============================================
+   Blog Card Category - Dark Mode
+   ============================================ */
+[data-theme="dark"] .blog-card-category {
+    background: rgba(129, 140, 248, 0.95);
+}
+
+/* ============================================
+   Award Circle Hover - Dark Mode
+   ============================================ */
+[data-theme="dark"] .award-circle-hover {
+    background: rgba(129, 140, 248, 0.9);
+}
+
+/* ============================================
+   Music Player Disc - Dark Mode
+   ============================================ */
+[data-theme="dark"] .music-player-disc {
+    background: var(--bg-primary);
+    border-color: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .music-player-disc::after {
+    background: var(--accent-light);
+}
+
+/* ============================================
+   Mini Player Buttons - Dark Mode
+   ============================================ */
+[data-theme="dark"] .mini-play-btn,
+[data-theme="dark"] .mini-expand-btn {
+    border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .mini-play-btn:hover,
+[data-theme="dark"] .mini-expand-btn:hover {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+/* ============================================
+   Contact Widget Button Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .contact-button {
+    box-shadow: 0 4px 20px rgba(129, 140, 248, 0.3);
+}
+
+[data-theme="dark"] .music-widget-button {
+    box-shadow: 0 4px 20px rgba(129, 140, 248, 0.3);
+}
+
+/* ============================================
+   Hero Button Primary Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .hero-btn-primary {
+    box-shadow: 0 4px 20px rgba(129, 140, 248, 0.3);
+}
+
+[data-theme="dark"] .hero-btn-primary:hover {
+    box-shadow: 0 8px 30px rgba(129, 140, 248, 0.4);
+}
+
+/* ============================================
+   Blogs Button Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .blogs-btn {
+    box-shadow: 0 4px 20px rgba(129, 140, 248, 0.3);
+}
+
+[data-theme="dark"] .blogs-btn:hover {
+    box-shadow: 0 8px 30px rgba(129, 140, 248, 0.4);
+}
+
+/* ============================================
+   Popup Button Primary Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .popup-btn-primary:hover {
+    box-shadow: 0 4px 15px rgba(129, 140, 248, 0.3);
+}
+
+/* ============================================
+   Music Control Play Button - Dark Mode
+   ============================================ */
+[data-theme="dark"] .music-control-play {
+    box-shadow: 0 4px 20px rgba(129, 140, 248, 0.3);
+}
+
+[data-theme="dark"] .music-control-play:hover {
+    box-shadow: 0 6px 25px rgba(129, 140, 248, 0.4);
+}
+
+/* ============================================
+   Music Player Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .music-player {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(129, 140, 248, 0.15);
+}
+
+/* ============================================
+   Skill Card Hover Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .skill-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Big Deal Card Hover Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .big-deal-card:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   Other Project Item Hover Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .other-project-item:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   Blog Card Hover Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .blog-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Contact Card Hover Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .contact-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   GitHub Button Hover Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .github-btn:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   Social Link Hover Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .social-link:hover {
+    box-shadow: 0 4px 15px rgba(129, 140, 248, 0.3);
+}
+
+/* ============================================
+   Floating Icon Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .floating-icon {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-color: var(--border-medium);
+}
+
+/* ============================================
+   Contact Popup Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .contact-popup {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   Music Widget Label Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .music-widget-label {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Hero Image Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .hero-image {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(129, 140, 248, 0.15);
+}
+
+/* ============================================
+   Music Player Cover Shadow - Dark Mode
+   ============================================ */
+[data-theme="dark"] .music-player-cover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
 /* Smooth transitions for theme switching */
 * {
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Exclude certain elements from transition */
+.marquee-track,
+.marquee-track *,
+.companies-marquee-track,
+.companies-marquee-track *,
+.skills-marquee-track,
+.skills-marquee-track *,
+.worked-with-marquee-track,
+.worked-with-marquee-track *,
+.awards-marquee-track,
+.awards-marquee-track * {
+    transition: none;
 }
 
 /* Mobile responsive theme toggle */
