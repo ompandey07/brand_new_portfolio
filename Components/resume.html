@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Kumar Pandey - Full Stack Software Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0.35in;
+        }
+
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            font-size: 10pt;
+            line-height: 1.25;
+            color: #000000;
+            background: #ffffff;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.35in;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 10px;
+        }
+
+        .name {
+            font-size: 22pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 6px;
+        }
+
+        .contact-info {
+            font-size: 9.5pt;
+            line-height: 1.4;
+        }
+
+        .contact-info a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .contact-info span {
+            margin: 0 5px;
+        }
+
+        .section {
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 11pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1.5px solid #000000;
+            padding-bottom: 2px;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .summary {
+            text-align: justify;
+            line-height: 1.3;
+        }
+
+        .experience-item {
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .company-title {
+            font-weight: bold;
+            font-size: 10.5pt;
+        }
+
+        .position {
+            font-style: italic;
+            font-size: 9.5pt;
+            margin-top: 1px;
+        }
+
+        .duration {
+            font-size: 9.5pt;
+            color: #333333;
+            text-align: right;
+        }
+
+        .location {
+            font-size: 9.5pt;
+            color: #333333;
+            text-align: right;
+            margin-top: 1px;
+        }
+
+        .responsibilities {
+            margin-left: 16px;
+            margin-top: 4px;
+        }
+
+        .responsibilities li {
+            margin-bottom: 2px;
+            line-height: 1.25;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 16px;
+        }
+
+        .skill-category {
+            margin-bottom: 4px;
+        }
+
+        .skill-category strong {
+            font-weight: bold;
+            display: inline-block;
+            min-width: 120px;
+        }
+
+        .project-item {
+            margin-bottom: 8px;
+            page-break-inside: avoid;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .project-title {
+            font-weight: bold;
+            font-size: 10pt;
+        }
+
+        .project-tech {
+            font-size: 9pt;
+            color: #333333;
+            font-style: italic;
+        }
+
+        .project-link {
+            font-size: 9pt;
+            color: #0066cc;
+            text-decoration: none;
+            margin-left: 8px;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .project-description {
+            margin-left: 16px;
+        }
+
+        .project-description li {
+            margin-bottom: 2px;
+            line-height: 1.25;
+        }
+
+        .cert-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+        }
+
+        .cert-item {
+            font-size: 9.5pt;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+            a {
+                color: #000000;
+                text-decoration: none;
+            }
+            .project-link {
+                color: #333333;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="name">Om Kumar Pandey</div>
+        <div class="title">Full Stack Software Developer | Founder, Tapstik</div>
+        <div class="contact-info">
+            <a href="tel:+9779863588895">+977-9863588895</a>
+            <span>•</span>
+            <a href="mailto:admin@omkumarpandey.com.np">admin@omkumarpandey.com.np</a>
+            <span>•</span>
+            <a href="https://www.omkumarpandey.com.np">omkumarpandey.com.np</a>
+            <span>•</span>
+            <a href="https://github.com/ompandey07">github.com/ompandey07</a>
+            <span>•</span>
+            <a href="https://linkedin.com/in/iamompandey">linkedin.com/in/iamompandey</a>
+            <span>•</span>
+            Kathmandu, Nepal
+        </div>
+    </div>
+
+    <!-- Professional Summary -->
+    <div class="section">
+        <div class="section-title">Professional Summary</div>
+        <div class="summary">
+            I’m a full-stack software developer with 5+ years of experience building clean, scalable web applications. I enjoy working across the stack, from intuitive frontends to reliable backend systems and cloud infrastructure. I’ve delivered 20+ projects used by 100+ users and focus on writing maintainable, high-performance code that solves real-world problems. I’m also experienced in system architecture, AI integrations, and DevOps practices to ensure smooth deployments and long-term scalability.
+        </div>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="section">
+        <div class="section-title">Technical Skills</div>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <strong>Languages:</strong> Python, JavaScript, TypeScript, PHP, HTML5, CSS3, Bash, SQL
+            </div>
+            <div class="skill-category">
+                <strong>Frontend:</strong> React.js, Redux, Next.js, Tailwind CSS, Bootstrap, Sass, Jest
+            </div>
+            <div class="skill-category">
+                <strong>Backend:</strong> Django, Node.js, Express.js, REST API, GraphQL, FastAPI
+            </div>
+            <div class="skill-category">
+                <strong>Databases:</strong> PostgreSQL, MySQL, MongoDB, Redis
+            </div>
+            <div class="skill-category">
+                <strong>DevOps & Cloud:</strong> Docker, Nginx, Linux, Git, GitHub, GitLab, CI/CD
+            </div>
+            <div class="skill-category">
+                <strong>Tools & Others:</strong> VS Code, Vim, Figma, Canva, Hydra, Cisco, Agile/Scrum
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional Experience -->
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <div class="company-title">Software Developer & IT Officer</div>
+                    <div class="position">Pioneer Software Solutions</div>
+                </div>
+                <div>
+                    <div class="duration">2022 - Present</div>
+                    <div class="location">Kathmandu, Nepal</div>
+                </div>
+            </div>
+            <ul class="responsibilities">
+                <li>Worked as Software Developer to build full-stack applications and provide IT support including VPS, RDP, and Database management</li>
+                        <li>Implemented and supported national and international accounting software solutions including TallyPrime and EasyBill</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <div class="company-title">Software Developer</div>
+                    <div class="position">Mega Minds Pvt Ltd</div>
+                </div>
+                <div>
+                    <div class="duration">2020 - Present</div>
+                    <div class="location">Nepal</div>
+                </div>
+            </div>
+            <ul class="responsibilities">
+                <li>Worked on freelance projects and developed AI-based MSS ERP Software</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <div class="company-title">Founder & Lead Developer</div>
+                    <div class="position">Tapstik (tapstik.net)</div>
+                </div>
+                <div>
+                    <div class="duration">2024 - Present</div>
+                    <div class="location">Kathmandu, Nepal</div>
+                </div>
+            </div>
+            <ul class="responsibilities">
+                <li>Founded and developed Tapstik, a digital platform delivering innovative digital solutions tailored for restaurants and hotels.</li>
+                <li>Led full product lifecycle from concept to deployment, managing architecture, development, and operations</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Featured Projects -->
+    <div class="section">
+        <div class="section-title">Featured Projects</div>
+        
+        <div class="project-item">
+            <div class="project-header">
+                <div>
+                    <span class="project-title">MSS ERP - AI-Powered Enterprise Resource Planning</span>
+                    <a href="http://msserp.megaminds.com.np/" class="project-link">msserp.megaminds.com.np</a>
+                </div>
+                <div class="project-tech">Django, React, PostgreSQL, AI/ML</div>
+            </div>
+        </div>
+
+        <div class="project-item">
+            <div class="project-header">
+                <div>
+                    <span class="project-title">Nepali Calendar Date Picker (Open Source)</span>
+                    <a href="https://nepalidate.omkumarpandey.com.np/" class="project-link">nepalidate.omkumarpandey.com.np</a>
+                </div>
+                <div class="project-tech">JavaScript, CSS3, MIT License</div>
+            </div>
+        </div>
+
+        <div class="project-item">
+            <div class="project-header">
+                <div>
+                    <span class="project-title">ULTRON - AI Assistant Platform</span>
+                    <a href="https://github.com/ompandey07/Ultron" class="project-link">github.com/ompandey07/Ultron</a>
+                </div>
+                <div class="project-tech">Python, AI/ML, NLP</div>
+            </div>
+        </div>
+
+        <div class="project-item">
+            <div class="project-header">
+                <div>
+                    <span class="project-title">E-TDL & Portfolio of Production Apps</span>
+                    <a href="https://github.com/ompandey07" class="project-link">github.com/ompandey07</a>
+                </div>
+                <div class="project-tech">Django, React, Node.js, TypeScript</div>
+            </div>
+            <ul class="project-description">
+                <li>Delivered 10+ production apps including Easy Share, Finix Log, Manaw, and Finport with responsive designs</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="section">
+        <div class="section-title">Certifications & Training</div>
+        <div class="cert-list">
+            <div class="cert-item">• Django Framework Certification</div>
+            <div class="cert-item">• Django Proficiency Advanced</div>
+            <div class="cert-item">• HTML5 & CSS3 Certification</div>
+            <div class="cert-item">• Linux System Administration</div>
+            <div class="cert-item">• MERN Stack Development</div>
+            <div class="cert-item">• Python Programming Expert</div>
+        </div>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="section">
+        <div class="section-title">Additional Information</div>
+        <ul class="responsibilities">
+            <li><strong>Open Source:</strong> Active contributor with multiple repositories on GitHub</li>
+            <li><strong>Technical Writing:</strong> Published blogs and tutorials on Python, Django, and full-stack development</li>
+            <li><strong>Industry Collaboration:</strong> Worked with Axis, Pioneer, MegaMinds, Rising Youths, Royal Pains</li>
+            <li><strong>Languages:</strong> English (Professional), Nepali (Native)</li>
+        </ul>
+    </div>
+
+</body>
+</html>
