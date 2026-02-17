@@ -258,7 +258,6 @@
             margin: 0 auto;
         }
 
-        /* Section Header */
         .section-header {
             text-align: center;
             margin-bottom: 50px;
@@ -527,8 +526,234 @@
             transform: translateX(5px);
         }
 
-        /* Guides Grid */
-        .guides-grid {
+        /* Marquee Styles for Docs & Tutorials */
+        .marquee-section {
+            padding: 60px 0;
+            overflow: hidden;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .marquee-header {
+            text-align: center;
+            padding: 0 24px;
+            margin-bottom: 40px;
+        }
+
+        .marquee-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .marquee-wrapper::before,
+        .marquee-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 150px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee-wrapper::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg-secondary), transparent);
+        }
+
+        .marquee-wrapper::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--bg-secondary), transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 30px;
+            animation: marquee 50s linear infinite;
+            width: fit-content;
+        }
+
+        .marquee-wrapper:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Larger Marquee Card - Similar to Original Blog Cards */
+        .marquee-card {
+            flex-shrink: 0;
+            width: 380px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .marquee-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-2xl);
+            padding: 2px;
+            background: var(--accent-gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .marquee-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+        }
+
+        .marquee-card:hover::before {
+            opacity: 1;
+        }
+
+        .marquee-card-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .marquee-card:hover .marquee-card-image img {
+            transform: scale(1.1);
+        }
+
+        .marquee-card-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, transparent 50%, rgba(15, 23, 42, 0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .marquee-card:hover .marquee-card-image-overlay {
+            opacity: 1;
+        }
+
+        .marquee-card-category {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 8px 16px;
+            background: var(--accent-gradient);
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            z-index: 2;
+        }
+
+        .marquee-card-content {
+            padding: 24px;
+        }
+
+        .marquee-card-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            transition: color var(--transition-base);
+        }
+
+        .marquee-card:hover .marquee-card-title {
+            color: var(--accent-primary);
+        }
+
+        .marquee-card-excerpt {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .marquee-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .marquee-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .marquee-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .marquee-card-meta i {
+            width: 14px;
+            height: 14px;
+        }
+
+        .marquee-card-read {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .marquee-card-read i {
+            width: 16px;
+            height: 16px;
+            transition: transform var(--transition-base);
+        }
+
+        .marquee-card:hover .marquee-card-read i {
+            transform: translateX(5px);
+        }
+
+        /* Newly Published Section */
+        .newly-published-section {
+            padding: 80px 24px;
+            background: var(--bg-primary);
+        }
+
+        .blogs-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
@@ -615,19 +840,6 @@
             z-index: 2;
         }
 
-        /* Category specific colors */
-        .category-python {
-            background: linear-gradient(135deg, #3776ab 0%, #ffd43b 100%);
-        }
-
-        .category-django {
-            background: linear-gradient(135deg, #092e20 0%, #44b78b 100%);
-        }
-
-        .category-javascript {
-            background: linear-gradient(135deg, #f7df1e 0%, #323330 100%);
-        }
-
         .blog-card-content-pro {
             padding: 28px;
             flex: 1;
@@ -663,6 +875,10 @@
             margin-bottom: 12px;
             line-height: 1.4;
             transition: color var(--transition-base);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .blog-card-pro:hover .blog-card-title-pro {
@@ -675,6 +891,10 @@
             line-height: 1.7;
             margin-bottom: 24px;
             flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .blog-card-footer-pro {
@@ -739,6 +959,53 @@
 
         .blog-card-pro:hover .blog-card-read-pro i {
             transform: translateX(5px);
+        }
+
+        /* Loading State */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            grid-column: 1 / -1;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-light);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .empty-state i {
+            width: 64px;
+            height: 64px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: var(--text-secondary);
         }
 
         .footer {
@@ -835,13 +1102,17 @@
                 font-size: 28px;
             }
 
-            .guides-grid {
+            .blogs-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .marquee-card {
+                width: 340px;
             }
         }
 
         @media (max-width: 768px) {
-            .guides-grid {
+            .blogs-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -866,6 +1137,14 @@
             .footer-container {
                 flex-direction: column;
                 gap: 20px;
+            }
+
+            .marquee-card {
+                width: 300px;
+            }
+
+            .marquee-card-image {
+                height: 160px;
             }
         }
 
@@ -895,13 +1174,29 @@
                 gap: 10px;
                 align-items: flex-start;
             }
+
+            .marquee-card {
+                width: 260px;
+            }
+
+            .marquee-card-image {
+                height: 140px;
+            }
+
+            .marquee-card-content {
+                padding: 18px;
+            }
+
+            .marquee-card-title {
+                font-size: 17px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
-
+    
     <!-- Header Bar -->
     <header class="header-bar">
         <div class="header-container">
@@ -1004,487 +1299,573 @@
         </div>
     </section>
 
-    <!-- Cheat Sheets & Guides Section -->
-    <section class="section" id="guides">
+    <!-- Docs & Tutorials Marquee Section -->
+    <section class="marquee-section" id="docs">
+        <div class="marquee-header">
+            <div class="section-badge">
+                <i data-lucide="file-text"></i>
+                Learning Resources
+            </div>
+            <h2 class="section-title">Docs & <span class="section-title-accent">Tutorials</span></h2>
+            <p class="section-description">
+                Comprehensive tutorials and guides to help you master programming from zero to hero.
+            </p>
+        </div>
+
+        <div class="marquee-wrapper">
+            <div class="marquee-track" id="marqueeTrack">
+                <!-- Original Cards -->
+                <a href="./Detailed/Python0toHero.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="./PythonHero.png" alt="Python">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">Python</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Python 0 to Hero</h4>
+                        <p class="marquee-card-excerpt">Complete Python programming guide from absolute beginner to confident coder.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 10 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/Django.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/Django.jpg" alt="Django">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">Django</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Django Hero</h4>
+                        <p class="marquee-card-excerpt">Master Django web framework from scratch. Build powerful web applications.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 12 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/CloudHosting.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/cloudhost.jpg" alt="Cloud">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">Cloud</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Cloud & Hosting</h4>
+                        <p class="marquee-card-excerpt">Master web hosting from static sites to full-stack deployment.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 20 min</span>
+                                <span><i data-lucide="book-open"></i> Guide</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/HTML.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/HTML.png" alt="HTML">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">HTML</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">HTML Mastery</h4>
+                        <p class="marquee-card-excerpt">Learn HTML from scratch and build strong foundations for web development.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 12 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/CSS0toHero.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/CSS.png" alt="CSS">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">CSS</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">CSS Styling</h4>
+                        <p class="marquee-card-excerpt">Master CSS to create beautiful, responsive designs with modern techniques.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 18 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/Javscript.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/Javscript.jpg" alt="JavaScript">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">JavaScript</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">JavaScript Hero</h4>
+                        <p class="marquee-card-excerpt">Master JavaScript from fundamentals to advanced concepts and ES6+ features.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 15 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/Reactjs.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/ReactJs.png" alt="React">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">React</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">React JS Mastery</h4>
+                        <p class="marquee-card-excerpt">Learn React from basics to advanced concepts. Build dynamic UIs with hooks.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 20 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/AngularJs.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/Angular.png" alt="Angular">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">Angular</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Angular JS Guide</h4>
+                        <p class="marquee-card-excerpt">Master Angular for building large-scale applications with best practices.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 22 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/Vuejs.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/vue-js.jpg" alt="Vue">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">Vue</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Vue JS Essentials</h4>
+                        <p class="marquee-card-excerpt">Get started with Vue.js and build reactive interfaces with components.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 16 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/CssFramework.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/bootstrap-vs-tailwind.png" alt="CSS Frameworks">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">CSS</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">CSS Frameworks</h4>
+                        <p class="marquee-card-excerpt">Explore Bootstrap, Tailwind, and Bulma for modern responsive layouts.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 14 min</span>
+                                <span><i data-lucide="book-open"></i> Guide</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/Docker.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/Docker.png" alt="Docker">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">DevOps</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Docker Basics</h4>
+                        <p class="marquee-card-excerpt">Learn Docker from scratch. Understand containers, images, and Dockerfile.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 20 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/DevOps.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/Devops.jpeg" alt="DevOps">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">DevOps</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">DevOps Essentials</h4>
+                        <p class="marquee-card-excerpt">Dive into DevOps principles, CI/CD pipelines, and automation tools.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 25 min</span>
+                                <span><i data-lucide="book-open"></i> Guide</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Duplicate for seamless loop -->
+                <a href="./Detailed/Python0toHero.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="./PythonHero.png" alt="Python">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">Python</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Python 0 to Hero</h4>
+                        <p class="marquee-card-excerpt">Complete Python programming guide from absolute beginner to confident coder.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 10 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/Django.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/Django.jpg" alt="Django">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">Django</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Django Hero</h4>
+                        <p class="marquee-card-excerpt">Master Django web framework from scratch. Build powerful web applications.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 12 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/CloudHosting.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/cloudhost.jpg" alt="Cloud">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">Cloud</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Cloud & Hosting</h4>
+                        <p class="marquee-card-excerpt">Master web hosting from static sites to full-stack deployment.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 20 min</span>
+                                <span><i data-lucide="book-open"></i> Guide</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/HTML.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/HTML.png" alt="HTML">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">HTML</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">HTML Mastery</h4>
+                        <p class="marquee-card-excerpt">Learn HTML from scratch and build strong foundations for web development.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 12 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/CSS0toHero.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/CSS.png" alt="CSS">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">CSS</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">CSS Styling</h4>
+                        <p class="marquee-card-excerpt">Master CSS to create beautiful, responsive designs with modern techniques.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 18 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/Javscript.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/Javscript.jpg" alt="JavaScript">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">JavaScript</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">JavaScript Hero</h4>
+                        <p class="marquee-card-excerpt">Master JavaScript from fundamentals to advanced concepts and ES6+ features.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 15 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/Reactjs.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/ReactJs.png" alt="React">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">React</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">React JS Mastery</h4>
+                        <p class="marquee-card-excerpt">Learn React from basics to advanced concepts. Build dynamic UIs with hooks.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 20 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/AngularJs.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/Angular.png" alt="Angular">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">Angular</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Angular JS Guide</h4>
+                        <p class="marquee-card-excerpt">Master Angular for building large-scale applications with best practices.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 22 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/Vuejs.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/vue-js.jpg" alt="Vue">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">Vue</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Vue JS Essentials</h4>
+                        <p class="marquee-card-excerpt">Get started with Vue.js and build reactive interfaces with components.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 16 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/CssFramework.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/bootstrap-vs-tailwind.png" alt="CSS Frameworks">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">CSS</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">CSS Frameworks</h4>
+                        <p class="marquee-card-excerpt">Explore Bootstrap, Tailwind, and Bulma for modern responsive layouts.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 14 min</span>
+                                <span><i data-lucide="book-open"></i> Guide</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/Docker.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/Docker.png" alt="Docker">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">DevOps</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">Docker Basics</h4>
+                        <p class="marquee-card-excerpt">Learn Docker from scratch. Understand containers, images, and Dockerfile.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 20 min</span>
+                                <span><i data-lucide="book-open"></i> Tutorial</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/Blog/Detailed/DevOps.html" class="marquee-card">
+                    <div class="marquee-card-image">
+                        <img src="/Blog/Devops.jpeg" alt="DevOps">
+                        <div class="marquee-card-image-overlay"></div>
+                        <span class="marquee-card-category">DevOps</span>
+                    </div>
+                    <div class="marquee-card-content">
+                        <h4 class="marquee-card-title">DevOps Essentials</h4>
+                        <p class="marquee-card-excerpt">Dive into DevOps principles, CI/CD pipelines, and automation tools.</p>
+                        <div class="marquee-card-footer">
+                            <div class="marquee-card-meta">
+                                <span><i data-lucide="clock"></i> 25 min</span>
+                                <span><i data-lucide="book-open"></i> Guide</span>
+                            </div>
+                            <span class="marquee-card-read">
+                                Learn
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newly Published Section -->
+    <section class="newly-published-section" id="newly-published">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge">
-                    <i data-lucide="book-open"></i>
-                    Learning Resources
+                    <i data-lucide="newspaper"></i>
+                    Latest Posts
                 </div>
-                <h2 class="section-title">Cheat Sheets & <span class="section-title-accent">Guides</span></h2>
+                <h2 class="section-title">Newly <span class="section-title-accent">Published</span></h2>
                 <p class="section-description">
-                    Comprehensive tutorials and guides to help you master programming from zero to hero.
+                    Fresh content hot off the press. Check out our latest blog posts and articles.
                 </p>
             </div>
 
-            <!-- Guides Grid -->
-            <div class="guides-grid">
-                <!-- Python 0 to Hero Blog Card -->
-                <a href="./Detailed/Python0toHero.html" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="./PythonHero.png" alt="Python 0 to Hero">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-python">Python</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Jan 25, 2025
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                10 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">Python 0 to Hero</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Complete Python programming guide from absolute beginner to confident coder. 
-                            Learn basics, data structures, functions and more!
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Django Hero Blog Card -->
-                <a href="/Blog/Detailed/Django.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/Django.jpg" alt="Django Hero">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-django">Django</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Jan 28, 2025
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                12 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">Django Hero</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Master Django web framework from scratch. Build powerful web applications 
-                            with Python's most popular framework step by step.
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-                 <!-- Cloud & Hosting Blog Card -->
-                <a href="/Blog/Detailed/CloudHosting.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/cloudhost.jpg" alt="Cloud & Hosting">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-cloud">Cloud & Hosting</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Feb 5, 2025
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                20 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">Cloud & Hosting</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Master web hosting from static sites to full-stack deployment. Learn domains, DNS, 
-                            VPS, Cloudflare Tunnel, and deploy your projects for free!
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-                <!-- HTML Mastery Blog Card -->
-                <a href="/Blog/Detailed/HTML.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/HTML.png" alt="HTML Mastery">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-html">HTML</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Jan 15, 2025
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                12 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">HTML Mastery</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Learn HTML from scratch and build strong foundations for web development. Explore tags, 
-                            forms, tables, semantic HTML, and best practices.
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- CSS Styling Blog Card -->
-                <a href="/Blog/Detailed/CSS0toHero.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/CSS.png" alt="CSS Styling">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-css">CSS</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Mar 5, 2025
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                18 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">CSS Styling</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Master CSS to create beautiful, responsive designs. Dive into layouts, flexbox, grid, 
-                            animations, transitions, and modern styling techniques.
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- JavaScript Hero Blog Card -->
-                <a href="/Blog/Detailed/Javscript.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/Javscript.jpg" alt="JavaScript Hero">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-javascript">JavaScript</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Feb 2, 2025
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                15 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">JavaScript Hero</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Master JavaScript from fundamentals to advanced concepts. Learn DOM manipulation, 
-                            async programming, ES6+ features and more!
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-                <!-- React JS Blog Card -->
-                <a href="/Blog/Detailed/Reactjs.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/ReactJs.png" alt="React JS">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-react">React</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Jan 10, 2026
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                20 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">React JS Mastery</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Learn React from basics to advanced concepts. Build dynamic UIs using components, hooks,
-                            state management, and modern React patterns.
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Angular JS Blog Card -->
-                <a href="/Blog/Detailed/AngularJs.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/Angular.png" alt="Angular JS">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-angular">Angular</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Feb 18, 2026
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                22 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">Angular JS Guide</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Master Angular for building large-scale applications. Learn components, modules,
-                            services, routing, and best practices.
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Vue JS Blog Card -->
-                <a href="/Blog/Detailed/Vuejs.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/vue-js.jpg" alt="Vue JS">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-vue">Vue</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Apr 25, 2025
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                16 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">Vue JS Essentials</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Get started with Vue.js and build reactive interfaces. Learn directives, components,
-                            reactivity, Vue CLI, and ecosystem tools.
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-               <!-- CSS Frameworks Blog Card -->
-                <a href="/Blog/Detailed/CssFramework.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/bootstrap-vs-tailwind.png" alt="CSS Frameworks">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-css">CSS</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Feb 20, 2025
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                14 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">CSS Frameworks</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Explore popular CSS frameworks like Bootstrap, Tailwind, and Bulma. Learn how to speed up 
-                            your web development and create responsive, modern layouts efficiently.
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Docker Blog Card -->
-                <a href="/Blog/Detailed/Docker.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/Docker.png" alt="Docker">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-devops">Docker</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Jan 30, 2025
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                20 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">Docker Basics</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Learn Docker from scratch. Understand containers, images, Dockerfile, volumes, and networking 
-                            to streamline development and deployment workflows.
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- DevOps Blog Card -->
-                <a href="/Blog/Detailed/DevOps.html" target="_blank" class="blog-card-pro">
-                    <div class="blog-card-image-pro">
-                        <img src="/Blog/Devops.jpeg" alt="DevOps">
-                        <div class="blog-card-image-overlay"></div>
-                        <span class="blog-card-category-pro category-devops">DevOps</span>
-                    </div>
-                    <div class="blog-card-content-pro">
-                        <div class="blog-card-meta-pro">
-                            <span>
-                                <i data-lucide="calendar"></i>
-                                Mar 1, 2025
-                            </span>
-                            <span>
-                                <i data-lucide="clock"></i>
-                                25 min read
-                            </span>
-                        </div>
-                        <h3 class="blog-card-title-pro">DevOps Essentials</h3>
-                        <p class="blog-card-excerpt-pro">
-                            Dive into DevOps principles and practices. Learn CI/CD pipelines, automation tools, cloud 
-                            deployments, monitoring, and collaboration strategies for modern development.
-                        </p>
-                        <div class="blog-card-footer-pro">
-                            <div class="blog-card-author">
-                                <div class="blog-card-author-avatar">OP</div>
-                                <div class="blog-card-author-info">
-                                    <span class="blog-card-author-name">Om Pandey</span>
-                                    <span class="blog-card-author-role">Developer</span>
-                                </div>
-                            </div>
-                            <span class="blog-card-read-pro">
-                                Start Learning
-                                <i data-lucide="arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
+            <div class="blogs-grid" id="blogsGrid">
+                <!-- Loading State -->
+                <div class="loading-container" id="loadingState">
+                    <div class="loading-spinner"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1514,8 +1895,10 @@
     </footer>
 
     <script>
+        // Initialize Lucide Icons
         lucide.createIcons();
 
+        // Scroll Progress
         window.addEventListener('scroll', function() {
             const scrollProgress = document.getElementById('scrollProgress');
             const scrollTop = document.documentElement.scrollTop;
@@ -1524,6 +1907,7 @@
             scrollProgress.style.width = progress + '%';
         });
 
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1533,7 +1917,130 @@
                 }
             });
         });
+
+        // API Configuration
+        const API_BASE_URL = 'https://enyx.omkumarpandey.com.np/api';
+
+        // Format Date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Get Author Initials
+        function getInitials(name) {
+            if (!name) return 'OP';
+            return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+        }
+
+        // Strip HTML tags and truncate
+        function stripHtml(html) {
+            const tmp = document.createElement('div');
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || '';
+        }
+
+        function truncateText(text, maxLength = 150) {
+            const stripped = stripHtml(text);
+            if (stripped.length <= maxLength) return stripped;
+            return stripped.substring(0, maxLength).trim() + '...';
+        }
+
+        // Create Blog Card HTML
+        function createBlogCard(blog) {
+            return `
+                <a href="./BlogDetail.html?slug=${blog.blog_slug}" class="blog-card-pro">
+                    <div class="blog-card-image-pro">
+                        <img src="${blog.blog_image || '/Blog/default-blog.jpg'}" alt="${blog.blog_heading}">
+                        <div class="blog-card-image-overlay"></div>
+                        <span class="blog-card-category-pro">Blog</span>
+                    </div>
+                    <div class="blog-card-content-pro">
+                        <div class="blog-card-meta-pro">
+                            <span>
+                                <i data-lucide="calendar"></i>
+                                ${formatDate(blog.blog_created_at)}
+                            </span>
+                            <span>
+                                <i data-lucide="user"></i>
+                                ${blog.blog_created_by || 'Om Pandey'}
+                            </span>
+                        </div>
+                        <h3 class="blog-card-title-pro">${blog.blog_heading}</h3>
+                        <p class="blog-card-excerpt-pro">
+                            ${truncateText(blog.blog_discription, 120)}
+                        </p>
+                        <div class="blog-card-footer-pro">
+                            <div class="blog-card-author">
+                                <div class="blog-card-author-avatar">${getInitials(blog.blog_created_by)}</div>
+                                <div class="blog-card-author-info">
+                                    <span class="blog-card-author-name">${blog.blog_created_by || 'Om Pandey'}</span>
+                                    <span class="blog-card-author-role">Author</span>
+                                </div>
+                            </div>
+                            <span class="blog-card-read-pro">
+                                Read More
+                                <i data-lucide="arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        // Fetch and Display Blogs
+        async function fetchBlogs() {
+            const blogsGrid = document.getElementById('blogsGrid');
+            const loadingState = document.getElementById('loadingState');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/blogs/`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch blogs');
+                }
+
+                const blogs = await response.json();
+
+                // Remove loading state
+                loadingState.remove();
+
+                if (blogs.length === 0) {
+                    blogsGrid.innerHTML = `
+                        <div class="empty-state">
+                            <i data-lucide="file-x"></i>
+                            <h3>No Blogs Yet</h3>
+                            <p>Check back later for new content!</p>
+                        </div>
+                    `;
+                    lucide.createIcons();
+                    return;
+                }
+
+                // Render blog cards
+                blogsGrid.innerHTML = blogs.map(createBlogCard).join('');
+                
+                // Re-initialize Lucide icons for dynamically added content
+                lucide.createIcons();
+
+            } catch (error) {
+                console.error('Error fetching blogs:', error);
+                loadingState.innerHTML = `
+                    <div class="empty-state">
+                        <i data-lucide="alert-circle"></i>
+                        <h3>Unable to Load Blogs</h3>
+                        <p>Please check your connection and try again.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchBlogs();
+        });
     </script>
-    <script src="/Console.js"></script>
+    <script src="./Console.js"></script>
 </body>
 </html>

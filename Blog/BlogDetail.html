@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Blog Detail - Om Pandey</title>
+    <meta name="description" content="Read full blog post by Om Pandey">
+    <meta name="author" content="Om Pandey">
+    
+    <link rel="shortcut icon" href="../MainLogo.png" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/agustina" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-script: 'Kaushan Script', cursive;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-code: #1e293b;
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --text-white: #ffffff;
+            
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+            --radius-2xl: 28px;
+            --radius-full: 9999px;
+            
+            --transition-base: 200ms ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: var(--radius-full);
+        }
+
+        .agustina-font {
+            font-family: 'Agustina', cursive !important;
+        }
+
+        /* Header */
+        .header-bar {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .header-brand {
+            text-decoration: none;
+        }
+
+        .header-logo-text {
+            font-family: 'Agustina', cursive !important;
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .back-btn:hover {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        .back-btn i {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Blog Container */
+        .blog-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        /* Loading State */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            gap: 20px;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--border-light);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        /* Error State */
+        .error-container {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .error-container i {
+            width: 80px;
+            height: 80px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .error-container h2 {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .error-container p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        /* Blog Header */
+        .blog-header {
+            margin-bottom: 40px;
+        }
+
+        .blog-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 24px;
+        }
+
+        .blog-title {
+            font-family: var(--font-heading);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .blog-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .blog-author-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .blog-author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-author-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .blog-author-role {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .blog-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .blog-meta-item i {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-primary);
+        }
+
+        /* Blog Featured Image */
+        .blog-featured-image {
+            width: 100%;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .blog-featured-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Blog Content - CKEditor Styles */
+        .blog-content {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .blog-content h1,
+        .blog-content h2,
+        .blog-content h3,
+        .blog-content h4,
+        .blog-content h5,
+        .blog-content h6 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            margin-top: 2em;
+            margin-bottom: 0.8em;
+            line-height: 1.3;
+        }
+
+        .blog-content h1 { font-size: 2.2em; }
+        .blog-content h2 { font-size: 1.8em; }
+        .blog-content h3 { font-size: 1.5em; }
+        .blog-content h4 { font-size: 1.3em; }
+        .blog-content h5 { font-size: 1.1em; }
+        .blog-content h6 { font-size: 1em; }
+
+        .blog-content p {
+            margin-bottom: 1.5em;
+        }
+
+        .blog-content a {
+            color: var(--accent-primary);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color var(--transition-base);
+        }
+
+        .blog-content a:hover {
+            color: var(--accent-secondary);
+        }
+
+        .blog-content strong,
+        .blog-content b {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .blog-content em,
+        .blog-content i {
+            font-style: italic;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            margin: 1.5em 0;
+            padding-left: 2em;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5em;
+        }
+
+        .blog-content blockquote {
+            margin: 2em 0;
+            padding: 1.5em 2em;
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: var(--radius-md);
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        .blog-content pre {
+            margin: 2em 0;
+            padding: 1.5em;
+            background: var(--bg-code);
+            border-radius: var(--radius-lg);
+            overflow-x: auto;
+        }
+
+        .blog-content code {
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            background: var(--bg-tertiary);
+            padding: 0.2em 0.5em;
+            border-radius: var(--radius-sm);
+        }
+
+        .blog-content pre code {
+            background: transparent;
+            color: #e2e8f0;
+            padding: 0;
+        }
+
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            margin: 2em 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .blog-content table {
+            width: 100%;
+            margin: 2em 0;
+            border-collapse: collapse;
+        }
+
+        .blog-content th,
+        .blog-content td {
+            padding: 12px 16px;
+            border: 1px solid var(--border-light);
+            text-align: left;
+        }
+
+        .blog-content th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .blog-content hr {
+            margin: 3em 0;
+            border: none;
+            height: 1px;
+            background: var(--border-light);
+        }
+
+        /* Blog Footer */
+        .blog-footer {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .blog-source {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 24px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            margin-bottom: 30px;
+        }
+
+        .blog-source i {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-primary);
+            flex-shrink: 0;
+        }
+
+        .blog-source span {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .blog-source a {
+            color: var(--accent-primary);
+            font-weight: 600;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .blog-source a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-share {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .blog-share-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .blog-share-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .share-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+
+        .share-btn:hover {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .share-btn i {
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .blog-container {
+                padding: 40px 20px 60px;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .blog-title {
+                font-size: 28px;
+            }
+
+            .blog-content {
+                font-size: 16px;
+            }
+
+            .blog-share {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .header-container {
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                gap: 12px;
+            }
+
+            .header-logo-text {
+                font-size: 20px;
+            }
+
+            .back-btn {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .back-btn span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-bar">
+        <div class="header-container">
+            <a href="/index.html" class="header-brand">
+                <span class="header-logo-text agustina-font">Om Pandey</span>
+            </a>
+            <a href="./index.html" class="back-btn">
+                <i data-lucide="arrow-left"></i>
+                <span>Back to Blog</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Blog Container -->
+    <article class="blog-container" id="blogContainer">
+        <!-- Loading State -->
+        <div class="loading-container" id="loadingState">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Loading blog...</p>
+        </div>
+    </article>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // API Configuration
+        const API_BASE_URL = 'https://enyx.omkumarpandey.com.np/api';
+
+        // Get slug from URL
+        function getSlugFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('slug');
+        }
+
+        // Format Date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Get Author Initials
+        function getInitials(name) {
+            if (!name) return 'OP';
+            return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+        }
+
+        // Render Blog
+        function renderBlog(blog) {
+            const container = document.getElementById('blogContainer');
+
+            container.innerHTML = `
+                <!-- Blog Header -->
+                <header class="blog-header">
+                    <span class="blog-category">
+                        <i data-lucide="newspaper" style="width: 14px; height: 14px;"></i>
+                        Blog Post
+                    </span>
+                    
+                    <h1 class="blog-title">${blog.blog_heading}</h1>
+                    
+                    <div class="blog-meta">
+                        <div class="blog-author">
+                            <div class="blog-author-avatar">${getInitials(blog.blog_created_by)}</div>
+                            <div class="blog-author-info">
+                                <span class="blog-author-name">${blog.blog_created_by || 'Om Pandey'}</span>
+                                <span class="blog-author-role">Author</span>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-meta-item">
+                            <i data-lucide="calendar"></i>
+                            ${formatDate(blog.blog_created_at)}
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Featured Image -->
+                ${blog.blog_image ? `
+                <div class="blog-featured-image">
+                    <img src="${blog.blog_image}" alt="${blog.blog_heading}">
+                </div>
+                ` : ''}
+
+                <!-- Blog Content -->
+                <div class="blog-content">
+                    ${blog.blog_discription}
+                </div>
+
+                <!-- Blog Footer -->
+                <footer class="blog-footer">
+                    ${blog.blog_source ? `
+                    <div class="blog-source">
+                        <i data-lucide="link"></i>
+                        <span>Source: <a href="${blog.blog_source}" target="_blank" rel="noopener noreferrer">${blog.blog_source}</a></span>
+                    </div>
+                    ` : ''}
+
+                    <div class="blog-share">
+                        <span class="blog-share-label">Share this post:</span>
+                        <div class="blog-share-buttons">
+                            <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(blog.blog_heading)}&url=${encodeURIComponent(window.location.href)}" target="_blank" class="share-btn" title="Share on Twitter">
+                                <i class="ri-twitter-x-line"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(blog.blog_heading)}" target="_blank" class="share-btn" title="Share on LinkedIn">
+                                <i class="ri-linkedin-fill"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank" class="share-btn" title="Share on Facebook">
+                                <i class="ri-facebook-fill"></i>
+                            </a>
+                            <button onclick="copyToClipboard()" class="share-btn" title="Copy Link">
+                                <i class="ri-link"></i>
+                            </button>
+                        </div>
+                    </div>
+                </footer>
+            `;
+
+            // Update page title
+            document.title = `${blog.blog_heading} - Om Pandey`;
+
+            // Re-initialize icons
+            lucide.createIcons();
+        }
+
+        // Show Error
+        function showError(message) {
+            const container = document.getElementById('blogContainer');
+            container.innerHTML = `
+                <div class="error-container">
+                    <i data-lucide="alert-circle"></i>
+                    <h2>Blog Not Found</h2>
+                    <p>${message}</p>
+                    <a href="./index.html" class="back-btn">
+                        <i data-lucide="arrow-left"></i>
+                        Back to Blog
+                    </a>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // Copy to Clipboard
+        function copyToClipboard() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+
+        // Fetch Blog
+        async function fetchBlog() {
+            const slug = getSlugFromURL();
+
+            if (!slug) {
+                showError('No blog specified. Please select a blog from the blog page.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/blogs/${slug}/`);
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        showError('The blog you\'re looking for doesn\'t exist or has been removed.');
+                    } else {
+                        throw new Error('Failed to fetch blog');
+                    }
+                    return;
+                }
+
+                const blog = await response.json();
+                renderBlog(blog);
+
+            } catch (error) {
+                console.error('Error fetching blog:', error);
+                showError('Unable to load the blog. Please check your connection and try again.');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchBlog();
+        });
+    </script>
+      <script src="./Console.js"></script>
+</body>
+</html>
