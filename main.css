@@ -92,6 +92,85 @@ body.loading {
 }
 
 /* ============================================
+   Mobile Message - Desktop First Approach
+   ============================================ */
+.mobile-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-dark);
+    z-index: 999999;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.mobile-message-content {
+    text-align: center;
+    max-width: 400px;
+}
+
+.mobile-message-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(99, 102, 241, 0.1);
+    border: 2px solid var(--accent-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+.mobile-message-icon i {
+    width: 40px;
+    height: 40px;
+    color: var(--accent-primary);
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px 10px rgba(99, 102, 241, 0.2);
+    }
+}
+
+.mobile-message-title {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.mobile-message-title strong {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.mobile-message-text {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* Main Content - Visible by default */
+.main-content {
+    display: block;
+}
+
+/* ============================================
    Agustina Font Class
    ============================================ */
 .agustina-font {
@@ -1264,6 +1343,11 @@ body.loading {
     color: var(--success);
 }
 
+.badge-network {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+}
+
 .live-dot {
     width: 6px;
     height: 6px;
@@ -1326,6 +1410,13 @@ body.loading {
 
 .big-deal-card:hover .big-deal-action i {
     transform: translateX(6px);
+}
+
+/* Centered card for third project */
+.big-deal-card-centered {
+    grid-column: 1 / -1;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 /* ============================================
@@ -2555,29 +2646,37 @@ body.loading {
 }
 
 /* ============================================
-   Responsive
+   Responsive - Mobile Message
    ============================================ */
+
+/* Medium screens and below - Show mobile message, hide content */
 @media (max-width: 1024px) {
+    .mobile-message {
+        display: flex;
+    }
+    
+    .main-content {
+        display: none !important;
+    }
+}
+
+/* For tablets in landscape that might still work */
+@media (min-width: 1025px) {
+    .mobile-message {
+        display: none;
+    }
+    
+    .main-content {
+        display: block;
+    }
+}
+
+/* ============================================
+   Desktop Responsive (for larger screens)
+   ============================================ */
+@media (max-width: 1200px) and (min-width: 1025px) {
     .hero-container {
-        grid-template-columns: 1fr;
         gap: 60px;
-        text-align: center;
-    }
-    
-    .hero-content {
-        align-items: center;
-    }
-    
-    .hero-description {
-        max-width: 100%;
-    }
-    
-    .hero-stats {
-        justify-content: center;
-    }
-    
-    .hero-buttons {
-        justify-content: center;
     }
     
     .hero-image-container {
@@ -2585,123 +2684,18 @@ body.loading {
         height: 350px;
     }
     
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+    .hero-image-ring-1 {
+        width: 400px;
+        height: 400px;
     }
     
-    .big-deals-grid {
-        grid-template-columns: 1fr;
+    .hero-image-ring-2 {
+        width: 450px;
+        height: 450px;
     }
     
-    .other-projects-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .company-logo-item {
-        width: 100px;
-        height: 70px;
-    }
-    
-    .companies-marquee-track {
-        gap: 50px;
-    }
-
-    .skills-icons-track {
-        gap: 30px;
-    }
-
-    .skill-marquee-item {
-        padding: 12px;
-    }
-}
-
-@media (max-width: 768px) {
-
-    .nav-links {
-        display: none;
-    }
-    
-    .nav-mobile-toggle {
-        display: flex;
-    }
-    
-    .hero {
-        padding: 60px 20px 80px;
-        min-height: auto;
-    }
-    
-    .hero-bg-text {
-        font-size: clamp(80px, 20vw, 200px);
-    }
-    
-    .hero-image-container {
-        width: 280px;
-        height: 280px;
-    }
-    
-    .floating-icon {
-        display: none;
-    }
-    
-    .hero-scroll-indicator {
-        bottom: 30px;
-    }
-    
-    .section {
-        padding: 60px 20px;
-    }
-    
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .other-projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .awards-circle-grid {
-        gap: 24px;
-    }
-    
-    .award-circle-image {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .company-logo-item {
-        width: 90px;
-        height: 60px;
-    }
-    
-    .companies-marquee-track {
-        gap: 40px;
-        animation-duration: 20s;
-    }
-    
-    .companies-marquee-wrapper::before,
-    .companies-marquee-wrapper::after {
-        width: 50px;
-    }
-    
-    .blogs-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .blog-card-image {
-        height: 160px;
-    }
-
-    .marquee-text {
-        font-size: clamp(24px, 4vw, 48px);
-    }
-
-    .skills-icons-marquee-wrapper::before,
-    .skills-icons-marquee-wrapper::after {
-        width: 50px;
-    }
-    
-    .skill-marquee-item {
-        padding: 8px;
+    .hero-image-ring-3 {
+        width: 500px;
+        height: 500px;
     }
 }
