@@ -30,9 +30,6 @@
     --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.3);
     --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.5);
     --shadow-glow: 0 0 40px rgba(129, 140, 248, 0.2);
-
-    /* Marquee text color - White in dark mode */
-    --marquee-text-color: #ffffff;
 }
 
 /* Theme Toggle Button */
@@ -124,19 +121,6 @@
 [data-theme="dark"] .code-header {
     background: rgba(255, 255, 255, 0.02);
     border-bottom-color: rgba(255, 255, 255, 0.04);
-}
-
-/* ============================================
-   Marquee Text - Dark Mode (White Color)
-   ============================================ */
-[data-theme="dark"] .marquee-text {
-    color: var(--marquee-text-color);
-}
-
-[data-theme="dark"] .marquee-section {
-    background: var(--bg-secondary);
-    border-top-color: var(--border-light);
-    border-bottom-color: var(--border-light);
 }
 
 /* ============================================
