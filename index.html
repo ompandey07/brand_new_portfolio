@@ -179,6 +179,14 @@
       <!-- Scroll Progress -->
       <div class="scroll-progress" id="scrollProgress"></div>
 
+      <!-- Floating Right Theme Toggle Button (Aligned with Chapter Nav Dots) -->
+      <div class="floating-theme-wrap">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i data-lucide="sun" class="theme-icon-light"></i>
+          <i data-lucide="moon" class="theme-icon-dark"></i>
+        </button>
+      </div>
+
       <!-- Chapter Nav Dots — SingoNepal style -->
       <div class="chapter-nav" id="chapterNav">
         <div class="chapter-dot active" data-section="hero"></div>
@@ -191,41 +199,24 @@
         <div class="chapter-dot" data-section="contact"></div>
       </div>
 
-      <!-- NAVIGATION -->
-      <nav class="nav" id="mainNav">
-        <div class="nav-container">
-          <a href="#" class="nav-brand">
-            <img src="MainSign.png" alt="Om Pandey" class="nav-logo-img" />
-          </a>
-          <div class="nav-links">
-            <a href="#about" class="nav-link">About</a>
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#process" class="nav-link">Process</a>
-            <a href="#portfolio" class="nav-link">Work</a>
-            <a href="#results" class="nav-link">Results</a>
-            <a href="/Blog/index.html" target="_blank" class="nav-link">Blog</a>
-            <a href="#contact" class="nav-link">Contact</a>
-            <div class="theme-toggle-wrapper">
-              <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                <i data-lucide="sun" class="theme-icon-light"></i>
-                <i data-lucide="moon" class="theme-icon-dark"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
         <!-- ==================== HERO ==================== -->
         <section class="hero" id="hero">
           <div class="hero-frame">
 
-            <!-- BG image -->
-            <img src="MyImage.png.png" alt="" class="hero-bg-img" aria-hidden="true" />
+            <!-- Top-Left Signature Logo -->
+            <a href="#" class="hero-top-brand">
+              <img src="MainSign.png" alt="Om Pandey" class="nav-logo-img" />
+            </a>
+
+            <!-- BG Video -->
+            <video class="hero-bg-video" autoplay loop muted playsinline aria-hidden="true">
+              <source src="HeroVideo.mp4" type="video/mp4" />
+            </video>
             <div class="hero-bg-overlay"></div>
 
             <!-- Right image block -->
             <div class="hero-image-block" id="heroImageBlock">
-              <img src="MyImage.png.png" alt="Om Pandey — Digital Growth Strategist" />
+              <img src="heroSecionImage.jpeg" alt="Om Pandey — AI Software Engineer" />
             </div>
 
             <!-- Massive title -->
@@ -357,7 +348,7 @@
             <!-- Card 4: ITC Nepal Traders (Santosh Shrestha) -->
             <div class="pcard gsap-slide-up">
               <div class="pcard-bg-logo" aria-hidden="true">
-                <img src="Clients/ITCNEPAL.jpg" alt="" />
+                <img src="Clients/ITCNEPAL.png" alt="" />
               </div>
               <div class="pcard-top">
                 <img src="Clients/Santosh Shrestha.jpg" alt="Santosh Shrestha" class="pcard-photo" />
@@ -366,7 +357,7 @@
                   <div class="pcard-role">CEO</div>
                   <div class="pcard-company">ITC Nepal Traders Pvt. Ltd.</div>
                 </div>
-                <img src="Clients/ITCNEPAL.jpg" alt="ITC Nepal Traders" class="pcard-logo" />
+                <img src="Clients/ITCNEPAL.png" alt="ITC Nepal Traders" class="pcard-logo" />
               </div>
               <p class="pcard-quote">"Om's growth strategies and custom web solutions transformed our trading operations across Nepal. Highly recommended partner!"</p>
               <a href="#contact" class="pcard-link">
@@ -418,7 +409,7 @@
             <!-- Single clean image column — no conflicting overlaps -->
             <div class="about-visual">
               <div class="about-main-img">
-                <img src="MyImage.png.png" alt="Om Pandey — Digital Growth Strategist" />
+                <img src="DigialPartner.jpeg" alt="Om Pandey — Digital Growth Strategist" />
               </div>
               <div class="about-stat-row">
                 <div class="about-mini-stat">
@@ -439,8 +430,38 @@
         </section>
 
         <!-- ==================== SERVICES ==================== -->
-        <section class="services-section" id="services">
-          <div class="services-hero-statement gsap-slide-up">
+        <section class="services-section" id="services" style="position:relative; overflow:hidden;">
+          <!-- Inline Animated Vector SVG - Neural Data Stream -->
+          <div style="position:absolute; inset:0; pointer-events:none; z-index:1; overflow:hidden;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" style="width:100%; height:100%; display:block;" aria-hidden="true">
+              <defs>
+                <linearGradient id="svcWaveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#D4A853" stop-opacity="0.8" />
+                  <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.6" />
+                  <stop offset="100%" stop-color="#34d399" stop-opacity="0.8" />
+                </linearGradient>
+                <radialGradient id="svcPulseNode" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#D4A853" stop-opacity="0.25" />
+                  <stop offset="100%" stop-color="#D4A853" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+
+              <!-- Flowing Neural Data Waves -->
+              <path d="M -100 450 C 300 200, 700 650, 1540 250" fill="none" stroke="url(#svcWaveGrad1)" stroke-width="2" stroke-dasharray="14 18" class="spin-ring-1" />
+              <path d="M -100 250 C 400 600, 900 150, 1540 500" fill="none" stroke="rgba(212, 168, 83, 0.22)" stroke-width="1.5" stroke-dasharray="10 16" class="spin-ring-2" />
+
+              <!-- Luminous Node Constellations -->
+              <g>
+                <circle cx="360" cy="320" r="120" fill="url(#svcPulseNode)" />
+                <circle cx="360" cy="320" r="5" fill="#D4A853" />
+                <circle cx="1080" cy="480" r="160" fill="url(#svcPulseNode)" />
+                <circle cx="1080" cy="480" r="6" fill="#06b6d4" />
+                <polygon points="720,220 732,240 708,240" fill="rgba(212, 168, 83, 0.4)" class="spin-ring-3" />
+              </g>
+            </svg>
+          </div>
+
+          <div class="services-hero-statement gsap-slide-up" style="position:relative; z-index:2;">
             <span class="section-eyebrow">Solutions &amp; Expertise</span>
             <h2 class="services-hero-headline">I BUILD SOFTWARE &amp; AI SOLUTIONS THAT HELP BUSINESSES ACTUALLY GROW.</h2>
           </div>
@@ -503,39 +524,67 @@
             <div class="process-hero-bg">
               <svg class="process-svg-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <defs>
-                  <linearGradient id="processGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#D4A853" stop-opacity="0.3" />
-                    <stop offset="40%" stop-color="#06b6d4" stop-opacity="0.15" />
-                    <stop offset="100%" stop-color="#0a0a0c" stop-opacity="0.95" />
-                  </linearGradient>
-                  <linearGradient id="processPathGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <radialGradient id="processGrad1" cx="30%" cy="40%" r="70%">
+                    <stop offset="0%" stop-color="#D4A853" stop-opacity="0.22" />
+                    <stop offset="60%" stop-color="#06b6d4" stop-opacity="0.12" />
+                    <stop offset="100%" stop-color="#050508" stop-opacity="0.98" />
+                  </radialGradient>
+                  <linearGradient id="processBeamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stop-color="#D4A853" stop-opacity="0.9" />
-                    <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.8" />
-                    <stop offset="100%" stop-color="#34d399" stop-opacity="0.9" />
+                    <stop offset="33%" stop-color="#06b6d4" stop-opacity="0.8" />
+                    <stop offset="66%" stop-color="#34d399" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#D4A853" stop-opacity="0.9" />
                   </linearGradient>
-                  <pattern id="processDotGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <circle cx="20" cy="20" r="1.2" fill="rgba(212, 168, 83, 0.18)" />
+                  <pattern id="processBlueprintGrid" width="48" height="48" patternUnits="userSpaceOnUse">
+                    <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(212, 168, 83, 0.07)" stroke-width="1" />
                   </pattern>
                 </defs>
-                <rect width="100%" height="100%" fill="#09090c" />
+
+                <!-- Deep Blueprint Background Fill -->
+                <rect width="100%" height="100%" fill="#050508" />
                 <rect width="100%" height="100%" fill="url(#processGrad1)" />
-                <rect width="100%" height="100%" fill="url(#processDotGrid)" />
-                <g class="process-animated-flow">
-                  <path class="process-flow-line" d="M -100,280 C 300,100 600,450 1540,220" fill="none" stroke="url(#processPathGrad)" stroke-width="2.5" />
-                  <path class="process-flow-line-2" d="M -100,320 C 400,480 800,120 1540,380" fill="none" stroke="url(#processPathGrad)" stroke-dasharray="8 12" stroke-width="1.5" />
-                </g>
-                <g class="process-flow-nodes">
-                  <circle cx="280" cy="190" r="7" fill="#D4A853" class="pulse-node-1" />
-                  <circle cx="680" cy="380" r="9" fill="#06b6d4" class="pulse-node-2" />
-                  <circle cx="1120" cy="250" r="7" fill="#34d399" class="pulse-node-3" />
+                <rect width="100%" height="100%" fill="url(#processBlueprintGrid)" />
+
+                <!-- Meaningful Step-by-Step Architecture Pipeline SVG -->
+                <g class="process-pipeline-group">
+                  <!-- Laser Connector Pipeline Stream -->
+                  <path d="M 120 300 H 1320" stroke="url(#processBeamGrad)" stroke-width="2.5" stroke-dasharray="14 18" class="spin-ring-1" />
+                  <path d="M 120 300 H 1320" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1" />
+
+                  <!-- Stage 1 Node (Discovery & Strategy) -->
+                  <g transform="translate(240, 300)">
+                    <circle r="44" fill="rgba(212, 168, 83, 0.12)" stroke="#D4A853" stroke-width="2" />
+                    <circle r="72" fill="none" stroke="rgba(212, 168, 83, 0.25)" stroke-width="1" stroke-dasharray="6 8" class="spin-ring-1" />
+                    <text x="0" y="5" text-anchor="middle" fill="#D4A853" font-size="14" font-weight="900" font-family="sans-serif">01</text>
+                  </g>
+
+                  <!-- Stage 2 Node (Build & Design) -->
+                  <g transform="translate(560, 300)">
+                    <circle r="44" fill="rgba(6, 182, 212, 0.12)" stroke="#06b6d4" stroke-width="2" />
+                    <circle r="72" fill="none" stroke="rgba(6, 182, 212, 0.25)" stroke-width="1" stroke-dasharray="6 8" class="spin-ring-2" />
+                    <text x="0" y="5" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="900" font-family="sans-serif">02</text>
+                  </g>
+
+                  <!-- Stage 3 Node (Market & Optimize) -->
+                  <g transform="translate(880, 300)">
+                    <circle r="44" fill="rgba(52, 211, 153, 0.12)" stroke="#34d399" stroke-width="2" />
+                    <circle r="72" fill="none" stroke="rgba(52, 211, 153, 0.25)" stroke-width="1" stroke-dasharray="6 8" class="spin-ring-3" />
+                    <text x="0" y="5" text-anchor="middle" fill="#34d399" font-size="14" font-weight="900" font-family="sans-serif">03</text>
+                  </g>
+
+                  <!-- Stage 4 Node (Launch & Scale) -->
+                  <g transform="translate(1200, 300)">
+                    <circle r="44" fill="rgba(212, 168, 83, 0.12)" stroke="#D4A853" stroke-width="2" />
+                    <circle r="72" fill="none" stroke="rgba(212, 168, 83, 0.25)" stroke-width="1" stroke-dasharray="6 8" class="spin-ring-1" />
+                    <text x="0" y="5" text-anchor="middle" fill="#D4A853" font-size="14" font-weight="900" font-family="sans-serif">04</text>
+                  </g>
                 </g>
               </svg>
             </div>
-            <div class="process-hero-overlay"></div>
             <div class="process-hero-content gsap-slide-up">
               <span class="chapter-label" style="color:rgba(255,255,255,0.5)">My Process</span>
-              <h2 class="section-title">HOW I WORK<br />WITH YOU</h2>
-              <p class="pull-quote" style="margin-top:16px;max-width:420px;">From discovery to launch, every step is deliberate, transparent, and results-driven.</p>
+              <h2 class="section-title" style="color:#ffffff;">HOW I WORK<br />WITH YOU</h2>
+              <p class="pull-quote" style="margin-top:16px;max-width:420px;color:rgba(255,255,255,0.72);">From discovery to launch, every step is deliberate, transparent, and results-driven.</p>
             </div>
           </div>
 
@@ -990,8 +1039,39 @@
           </div>
         </div>
 
-        <!-- ==================== RESULTS — Echo-section inspired ==================== -->
+        <!-- ==================== RESULTS ==================== -->
         <section class="results-section" id="results">
+          <!-- Brand New Dynamic High-Tech Vector SVG Animation -->
+          <div class="results-bg-wrap">
+            <svg class="results-svg-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="resultsLaserGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#D4A853" stop-opacity="0.9" />
+                  <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.8" />
+                  <stop offset="100%" stop-color="#34d399" stop-opacity="0.9" />
+                </linearGradient>
+                <radialGradient id="resultsRadialPulse" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#D4A853" stop-opacity="0.2" />
+                  <stop offset="100%" stop-color="#D4A853" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+
+              <!-- Dynamic Laser Path Waves -->
+              <path d="M-100 300 Q 360 100, 720 300 T 1540 300" fill="none" stroke="url(#resultsLaserGrad)" stroke-width="2" stroke-dasharray="12 18" class="spin-ring-1" />
+              <path d="M-100 200 Q 360 400, 720 200 T 1540 200" fill="none" stroke="rgba(6, 182, 212, 0.4)" stroke-width="1.5" stroke-dasharray="8 14" class="spin-ring-2" />
+              
+              <!-- Geometric Pulsing Node Matrix -->
+              <g class="results-nodes">
+                <circle cx="280" cy="180" r="140" fill="url(#resultsRadialPulse)" />
+                <circle cx="280" cy="180" r="6" fill="#D4A853" />
+                <circle cx="1160" cy="420" r="180" fill="url(#resultsRadialPulse)" />
+                <circle cx="1160" cy="420" r="8" fill="#06b6d4" />
+                <polygon points="720,120 735,145 705,145" fill="rgba(212,168,83,0.3)" class="spin-ring-3" />
+                <polygon points="400,450 420,480 380,480" fill="rgba(6,182,212,0.3)" class="spin-ring-1" />
+              </g>
+            </svg>
+          </div>
+
           <!-- Giant ghost text — SingoNepal echo-huge-text -->
           <div class="results-statement">
             <div class="results-giant-text">RESULTS</div>
@@ -1083,125 +1163,199 @@
 
         <!-- ==================== TESTIMONIALS ==================== -->
         <section class="testimonials-section" id="testimonials">
+          <!-- Background SVG Wave Vector Graphics -->
+          <svg class="testimonials-svg-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+            <path fill="rgba(212, 168, 83, 0.05)" d="M0,192L48,176C96,160,192,128,288,138.7C384,149,480,203,576,213.3C672,224,768,192,864,165.3C960,139,1056,117,1152,128C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+
           <div class="testimonials-header">
             <span class="section-eyebrow">Testimonials</span>
             <h2 class="section-title text-reveal">WHAT CLIENTS SAY</h2>
           </div>
-          <div class="testimonials-track">
-            <div class="testimonial-card">
-              <div class="testimonial-quote-mark">&ldquo;</div>
-              <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-              <p class="testimonial-text">"Om didn't just build our website — he transformed our entire digital presence. Our traffic increased by 300% and leads tripled within 3 months."</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Rajesh Sharma" /></div>
-                <div><span class="testimonial-name">Rajesh Sharma</span><span class="testimonial-role">CEO, MegaMinds</span></div>
+
+          <div class="testimonials-marquee-wrapper">
+            <div class="testimonials-marquee-track">
+              <!-- Set 1 -->
+              <div class="testimonial-card">
+                <div class="testimonial-quote-mark">&ldquo;</div>
+                <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                <p class="testimonial-text">"Om didn't just build our website — he transformed our entire digital presence. Our traffic increased by 300% and leads tripled within 3 months."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Rajesh Sharma" /></div>
+                  <div><span class="testimonial-name">Rajesh Sharma</span><span class="testimonial-role">CEO, MegaMinds</span></div>
+                </div>
               </div>
-            </div>
-            <div class="testimonial-card">
-              <div class="testimonial-quote-mark">&ldquo;</div>
-              <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-              <p class="testimonial-text">"The launch strategy Om created for us was incredible. I went from zero to 1000+ users in the first month. Highly recommended!"</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Priya Patel" /></div>
-                <div><span class="testimonial-name">Priya Patel</span><span class="testimonial-role">Founder, Tapstik</span></div>
+              <div class="testimonial-card">
+                <div class="testimonial-quote-mark">&ldquo;</div>
+                <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                <p class="testimonial-text">"The launch strategy Om created for us was incredible. I went from zero to 1000+ users in the first month. Highly recommended!"</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Priya Patel" /></div>
+                  <div><span class="testimonial-name">Priya Patel</span><span class="testimonial-role">Founder, Tapstik</span></div>
+                </div>
               </div>
-            </div>
-            <div class="testimonial-card">
-              <div class="testimonial-quote-mark">&ldquo;</div>
-              <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-              <p class="testimonial-text">"Our SEO rankings went from nowhere to first page for all our target keywords. Om's strategic approach to digital marketing is exceptional."</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Ankit Joshi" /></div>
-                <div><span class="testimonial-name">Ankit Joshi</span><span class="testimonial-role">Marketing Head, TVS</span></div>
+              <div class="testimonial-card">
+                <div class="testimonial-quote-mark">&ldquo;</div>
+                <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                <p class="testimonial-text">"Our SEO rankings went from nowhere to first page for all our target keywords. Om's strategic approach to digital marketing is exceptional."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Ankit Joshi" /></div>
+                  <div><span class="testimonial-name">Ankit Joshi</span><span class="testimonial-role">Marketing Head, TVS</span></div>
+                </div>
               </div>
-            </div>
-            <div class="testimonial-card">
-              <div class="testimonial-quote-mark">&ldquo;</div>
-              <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-              <p class="testimonial-text">"Om's strategic approach transformed our digital presence and helped us reach a wider audience. Highly professional and results-driven!"</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Shrijana Shrestha" /></div>
-                <div><span class="testimonial-name">Shrijana Shrestha</span><span class="testimonial-role">Chairman, Rising Youths</span></div>
+              <div class="testimonial-card">
+                <div class="testimonial-quote-mark">&ldquo;</div>
+                <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                <p class="testimonial-text">"Om's strategic approach transformed our digital presence and helped us reach a wider audience. Highly professional and results-driven!"</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Shrijana Shrestha" /></div>
+                  <div><span class="testimonial-name">Shrijana Shrestha</span><span class="testimonial-role">Chairman, Rising Youths</span></div>
+                </div>
               </div>
-            </div>
-            <div class="testimonial-card">
-              <div class="testimonial-quote-mark">&ldquo;</div>
-              <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-              <p class="testimonial-text">"Exceptional work on our digital marketing strategy. Om brought innovative ideas that significantly boosted our sales and brand awareness."</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Roshan Khadka" /></div>
-                <div><span class="testimonial-name">Roshan Khadka</span><span class="testimonial-role">CFO, Royal Paints</span></div>
+              <div class="testimonial-card">
+                <div class="testimonial-quote-mark">&ldquo;</div>
+                <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                <p class="testimonial-text">"Exceptional work on our digital marketing strategy. Om brought innovative ideas that significantly boosted our sales and brand awareness."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Roshan Khadka" /></div>
+                  <div><span class="testimonial-name">Roshan Khadka</span><span class="testimonial-role">CFO, Royal Paints</span></div>
+                </div>
+              </div>
+
+              <!-- Duplicate Set for Infinite Marquee -->
+              <div class="testimonial-card">
+                <div class="testimonial-quote-mark">&ldquo;</div>
+                <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                <p class="testimonial-text">"Om didn't just build our website — he transformed our entire digital presence. Our traffic increased by 300% and leads tripled within 3 months."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Rajesh Sharma" /></div>
+                  <div><span class="testimonial-name">Rajesh Sharma</span><span class="testimonial-role">CEO, MegaMinds</span></div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="testimonial-quote-mark">&ldquo;</div>
+                <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                <p class="testimonial-text">"The launch strategy Om created for us was incredible. I went from zero to 1000+ users in the first month. Highly recommended!"</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Priya Patel" /></div>
+                  <div><span class="testimonial-name">Priya Patel</span><span class="testimonial-role">Founder, Tapstik</span></div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="testimonial-quote-mark">&ldquo;</div>
+                <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                <p class="testimonial-text">"Our SEO rankings went from nowhere to first page for all our target keywords. Om's strategic approach to digital marketing is exceptional."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Ankit Joshi" /></div>
+                  <div><span class="testimonial-name">Ankit Joshi</span><span class="testimonial-role">Marketing Head, TVS</span></div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="testimonial-quote-mark">&ldquo;</div>
+                <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                <p class="testimonial-text">"Om's strategic approach transformed our digital presence and helped us reach a wider audience. Highly professional and results-driven!"</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Shrijana Shrestha" /></div>
+                  <div><span class="testimonial-name">Shrijana Shrestha</span><span class="testimonial-role">Chairman, Rising Youths</span></div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="testimonial-quote-mark">&ldquo;</div>
+                <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                <p class="testimonial-text">"Exceptional work on our digital marketing strategy. Om brought innovative ideas that significantly boosted our sales and brand awareness."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"><img src="icons/android-chrome-192x192.png" alt="Roshan Khadka" /></div>
+                  <div><span class="testimonial-name">Roshan Khadka</span><span class="testimonial-role">CFO, Royal Paints</span></div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== CTA — Left-aligned process-hero style ==================== -->
+        <!-- ==================== CTA SECTION ==================== -->
         <section class="cta-section" id="cta">
           <div class="cta-bg-wrap">
             <svg class="cta-svg-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
               <defs>
-                <radialGradient id="ctaGlow1" cx="20%" cy="50%" r="70%">
-                  <stop offset="0%" stop-color="#D4A853" stop-opacity="0.32" />
-                  <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.15" />
+                <radialGradient id="ctaGoldGlow" cx="80%" cy="50%" r="60%">
+                  <stop offset="0%" stop-color="#D4A853" stop-opacity="0.18" />
                   <stop offset="100%" stop-color="#08080a" stop-opacity="0.98" />
                 </radialGradient>
-                <linearGradient id="ctaOrbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#D4A853" stop-opacity="0.9" />
-                  <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.7" />
-                  <stop offset="100%" stop-color="#34d399" stop-opacity="0.9" />
+                <linearGradient id="ctaGoldLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#D4A853" stop-opacity="0.8" />
+                  <stop offset="50%" stop-color="#ffffff" stop-opacity="0.3" />
+                  <stop offset="100%" stop-color="#D4A853" stop-opacity="0.6" />
                 </linearGradient>
-                <pattern id="ctaGridPattern" width="50" height="50" patternUnits="userSpaceOnUse">
-                  <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(212, 168, 83, 0.08)" stroke-width="1" />
+                <pattern id="ctaMinimalGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(212, 168, 83, 0.05)" stroke-width="1" />
                 </pattern>
               </defs>
+
               <rect width="100%" height="100%" fill="#08080a" />
-              <rect width="100%" height="100%" fill="url(#ctaGlow1)" />
-              <rect width="100%" height="100%" fill="url(#ctaGridPattern)" />
-              <g class="cta-animated-rings" transform="translate(1100, 350)">
-                <circle r="180" fill="none" stroke="url(#ctaOrbitGrad)" stroke-width="2" stroke-dasharray="14 16" class="spin-ring-1" />
-                <circle r="340" fill="none" stroke="rgba(212, 168, 83, 0.25)" stroke-width="1.5" stroke-dasharray="8 14" class="spin-ring-2" />
-                <circle r="520" fill="none" stroke="rgba(6, 182, 212, 0.2)" stroke-width="1" stroke-dasharray="6 20" class="spin-ring-3" />
+              <rect width="100%" height="100%" fill="url(#ctaGoldGlow)" />
+              <rect width="100%" height="100%" fill="url(#ctaMinimalGrid)" />
+
+              <!-- Clean Geometric Tech Rays & Particles -->
+              <g class="cta-animated-flow">
+                <line x1="0" y1="120" x2="1440" y2="580" stroke="url(#ctaGoldLineGrad)" stroke-width="1.2" stroke-dasharray="16 24" class="spin-ring-1" />
+                <line x1="0" y1="580" x2="1440" y2="120" stroke="rgba(212, 168, 83, 0.12)" stroke-width="1" stroke-dasharray="10 20" class="spin-ring-2" />
+                
+                <g transform="translate(1100, 350)">
+                  <circle r="180" fill="none" stroke="rgba(212, 168, 83, 0.2)" stroke-width="1" stroke-dasharray="8 16" class="spin-ring-1" />
+                  <circle r="360" fill="none" stroke="rgba(212, 168, 83, 0.12)" stroke-width="1" stroke-dasharray="12 24" class="spin-ring-3" />
+                </g>
               </g>
             </svg>
           </div>
-          <div class="cta-overlay"></div>
+          <div class="cta-grid-2col gsap-slide-up">
+            <!-- Left Text Content Column -->
+            <div class="cta-left-col">
+              <div class="cta-live-badge">
+                <span class="pulse-green-dot"></span>
+                <span>2 Strategy Slots Remaining For This Month</span>
+              </div>
 
-          <!-- Left-aligned content layout like My Process section -->
-          <div class="cta-left-container gsap-slide-up">
-            <div class="cta-live-badge">
-              <span class="pulse-green-dot"></span>
-              <span>2 Strategy Slots Remaining For This Month</span>
+              <span class="chapter-label" style="color:rgba(255,255,255,0.55)">Ready To Scale Your Business?</span>
+
+              <h2 class="cta-title-left">
+                LET'S BUILD<br />
+                <span class="cta-glow-accent">SOMETHING</span><br />
+                REMARKABLE
+              </h2>
+
+              <p class="cta-desc-left">
+                Let's engineer, market, and launch your next big platform together. A free 30-minute 1-on-1 strategy call is all it takes to build your actionable growth roadmap.
+              </p>
+
+              <div class="cta-buttons-left">
+                <a href="https://cal.com/om-pandey-qc8mq7/letsmakeithappen" target="_blank" class="cta-btn-gold magnetic-btn">
+                  <i data-lucide="calendar"></i>
+                  <span>Book Free 30-Min Strategy Call</span>
+                  <i data-lucide="arrow-right"></i>
+                </a>
+                <a href="#contact" class="cta-btn-outline magnetic-btn">
+                  <i data-lucide="message-square"></i>
+                  <span>Send Direct Message</span>
+                </a>
+              </div>
+
+              <div class="cta-trust-bar">
+                <span><i data-lucide="shield-check"></i> 100% Confidential</span>
+                <span><i data-lucide="zap"></i> No Commitment</span>
+                <span><i data-lucide="clock"></i> 30-Min Roadmap</span>
+              </div>
             </div>
 
-            <span class="chapter-label" style="color:rgba(255,255,255,0.5)">Ready To Scale Your Business?</span>
-
-            <h2 class="cta-title-left">
-              LET'S BUILD<br />
-              <span class="cta-glow-accent">SOMETHING</span><br />
-              REMARKABLE
-            </h2>
-
-            <p class="cta-desc-left">
-              Let's engineer, market, and launch your next big platform together. A free 30-minute 1-on-1 strategy call is all it takes to build your actionable growth roadmap.
-            </p>
-
-            <div class="cta-buttons-left">
-              <a href="https://cal.com/om-pandey-qc8mq7/letsmakeithappen" target="_blank" class="cta-btn-gold magnetic-btn">
-                <i data-lucide="calendar"></i>
-                <span>Book Free 30-Min Strategy Call</span>
-                <i data-lucide="arrow-right"></i>
-              </a>
-              <a href="#contact" class="cta-btn-outline magnetic-btn">
-                <i data-lucide="message-square"></i>
-                <span>Send Direct Message</span>
-              </a>
-            </div>
-
-            <div class="cta-trust-left">
-              <span><i data-lucide="shield-check"></i> 100% Confidential</span>
-              <span><i data-lucide="zap"></i> No Commitment</span>
-              <span><i data-lucide="clock"></i> 30-Min Roadmap</span>
+            <!-- Right Column with Editorial Photography Mask (NOT a circle!) -->
+            <div class="cta-right-col">
+              <div class="cta-photo-mask-wrap">
+                <img src="LtesBuild.jpeg" alt="Let's Build Something Remarkable" class="cta-photo-masked-img" />
+                <div class="cta-photo-gradient-overlay"></div>
+                <div class="cta-photo-badge">
+                  <i data-lucide="sparkles"></i>
+                  <span>Growth Roadmap Strategy</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
